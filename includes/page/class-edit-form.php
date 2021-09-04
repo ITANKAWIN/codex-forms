@@ -57,11 +57,9 @@ class Codex_Edit_form
 
 
 
-        // echo "<pre>";
-
-        // print_r($this->form_content);
-
-        // echo "</pre>";
+        echo "<pre>";
+        print_r($this->form_content);
+        echo "</pre>";
     }
 
 
