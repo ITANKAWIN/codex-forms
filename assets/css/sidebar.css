@@ -1,0 +1,192 @@
+.wrapper {
+  display: flex;
+
+  width: 100%;
+
+  align-items: stretch;
+}
+
+#sidebar {
+  width: 30%;
+  color: rgb(0, 0, 0);
+  transition: all 0.3s;
+}
+
+#sidebar.active {
+  width: 450px;
+  margin-right: -450px;
+}
+
+#sidebar .sidebar-header {
+  padding: 5px;
+  background: #ebedee;
+  color: #495057;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #47748b;
+}
+
+/* ---------------------------------------------------
+
+    CONTENT STYLE
+
+----------------------------------------------------- */
+
+#content {
+  width: 70%;
+  transition: all 0.3s;
+}
+
+#content.active {
+  width: 100%;
+  transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+
+    MEDIAQUERIES
+
+----------------------------------------------------- */
+@media only screen and (max-width: 992px) {
+  .wrapper {
+    display: block;
+  }
+
+  #content {
+    width: 100%;
+  }
+
+  #sidebar {
+    min-width: 100%;
+    padding: 5px;
+  }
+  #sidebar.active {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    display: block;
+  }
+
+  #content {
+    width: 100%;
+  }
+
+  #sidebar {
+    min-width: 100%;
+  }
+  #sidebar.active {
+    display: none;
+  }
+}
+
+/* Tool Bar Field & Properties */
+
+.tab-menu {
+  background-color: #ebedee;
+}
+
+.tool-bar {
+  flex: 25%;
+
+  padding-top: 20px;
+
+  background-color: #ebedee;
+
+  column-count: 2;
+
+  padding: 20px;
+
+  margin-top: -15px;
+}
+
+.label-item {
+  text-align: center;
+
+  font-family: system-ui;
+}
+
+.label-toolbar {
+  background-color: #ebedee;
+
+  height: 50px;
+
+  padding: 10px 20px;
+
+  text-align: center;
+
+  font-family: sans-serif;
+}
+
+.field-item {
+  height: 50px;
+
+  width: 100px;
+
+  /* border: solid 2px currentColor; */
+
+  margin-bottom: 5px;
+
+  background-color: #ffffff;
+
+  padding: 15px 0px;
+
+  display: block;
+
+  /* margin: 15px 30px; */
+
+  text-align: center;
+
+  font-family: inherit;
+
+  border-radius: 5px;
+
+  font-size: 14px;
+
+  border-width: 1px;
+
+  border-style: solid;
+}
+
+.field-item:hover {
+  background-color: #ffffff;
+
+  padding: 15px 0px;
+
+  display: block;
+
+  /* border-radius: 35px; */
+
+  text-decoration: none;
+
+  font-weight: normal;
+
+  font-size: 15px !important;
+
+  color: rgb(40, 47, 54, 0.85);
+
+  /* margin: 15px 30px; */
+
+  text-align: center;
+
+  font-family: inherit;
+
+  border-radius: 5px;
+
+  font-size: 14px;
+}
+
+/* Tool Bar Field & Config */
+.config-fields.bg{
+    background-color: #ebedee;
+}
+
+.icon.plus-option{ /* icon Plus Option*/
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 17px;
+}
