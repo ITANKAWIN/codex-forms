@@ -58,7 +58,7 @@ class Field_Text
 
             'type' => $this->field_type,
 
-            'label' => 'Text',
+            'label' => 'Input text',
 
             'placeholder' => 'input text',
 

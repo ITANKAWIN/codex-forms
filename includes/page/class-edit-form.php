@@ -93,9 +93,9 @@ class Codex_Edit_form
                     $row += 1;
                     $columns = explode(':', $columns);
                     foreach ($columns as $column => $span) {
-                        $column += 1;
+                        $column += 1; 
                         echo '<div class="col-' . $span . '">';
-                        echo '<div class="layout-column">';
+                        echo '<div class="layout-column ui segment">';
                         if (!empty($this->form_content['panel'])) {
 
                             foreach ($this->form_content['panel'] as $field => $panel) {
