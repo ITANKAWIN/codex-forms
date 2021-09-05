@@ -232,7 +232,7 @@
         $.post(codex_admin.ajax_url, data, function (res) {
           if (res.success) {
             ui_field.attr("data-field-id", field_id);
-            ui_field.append(res.data.preview);
+            ui_field.html(res.data.preview);
             ui_field.append(res.data.position);
             $(".config-fields").append(res.data.config);
             buildLayout();
@@ -255,7 +255,7 @@
       revert: "invalid",
 
       start: function (e, ui) {
-        ui.helper.addClass("ui segment");
+        ui.helper.addClass("ui segment").css("width", "500px");
       },
 
       helper: function () {
@@ -265,11 +265,8 @@
           text = $this.html();
 
         return $el
-
           .html(text)
-
           .css("height", "70px")
-
           .attr("data-field-type", type);
       },
 

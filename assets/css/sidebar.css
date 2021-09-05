@@ -125,10 +125,6 @@
 .field-item {
   height: 50px;
 
-  width: 100px;
-
-  /* border: solid 2px currentColor; */
-
   margin-bottom: 5px;
 
   background-color: #ffffff;
@@ -136,8 +132,6 @@
   padding: 15px 0px;
 
   display: block;
-
-  /* margin: 15px 30px; */
 
   text-align: center;
 

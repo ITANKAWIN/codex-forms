@@ -39,23 +39,14 @@ class Codex_Edit_form
     {
 
         $form_id = $_GET['form_id'];
-
-
-
         $this->form = get_post($form_id);
-
-
 
         if (empty($this->form)) {
 
             return;
         }
 
-
-
         $this->form_content = json_decode(stripslashes($this->form->post_content), true);
-
-
 
         // echo "<pre>";
         // print_r($this->form_content);
@@ -95,7 +86,7 @@ class Codex_Edit_form
                     foreach ($columns as $column => $span) {
                         $column += 1; 
                         echo '<div class="col-' . $span . '">';
-                        echo '<div class="layout-column ui segment">';
+                        echo '<div class="layout-column">';
                         if (!empty($this->form_content['panel'])) {
 
                             foreach ($this->form_content['panel'] as $field => $panel) {
@@ -104,7 +95,7 @@ class Codex_Edit_form
 
                                     if ($field == $fields['id'] && $panel == $row . ":" . $column) {
 
-                                        echo '<div class="field-row in-panel" data-field-type="' . $fields['type'] . '" data-field-id="' . $fields['id'] . '">';
+                                        echo '<div class="field-row in-panel ui segment" data-field-type="' . $fields['type'] . '" data-field-id="' . $fields['id'] . '">';
 
                                         echo apply_filters("codex_form_preview_{$this->form_content['fields'][$fields['id']]['type']}", $this->form_content['fields'][$fields['id']]);
 

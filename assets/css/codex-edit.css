@@ -224,7 +224,7 @@
   right: 5px;
   cursor: pointer;
   top: 0px;
-  color: rgb(49, 119, 199);
+  color: rgb(216 49 49);
 }
 
 .field-row:hover .delete-field {
@@ -239,7 +239,7 @@
   cursor: pointer;
   top: 0px;
   right: 35px;
-  color: rgb(49, 119, 199);
+  color: rgb(48 14 101);
 }
 
 .field-row:hover .config-field {
