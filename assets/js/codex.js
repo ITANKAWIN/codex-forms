@@ -58,5 +58,11 @@ jQuery(function ($) {
     });
   });
 
-  $(".layout-panel").on("mouseenter", ".row", function (e) {});
+  $(".option-show-form").on("mouseenter", function (e) {
+    $(this).children().find(".menu-button").show();
+  });
+
+  $(".option-show-form").on("mouseleave", function (e) {
+    $(".menu-button").hide();
+  });
 });
