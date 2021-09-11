@@ -50,11 +50,14 @@ class Codex_Show_Forms
                     foreach ($this->forms as $key) {
                         echo "<tr class='option-show-form'>";
                         echo "
-                            <td>
-                                <strong>{$key->post_title}</strong>
-                                <a class='menu-button' href='#'>View</a> 
-                                <a class='menu-button' href='" . admin_url('admin.php?page=codex-forms&view=edit&form_id=' . $key->ID) . "'>Edit</a> 
-                                <a class='menu-button delete-form ' data-id='" . $key->ID . "'>Delete</a>
+                            <td width='50%'>
+                                <h5 class='ui header'>
+                                    {$key->post_title}
+                                    <a class='menu-button' href='#'>View</a> 
+                                    <a class='menu-button' href='" . admin_url('admin.php?page=codex-forms&view=edit&form_id=' . $key->ID) . "'>Edit</a> 
+                                    <a class='menu-button delete-form ' data-id='" . $key->ID . "'>Delete</a>
+                                </h5>
+                                </div>
                             </td>
                         ";
                         echo "<td>short code</td>";
