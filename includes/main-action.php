@@ -1,12 +1,7 @@
 <?php
+class Main_action {
 
-namespace main_action;
-
-class Main_action
-{
-
-    function __construct()
-    {
+    function __construct() {
         add_action('admin_menu', array($this, 'admin_menu'));
         if (isset($_GET['page'])) {
             if ($_GET['page'] == 'codex-forms' && !isset($_GET['view'])) {
@@ -18,10 +13,11 @@ class Main_action
                 }
             }
         }
+
+        add_shortcode('codex_preview', array($this, 'preview'));
     }
 
-    function admin_menu()
-    {
+    function admin_menu() {
         add_menu_page(
             __('Codex Forms', 'CODEX-FORMS'),
             __('Codex Forms', 'CODEX-FORMS'),
@@ -41,19 +37,22 @@ class Main_action
         );
     }
 
-    function admin_page()
-    {
+    function admin_page() {
         do_action('codex_admin_page');
     }
 
-    function class_show_forms()
-    {
+    function class_show_forms() {
         require_once(CODEX_PATH . '/includes/page/class-show-forms.php');
     }
 
-    function page_edit_forms()
-    {
+    function page_edit_forms() {
         require_once(CODEX_PATH . '/includes/page/class-edit-form.php');
+    }
+
+    function preview($atts = array()) {
+        ob_start();
+        preview::view($atts['id']);
+        return ob_get_clean();
     }
 }
 new Main_action();

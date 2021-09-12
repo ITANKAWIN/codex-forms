@@ -1,48 +1,25 @@
 <?php
+class Codex_Edit_form {
 
-
-
-class Codex_Edit_form
-
-{
-
-    public $form;
-
+    private $form;
     private $form_content;
 
+    function __construct() {
 
+        $form_id = array('id' => $_GET['form_id']);
 
-    function __construct()
-
-    {
-
-        $this->get_form();
-
-        $this->init();
-    }
-
-
-
-    function init()
-
-    {
+        $this->init($form_id);
 
         add_action('codex_edit_form', array($this, 'header'));
 
         do_action('codex_edit_form');
+
     }
 
-
-
-    function get_form()
-
-    {
-
-        $form_id = $_GET['form_id'];
-        $this->form = get_post($form_id);
+    function init($atts = array()) {
+        $this->form = get_post($atts['id']);
 
         if (empty($this->form)) {
-
             return;
         }
 
@@ -53,95 +30,59 @@ class Codex_Edit_form
         // echo "</pre>";
     }
 
-
-
-    function load_field()
-
-    {
+    function load_field() {
 
         echo '<div class="layout-panel">';
-
         echo '<input type="hidden" id="form_id" name="id" value="' . $this->form->ID . '">';
-
         if (!empty($this->form_content['panels'])) {
-
             $row = 0;
-
             echo '<input type="hidden" name="panels" value="' . $this->form_content['panels'] . '">';
-
             if (!empty($this->form_content['panels'])) {
-
                 $rows = explode("|", $this->form_content['panels']);
             } else {
-
                 $rows = array('12');
             }
 
             if (!empty($rows)) {
-
                 foreach ($rows as $row_in => $columns) {
                     echo '<div class="layout-row">';
                     $row += 1;
                     $columns = explode(':', $columns);
                     foreach ($columns as $column => $span) {
-                        $column += 1; 
+                        $column += 1;
                         echo '<div class="col-' . $span . '">';
                         echo '<div class="layout-column">';
                         if (!empty($this->form_content['panel'])) {
-
                             foreach ($this->form_content['panel'] as $field => $panel) {
-
                                 foreach ($this->form_content['fields'] as $fields) {
-
                                     if ($field == $fields['id'] && $panel == $row . ":" . $column) {
-
                                         echo '<div class="field-row in-panel ui segment" data-field-type="' . $fields['type'] . '" data-field-id="' . $fields['id'] . '">';
-
                                         echo apply_filters("codex_form_preview_{$this->form_content['fields'][$fields['id']]['type']}", $this->form_content['fields'][$fields['id']]);
-
                                         echo '<input type="hidden" name="panel[' . $fields['id'] . ']" class="panel" value="' . $row . ":" . $column . '">';
-
                                         echo '</div>';
                                     }
                                 }
                             }
                         }
-
-
-
                         echo '</div>';
-
                         echo '</div>';
                     }
-
                     echo '</div>';
                 }
             }
         } else {
-
             echo '<input type="hidden" name="panels" value="12">';
-
             echo '<div class="layout-row row">';
-
             echo '<div class="col-12">';
-
             echo '<div class="layout-column">';
-
             echo '</div>';
-
             echo '</div>';
-
             echo '</div>';
         }
-
         echo '</div>';
     }
 
-
-
-    function header()
-
-    {
+    function header() {
 
 ?>
 

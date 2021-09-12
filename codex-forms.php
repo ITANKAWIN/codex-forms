@@ -21,3 +21,4 @@ require_once(CODEX_PATH . '/includes/setting.php');
 require_once(CODEX_PATH . '/includes/main-action.php');
 require_once(CODEX_PATH . '/includes/ajax-action.php');
 require_once(CODEX_PATH . '/includes/class-fields.php');
+require_once(CODEX_PATH . '/includes/preview.php');
