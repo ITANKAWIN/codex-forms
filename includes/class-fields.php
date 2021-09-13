@@ -41,12 +41,12 @@ class Codex_Fields
             'password' => array(
                 "type"          => "password",
                 "description"   => "input string or integer one line",
-                "icon"          => "icon hashtag"
+                "icon"          => "icon font"
             ),
             'number' => array(
                 "type"          => "number",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon hashtag"
             ),
             'email' => array(
                 "type"          => "email",
@@ -71,32 +71,32 @@ class Codex_Fields
             'button' => array(
                 "type"          => "button",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon square outline"
             ),
             'file' => array(
                 "type"          => "file",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon upload"
             ),
             'textarea' => array(
                 "type"          => "textarea",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon paragraph"
             ),
             'divider' => array(
                 "type"          => "divider",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon arrows alternate horizontal"
             ),
             'thai-provinces' => array(
                 "type"          => "thai-provinces",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon map marker alternate"
             ),
             'Pin-GPS' => array(
                 "type"          => "Pin-GPS",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon map marker alternate"
             ),
             'Star-Rating' => array(
                 "type"          => "Star-Rating",
@@ -106,12 +106,12 @@ class Codex_Fields
             'Scale-Rating' => array(
                 "type"          => "Scale-Rating",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon ellipsis horizontal"
             ),
             'reCAPTCHA' => array(
                 "type"          => "reCAPTCHA",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon filter"
             ),
             'Image' => array(
                 "type"          => "Image",
