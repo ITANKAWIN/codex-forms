@@ -31,17 +31,17 @@ class Codex_Fields
             'text' => array(
                 "type"          => "text",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon font"
             ),
             'select' => array(
                 "type"          => "select",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon caret square down outline"
             ),
             'password' => array(
                 "type"          => "password",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon hashtag"
             ),
             'number' => array(
                 "type"          => "number",
@@ -51,22 +51,22 @@ class Codex_Fields
             'email' => array(
                 "type"          => "email",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon envelope outline"
             ),
             'date' => array(
                 "type"          => "date",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon calendar alternate outline"
             ),
             'radio' => array(
                 "type"          => "radio",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon dot circle outline"
             ),
             'checkbox' => array(
                 "type"          => "checkbox",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon check square outline"
             ),
             'button' => array(
                 "type"          => "button",
@@ -101,7 +101,7 @@ class Codex_Fields
             'Star-Rating' => array(
                 "type"          => "Star-Rating",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon star outline"
             ),
             'Scale-Rating' => array(
                 "type"          => "Scale-Rating",
@@ -116,7 +116,7 @@ class Codex_Fields
             'Image' => array(
                 "type"          => "Image",
                 "description"   => "input string or integer one line",
-                "icon"          => ""
+                "icon"          => "icon image outline"
             ),
         );
 

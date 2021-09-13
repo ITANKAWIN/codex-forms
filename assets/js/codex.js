@@ -12,8 +12,6 @@ jQuery(function ($) {
     $(this).closest(".message").transition("fade");
   });
 
-  $(".ui.dropdown").dropdown();
-
   $(".create-form").on("click", function () {
     var alert = $(this).parent().prev();
     var formName = $("#form_name");

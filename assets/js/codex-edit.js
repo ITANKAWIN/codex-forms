@@ -255,13 +255,17 @@
       revert: "invalid",
 
       start: function (e, ui) {
-        ui.helper.addClass("ui segment").css("width", "500px");
+        ui.helper
+          .addClass("ui segment")
+          .css("width", "500px")
+          .css("font-size", "20px")
+          .css("text-align", "center");
       },
 
       helper: function () {
         var $this = $(this),
           type = $this.data("field-type"),
-          $el = $('<div class="field-row in-panel"></div>'),
+          $el = $('<div class="field-row"></div>'),
           text = $this.html();
 
         return $el
@@ -274,6 +278,8 @@
 
       containment: "document",
     });
+
+    $(".ui.dropdown").dropdown();
   }
 
   function buildLayout() {

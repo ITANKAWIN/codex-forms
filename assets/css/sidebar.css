@@ -6,8 +6,20 @@
   align-items: stretch;
 }
 
+/* Content */
+#content {
+  width: 75%;
+  transition: all 0.3s;
+}
+
+#content.active {
+  width: 100%;
+  transition: all 0.3s;
+}
+
+/* Sidebar */
 #sidebar {
-  width: 30%;
+  width: 25%;
   color: rgb(0, 0, 0);
   transition: all 0.3s;
 }
@@ -26,22 +38,6 @@
 #sidebar ul.components {
   padding: 20px 0;
   border-bottom: 1px solid #47748b;
-}
-
-/* ---------------------------------------------------
-
-    CONTENT STYLE
-
------------------------------------------------------ */
-
-#content {
-  width: 70%;
-  transition: all 0.3s;
-}
-
-#content.active {
-  width: 100%;
-  transition: all 0.3s;
 }
 
 /* ---------------------------------------------------

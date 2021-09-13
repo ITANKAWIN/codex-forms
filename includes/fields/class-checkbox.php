@@ -129,7 +129,7 @@ class Field_Checkbox
 
         $config_field = "
 
-        <div class='wrapper-instance-pane properties-config config_field_{$config['id']}' data-field-id='{$config['id']}' style='display: none;'>
+        <div class='wrapper-instance-pane config_field_{$config['id']}' data-field-id='{$config['id']}' style='display: none;'>
 
             <div class='ui grid'>
 

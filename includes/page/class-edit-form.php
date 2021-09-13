@@ -13,7 +13,6 @@ class Codex_Edit_form {
         add_action('codex_edit_form', array($this, 'header'));
 
         do_action('codex_edit_form');
-
     }
 
     function init($atts = array()) {
@@ -56,7 +55,7 @@ class Codex_Edit_form {
                             foreach ($this->form_content['panel'] as $field => $panel) {
                                 foreach ($this->form_content['fields'] as $fields) {
                                     if ($field == $fields['id'] && $panel == $row . ":" . $column) {
-                                        echo '<div class="field-row in-panel ui segment" data-field-type="' . $fields['type'] . '" data-field-id="' . $fields['id'] . '">';
+                                        echo '<div class="field-row ui segment" data-field-type="' . $fields['type'] . '" data-field-id="' . $fields['id'] . '">';
                                         echo apply_filters("codex_form_preview_{$this->form_content['fields'][$fields['id']]['type']}", $this->form_content['fields'][$fields['id']]);
                                         echo '<input type="hidden" name="panel[' . $fields['id'] . ']" class="panel" value="' . $row . ":" . $column . '">';
                                         echo '</div>';
@@ -99,9 +98,7 @@ class Codex_Edit_form {
             <div class="right item">
                 <button class="ui orange button new-form" id="save_form"><i class="plus icon"></i> Save</button>
                 <button class="ui button" id="sidebarCollapse">
-
                     <span class="dashicons dashicons-menu-alt3"></span>
-
                 </button>
             </div>
         </div>
@@ -124,8 +121,8 @@ class Codex_Edit_form {
                         </div>
                     </div>
                 </div>
-                <!-- Sidebar -->
 
+                <!-- Sidebar -->
                 <nav id="sidebar">
                     <div class="ui grid">
                         <div class="column">
@@ -144,11 +141,9 @@ class Codex_Edit_form {
 
                                         foreach ($field_types as $field) {
 
-                                            echo '<div class="field-item" data-field-type="' . $field['type'] . '">';
-
-                                            echo $field['type'];
-
-                                            echo '</div>';
+                                            echo "<div class='field-item' data-field-type='{$field['type']}'>";
+                                            echo "<i class='{$field['icon']}'></i>" . $field['type'];
+                                            echo "</div>";
                                         }
 
                                         ?>

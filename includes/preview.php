@@ -33,7 +33,7 @@ class preview {
                             foreach ($form_content['panel'] as $field => $panel) {
                                 foreach ($form_content['fields'] as $fields) {
                                     if ($field == $fields['id'] && $panel == $row . ":" . $column) {
-                                        echo '<div class="field-row in-panel ui segment" data-field-type="' . $fields['type'] . '" data-field-id="' . $fields['id'] . '">';
+                                        echo '<div class="field-row ui segment" data-field-type="' . $fields['type'] . '" data-field-id="' . $fields['id'] . '">';
                                         echo apply_filters("codex_form_preview_{$form_content['fields'][$fields['id']]['type']}", $form_content['fields'][$fields['id']]);
                                         echo '<input type="hidden" name="panel[' . $fields['id'] . ']" class="panel" value="' . $row . ":" . $column . '">';
                                         echo '</div>';

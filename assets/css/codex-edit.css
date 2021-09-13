@@ -251,31 +251,11 @@
   display: block;
 }
 
-/*Hover Effects*/
+/*Hover Field in panel Effects*/
 
-.field-row:hover {
+.field-row.ui.segment:hover {
   border: 2px solid transparent;
-
-  border-radius: 4px;
-
-  font-weight: normal !important;
-
-  background-image: none;
-
-  padding: 5px;
-
-  box-shadow: none;
-
-  display: block;
-
-  text-align: inherit !important;
-
-  overflow: visible;
-
-  position: relative;
-
   border-color: rgb(65, 153, 253);
-
   transition: 0.5s border-color ease-in-out;
 }
 
