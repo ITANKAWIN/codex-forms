@@ -101,17 +101,17 @@ class Field_Star_Rating
 
     {
         $preview = "";
-        $preview .= "<form class='ui form huge'>";
+        $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
 
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
         $preview .= "<div>
                     <input type='radio' class='fieldradio' id='Option1' name='radio' value='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
                     <label for='Option1'>Star 1 </label></div>";
         $preview .= "</div>";
-        $preview .= "</form>";
+        $preview .= "</div>";
         return $preview;
     }
 

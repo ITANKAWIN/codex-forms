@@ -63,7 +63,7 @@ class Field_Provinces
 
             'type' => $this->field_type,
 
-            'label' => 'thai-provinces',
+            'label' => 'Thai-provinces',
 
             'placeholder' => 'thai-provinces',
 
@@ -101,15 +101,15 @@ class Field_Provinces
 
     {
         $preview = "";
-        $preview .= "<form class='ui form huge'>";
+        $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
 
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
         $preview .= "<select name='select' class='fieldselect' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></select>";
         $preview .= "</div>";
-        $preview .= "</form>";
+        $preview .= "</div>";
         return $preview;
     }
 

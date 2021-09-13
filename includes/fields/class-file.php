@@ -3,53 +3,41 @@
 if (!defined('ABSPATH')) {
 
     die();
-
 }
 
 
 
-class Field_File
-
-{
+class Field_File {
 
     private $field_type = 'file';
 
 
 
-    public function __construct()
-
-    {
+    public function __construct() {
 
         $this->init();
-
     }
 
 
 
-    function init()
-
-    {
+    function init() {
 
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
 
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
 
         add_filter("codex_form_config_{$this->field_type}", array($this, 'config'));
-
     }
 
 
 
-    public function get_field()
-
-    {
+    public function get_field() {
 
         // Check for form ID.
 
         if (!isset($_POST['id']) || empty($_POST['id'])) {
 
             die(esc_html__('No form ID found'));
-
         }
 
 
@@ -91,32 +79,26 @@ class Field_File
             )
 
         );
-
     }
 
 
 
-    public function preview($config = [])
-
-    {
+    public function preview($config = []) {
         $preview = "";
-        $preview .= "<form class='ui form huge'>";
+        $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
         $preview .= "<input type='file' class='fieldinput' id='file' name='file' accept='image/png, image/jpeg' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
-        $preview .= "</form>";
+        $preview .= "</div>";
         return $preview;
     }
 
 
 
-    public function config($config = [])
-
-    {
+    public function config($config = []) {
 
         $config_field = "
 
@@ -249,4 +231,3 @@ class Field_File
 
 
 new Field_File();
-

@@ -177,10 +177,16 @@
 /* Tool Bar Field & Config */
 .config-fields.bg{
     background-color: #ebedee;
+    padding: 5%;
+    margin-top: -12px;
 }
 
 .icon.plus-option{ /* icon Plus Option*/
     margin-top: 10px;
     margin-left: 5px;
     font-size: 17px;
+}
+.ui.basic.label.align{
+  padding: 0px;
+  border: 0px;
 }

@@ -100,23 +100,16 @@ class Field_Image
     public function preview($config = [])
 
     {
-
         $preview = "";
-
+        $preview .= "<div class='ui big labels'>";
+        $preview .= "<div class='field'>";
         if (isset($config['label'])) {
 
-            $preview .= "<label>{$config['label']}</label>";
-
+            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
-
-        $preview .= "<input type='image' class='fieldimage' width='48' height='48' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
-
-        $preview .= "<div class='config-field'><i class='dashicons dashicons-admin-tools'></i></div>";
-
-        $preview .= "<div class='delete-field'><i class='dashicons dashicons-no-alt'></i></div>";
-
-
-
+        $preview .= "<img class='disabled medium ui image' src='http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/image.png' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "</div>";
+        $preview .= "</div>";
         return $preview;
 
     }

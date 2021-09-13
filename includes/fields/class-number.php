@@ -3,54 +3,42 @@
 if (!defined('ABSPATH')) {
 
     die();
-
 }
 
 
 
-class Field_Number
-
-{
+class Field_Number {
 
 
     private $field_type = 'number';
 
 
 
-    public function __construct()
-
-    {
+    public function __construct() {
 
         $this->init();
-
     }
 
 
 
-    function init()
-
-    {
+    function init() {
 
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
 
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
 
         add_filter("codex_form_config_{$this->field_type}", array($this, 'config'));
-
     }
 
 
 
-    public function get_field()
-
-    {
+    public function get_field() {
 
         // Check for form ID.
 
         if (!isset($_POST['id']) || empty($_POST['id'])) {
 
             die(esc_html__('No form ID found'));
-
         }
 
 
@@ -92,32 +80,26 @@ class Field_Number
             )
 
         );
-
     }
 
 
 
-    public function preview($config = [])
-
-    {
+    public function preview($config = []) {
         $preview = "";
-        $preview .= "<form class='ui form huge'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<input type='number' class='fieldinput' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<input type='number' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
-        $preview .= "</form>";
+        $preview .= "</div>";
         return $preview;
     }
 
 
 
-    public function config($config = [])
-
-    {
+    public function config($config = []) {
 
         $config_field = "
 
@@ -248,4 +230,3 @@ class Field_Number
 }
 
 new Field_Number();
-

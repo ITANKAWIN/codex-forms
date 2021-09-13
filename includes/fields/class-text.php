@@ -38,7 +38,7 @@ class Field_Text {
     }
     public function preview($config = []) {
         $preview = "";
-        $preview .= "<div class='ui form huge'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";

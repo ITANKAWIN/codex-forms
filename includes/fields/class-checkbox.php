@@ -102,11 +102,11 @@ class Field_Checkbox
 
     {
         $preview = "";
-        $preview .= "<form class='ui form huge'>";
+        $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
 
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
         $preview .= "<div>
                         <input type='checkbox' id='Option1' name='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
@@ -117,7 +117,7 @@ class Field_Checkbox
                         <label for='Option2'>Option 2</label>
                     </div>";
         $preview .= "</div>";
-        $preview .= "</form>";
+        $preview .= "</div>";
         return $preview;
     }
 

@@ -91,15 +91,15 @@ class Field_button
 
     {
         $preview = "";
-        $preview .= "<form class='ui form huge'>";
+        $preview .= "<div class='ui form huge'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
 
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<button type='{$config['type']}' class='fieldbutton' disabled>" . (!empty($config['text']) ? $config['text'] : '') . "</button>";
+        $preview .= "<button type='{$config['type']}' class='ui primary large basic button' disabled>" . (!empty($config['text']) ? $config['text'] : '') . "</button>";
         $preview .= "</div>";
-        $preview .= "</form>";
+        $preview .= "</div>";
         return $preview;
     }
 
@@ -165,28 +165,7 @@ class Field_button
                 </div>
 
             </div>
-
-
-            <div class='ui grid'>
-
-                <div class='five wide column'>
-
-                    <label>Label</label>
-                
-                </div>
-
-                <div class='eleven wide column'>
-
-                    <div class='ui fluid input'>
-                        
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
-
-                    </div>
-
-                </div>
-        
-            </div>
-
+            
 
             <div class='ui grid'>
 
@@ -213,7 +192,27 @@ class Field_button
 
                 <div class='five wide column'>
 
-                    <label'>Value</label>
+                    <label'>Button Align:</label>
+                
+                </div>
+
+                <div class='eleven wide column'>
+
+                    <div class='ui fluid input'>
+
+                        <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class='ui grid'>
+
+                <div class='five wide column'>
+
+                    <label'>Button Type:</label>
                 
                 </div>
 

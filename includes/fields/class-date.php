@@ -3,14 +3,11 @@
 if (!defined('ABSPATH')) {
 
     die();
-
 }
 
 
 
-class Field_Date
-
-{
+class Field_Date {
 
     public $field_id;
 
@@ -18,43 +15,34 @@ class Field_Date
 
 
 
-    public function __construct()
-
-    {
+    public function __construct() {
 
         $this->init();
-
     }
 
 
 
-    function init()
-
-    {
+    function init() {
 
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
 
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
 
         add_filter("codex_form_config_{$this->field_type}", array($this, 'config'));
-
     }
 
 
 
-    public function get_field()
-
-    {
+    public function get_field() {
 
         // Check for form ID.
 
         if (!isset($_POST['id']) || empty($_POST['id'])) {
 
             die(esc_html__('No form ID found'));
-
         }
 
-        
+
 
         //default config for field
 
@@ -64,7 +52,7 @@ class Field_Date
 
             'type' => $this->field_type,
 
-            'label' => '',
+            'label' => 'Enter the Date:',
 
             'placeholder' => 'dd-mm-yyyy',
 
@@ -93,35 +81,24 @@ class Field_Date
             )
 
         );
-
     }
 
 
-
-    public function preview($config = [])
-
-    {
+    public function preview($config = []) {
         $preview = "";
-        $preview .= "<form class='ui form huge'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<label for='meeting-time'>Enter the Date:</label>
-                    <input type='date' name='date' value='' class='fielddatetime' min='1997-01-01' max='2030-12-31' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
-        $preview .= "<div class='config-field'><i class='dashicons dashicons-admin-tools'></i></div>";
-        $preview .= "<div class='delete-field'><i class='dashicons dashicons-no-alt'></i></div>";
+        $preview .= "<input type='date' name='date' value='' min='1997-01-01' max='2030-12-31' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
-        $preview .= "</form>";
+        $preview .= "</div>";
         return $preview;
     }
 
 
-
-    public function config($config = [])
-
-    {
+    public function config($config = []) {
 
         $config_field = "
 
@@ -255,4 +232,3 @@ class Field_Date
 
 
 new Field_Date();
-

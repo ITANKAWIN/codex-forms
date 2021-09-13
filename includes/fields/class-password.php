@@ -3,60 +3,48 @@
 if (!defined('ABSPATH')) {
 
     die();
-
 }
 
 
 
-class Field_Password
-
-{
+class Field_Password {
 
     private $field_type = 'password';
 
 
 
-    public function __construct()
-
-    {
+    public function __construct() {
 
         $this->init();
-
     }
 
 
 
-    function init()
-
-    {
+    function init() {
 
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
 
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
 
         add_filter("codex_form_config_{$this->field_type}", array($this, 'config'));
-
     }
 
 
 
-    public function get_field()
-
-    {
+    public function get_field() {
 
         // Check for form ID.
 
         if (!isset($_POST['id']) || empty($_POST['id'])) {
 
             die(esc_html__('No form ID found'));
-
         }
 
 
 
-         //default config for field
+        //default config for field
 
-         $default_config = array(
+        $default_config = array(
 
             'id' => $_POST['field_id'],
 
@@ -91,33 +79,25 @@ class Field_Password
             )
 
         );
-
     }
 
 
 
-    public function preview($config = [])
-
-    {
-
+    public function preview($config = []) {
         $preview = "";
-        $preview .= "<form class='ui form huge'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<input type='password' class='fieldinput' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<input type='password' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
-        $preview .= "</form>";
+        $preview .= "</div>";
         return $preview;
     }
 
 
-
-    public function config($config = [])
-
-    {
+    public function config($config = []) {
 
         $config_field = "
 
@@ -250,4 +230,3 @@ class Field_Password
 
 
 new Field_Password();
-
