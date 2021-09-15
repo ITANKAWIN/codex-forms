@@ -13,8 +13,6 @@ class Main_action {
                 }
             }
         }
-
-        add_shortcode('codex_preview', array($this, 'preview'));
     }
 
     function admin_menu() {
@@ -49,10 +47,6 @@ class Main_action {
         require_once(CODEX_PATH . '/includes/page/class-edit-form.php');
     }
 
-    function preview($atts = array()) {
-        ob_start();
-        preview::view($atts['id']);
-        return ob_get_clean();
-    }
+    
 }
 new Main_action();

@@ -1,4 +1,4 @@
-body {
+#wpwrap {
   background: #f0f0f1;
 }
 /* button Field*/
@@ -69,4 +69,8 @@ body {
   [class*="col-"] {
     width: 100%;
   }
+}
+
+.layout-row {
+  display: flex;
 }

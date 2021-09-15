@@ -25,10 +25,6 @@
   cursor: pointer;
 }
 
-.layout-row {
-  display: flex;
-}
-
 /*CSS Field*/
 .field-row {
   padding: 5px;
@@ -210,7 +206,7 @@
   position: relative;
 }
 
-.field-row .fieldcaptcha{
+.field-row .fieldcaptcha {
   width: 50%;
   padding: 10px;
 }
