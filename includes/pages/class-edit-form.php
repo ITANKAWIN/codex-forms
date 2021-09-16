@@ -97,6 +97,11 @@ class Codex_Edit_form {
             </div>
             <div class="right item">
                 <button class="ui orange button new-form" id="save_form"><i class="plus icon"></i> Save</button>
+            </div>
+            <div class="item">
+                <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->ID ?>" target="_blank"><i class="eye icon"></i> Preview</a>
+            </div>
+            <div class="item">
                 <button class="ui button" id="sidebarCollapse">
                     <span class="dashicons dashicons-menu-alt3"></span>
                 </button>

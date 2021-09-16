@@ -13,6 +13,8 @@ class Main_action {
                 }
             }
         }
+
+        require_once(CODEX_PATH . 'includes/pages/preview.php');
     }
 
     function admin_menu() {
@@ -40,11 +42,11 @@ class Main_action {
     }
 
     function class_show_forms() {
-        require_once(CODEX_PATH . '/includes/page/class-show-forms.php');
+        require_once(CODEX_PATH . '/includes/pages/class-show-forms.php');
     }
 
     function page_edit_forms() {
-        require_once(CODEX_PATH . '/includes/page/class-edit-form.php');
+        require_once(CODEX_PATH . '/includes/pages/class-edit-form.php');
     }
 
     

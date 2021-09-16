@@ -45,15 +45,17 @@ class preview {
 
     public function hooks() {
 
-        \add_filter('the_title', array($this, 'the_title'), 100, 1);
+        add_filter('the_title', array($this, 'the_title'), 100, 1);
 
-        \add_filter('the_content', array($this, 'the_content'), 999);
+        add_filter('the_content', array($this, 'the_content'), 999);
 
-        \add_filter('get_the_excerpt', array($this, 'the_content'), 999);
+        add_filter('get_the_excerpt', array($this, 'the_content'), 999);
 
-        \add_filter('template_include', array($this, 'template_include'));
+        add_filter('template_include', array($this, 'template_include'));
 
-        \add_filter('post_thumbnail_html', '__return_empty_string');
+        add_filter('post_thumbnail_html', '__return_empty_string');
+
+        add_action('wp_enqueue_scripts', array($this, 'preview_style'));
     }
 
     public function the_title($title) {
@@ -81,8 +83,21 @@ class preview {
     }
 
     public function template_include() {
-
         return locate_template(array('admin.php', 'single.php', 'index.php'));
+    }
+
+    public function preview_style() {
+        if (isset($_GET['codex_form_preview']) &&  !empty($_GET['codex_form_preview'])) {
+            wp_enqueue_script('jquery-ui-core');
+
+            wp_enqueue_style('codex-preview', CODEX_URL . 'assets/public/css/codex-style.css', __FILE__, codex_css_ver);
+
+            wp_enqueue_script('codex-preview', CODEX_URL . 'assets/public/js/codex-style.js', __FILE__, array('jquery'), codex_js_ver, true);
+
+            wp_enqueue_style('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.css', __FILE__);
+        } else {
+            return;
+        }
     }
 
     public static function view($id) {
@@ -91,6 +106,7 @@ class preview {
 
         $form_content = json_decode(stripslashes($form_data->post_content), true);
 
+        echo '<form method="POST">';
         echo '<div class="layout-panel">';
         echo '<input type="hidden" id="form_id" name="id" value="' . $form_data->ID . '">';
         if (!empty($form_content['panels'])) {
@@ -131,6 +147,7 @@ class preview {
             }
         }
         echo '</div>';
+        echo '</form>';
     }
 }
 

@@ -14,14 +14,13 @@ define('CODEX_PATH', trailingslashit(plugin_dir_path(__FILE__)));
 define('CODEX_URL', trailingslashit(plugins_url('/', __FILE__)));
 
 if (is_admin()) {
-    require_once(CODEX_PATH . '/assets/admin.php');
+    require_once(CODEX_PATH . '/assets/admin/admin.php');
 }
 
 require_once(CODEX_PATH . '/includes/setting.php');
 require_once(CODEX_PATH . '/includes/main-action.php');
 require_once(CODEX_PATH . '/includes/ajax-action.php');
 require_once(CODEX_PATH . '/includes/class-fields.php');
-require_once(CODEX_PATH . '/includes/preview.php');
 
 function hook_style() {
     global $post;

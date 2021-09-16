@@ -7,26 +7,20 @@ if (!defined('ABSPATH')) {
 
 
 
-class Field_Select
-
-{
+class Field_Select {
 
     private $field_type = 'select';
 
 
 
-    public function __construct()
-
-    {
+    public function __construct() {
 
         $this->init();
     }
 
 
 
-    function init()
-
-    {
+    function init() {
 
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
 
@@ -37,9 +31,7 @@ class Field_Select
 
 
 
-    public function get_field()
-
-    {
+    public function get_field() {
 
         // Check for form ID.
 
@@ -91,9 +83,7 @@ class Field_Select
 
 
 
-    public function preview($config = [])
-
-    {
+    public function preview($config = []) {
         $preview = "";
         $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
@@ -101,16 +91,14 @@ class Field_Select
 
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
-        $preview .= "<select name='select' class='fieldselect' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></select>";
+        $preview .= "<select name='select' class='ui fluid dropdown' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></select>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
     }
 
 
-    public function config($config = [])
-
-    {
+    public function config($config = []) {
 
         $config_field = "
 
