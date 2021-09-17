@@ -1,167 +1,43 @@
 <?php
-
-
-
 if (!defined('ABSPATH')) {
-
-
-
     die();
 }
-
-
-
-
-
-
-
 class Field_Email {
-
-
-
     private $field_type = 'email';
-
-
-
-
-
-
-
     public function __construct() {
-
-
-
         $this->init();
     }
 
-
-
-
-
-
-
     function init() {
-
-
-
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
-
-
-
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
-
-
-
         add_filter("codex_form_config_{$this->field_type}", array($this, 'config'));
     }
 
-
-
-
-
-
-
     public function get_field() {
-
-
-
         // Check for form ID.
-
-
-
         if (!isset($_POST['id']) || empty($_POST['id'])) {
-
-
-
             die(esc_html__('No form ID found'));
         }
-
-
-
-
-
-
-
         //default config for field
-
-
-
         $default_config = array(
-
-
-
             'id' => $_POST['field_id'],
-
-
-
             'type' => $this->field_type,
-
-
-
             'label' => 'Email',
-
-
-
             'placeholder' => 'name@example.com',
-
-
-
             'value' => '',
-
-
-
         );
-
-
-
-
-
-
-
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
-
-
-
         // Prepare to return compiled results.
-
-
-
         wp_send_json_success(
-
-
-
             array(
-
-
-
                 'field' => (int) $_POST['field_id'],
-
-
-
                 'preview' => $this->preview($default_config),
-
-
-
                 'config'  => $this->config($default_config),
-
-
-
                 'position' => $position,
-
-
-
             )
-
-
-
         );
     }
-
-
-
-
-
-
 
     public function preview($config = []) {
         $preview = "";
@@ -175,12 +51,6 @@ class Field_Email {
         $preview .= "</div>";
         return $preview;
     }
-
-
-
-
-
-
 
     public function config($config = []) {
         $config_field = "
@@ -245,11 +115,5 @@ class Field_Email {
         return $config_field;
     }
 }
-
-
-
-
-
-
 
 new Field_Email();

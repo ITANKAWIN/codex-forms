@@ -1,169 +1,41 @@
 <?php
-
-
-
 if (!defined('ABSPATH')) {
-
-
-
     die();
 }
 
-
-
-
-
-
-
 class Field_Scale_Rating {
-
-
-
-
-
     private $field_type = 'Scale-Rating';
-
-
-
-
-
-
-
     public function __construct() {
-
-
-
         $this->init();
     }
-
-
-
-
-
-
-
     function init() {
-
-
-
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
-
-
-
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
-
-
-
         add_filter("codex_form_config_{$this->field_type}", array($this, 'config'));
     }
 
-
-
-
-
-
-
     public function get_field() {
-
-
-
         // Check for form ID.
-
-
-
         if (!isset($_POST['id']) || empty($_POST['id'])) {
-
-
-
             die(esc_html__('No form ID found'));
         }
-
-
-
-
-
-
-
         //default config for field
-
-
-
         $default_config = array(
-
-
-
             'id' => $_POST['field_id'],
-
-
-
             'type' => $this->field_type,
-
-
-
             'label' => 'Scale-Rating',
-
-
-
-            'placeholder' => 'scale-rating',
-
-
-
-            'value' => '',
-
-
-
         );
-
-
-
-
-
-
-
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
-
-
-
         // Prepare to return compiled results.
-
-
-
         wp_send_json_success(
-
-
-
             array(
-
-
-
                 'form_id' => (int) $_POST['id'],
-
-
-
                 'preview' => $this->preview($default_config),
-
-
-
                 'config'  => $this->config($default_config),
-
-
-
                 'position' => $position,
-
-
-
             )
-
-
-
         );
     }
-
-
-
-
-
-
 
     public function preview($config = []) {
         $preview = "";
@@ -179,7 +51,6 @@ class Field_Scale_Rating {
         $preview .= "</div>";
         return $preview;
     }
-
 
     public function config($config = []) {
         $config_field = "
@@ -216,26 +87,6 @@ class Field_Scale_Rating {
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
                         <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
-                    </div>
-                </div>
-            </div>
-            <div class='ui grid'>
-                <div class='five wide column'>
-                    <label>Placeholder</label>
-                </div>
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
-                    </div>
-                </div>
-            </div>
-            <div class='ui grid'>
-                <div class='five wide column'>
-                    <label'>Value</label>
-                </div>
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
                     </div>
                 </div>
             </div>

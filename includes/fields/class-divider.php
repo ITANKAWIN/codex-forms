@@ -87,18 +87,6 @@ class Field_Divider {
                     </select>
                 </div>
             </div>
-
-            <div class='ui grid'>
-                <div class='five wide column'>
-                    <label>Placeholder</label>
-                </div>
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
-                    </div>
-                    
-                </div>
-            </div>
         </div>
         ";
         return $config_field;
