@@ -41,10 +41,10 @@ class Field_File {
 
     public function preview($config = []) {
         $preview = "";
-        $preview .= "<div class='ui big labels'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
+            $preview .= "<label>{$config['label']}</label>";
         }
         $preview .= "<input type='file' class='fieldinput' id='file' name='file' accept='image/png, image/jpeg' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";

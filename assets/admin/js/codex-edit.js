@@ -219,29 +219,34 @@
           ui_field = ui.helper;
         }
 
-        var field_type = ui_field.data("field-type");
+        // Check field no id, true is load layout field
+        if (!ui_field.attr("data-field-id")) {
+          var field_type = ui_field.data("field-type");
 
-        var data = {
-          id: formID.val(),
+          var data = {
+            id: formID.val(),
 
-          field_id: field_id,
+            field_id: field_id,
 
-          action: "codex_new_field_" + field_type,
-        };
+            action: "codex_new_field_" + field_type,
+          };
 
-        $.post(codex_admin.ajax_url, data, function (res) {
-          if (res.success) {
-            ui_field.attr("data-field-id", field_id);
-            ui_field.html(res.data.preview);
-            ui_field.append(res.data.position);
-            $(".config-fields").append(res.data.config);
-            buildLayout();
-          } else {
-            console.log(res);
-          }
-        }).fail(function (xhr, textStatus, e) {
-          console.log(xhr.responseText);
-        });
+          $.post(codex_admin.ajax_url, data, function (res) {
+            if (res.success) {
+              ui_field.attr("data-field-id", field_id);
+              ui_field.html(res.data.preview);
+              ui_field.append(res.data.position);
+              $(".config-fields").append(res.data.config);
+              buildLayout();
+            } else {
+              console.log(res);
+            }
+          }).fail(function (xhr, textStatus, e) {
+            console.log(xhr.responseText);
+          });
+        } else {
+          buildLayout();
+        }
       },
     });
 
@@ -347,4 +352,35 @@
   });
 
   jQueryui();
+
+  var app = {
+    init: function () {
+      $(app.ready);
+    },
+
+    ready: function () {
+      $(".config-fields").on("click", ".add", function (e) {
+        app.fieldChoiceAdd(e, $(this));
+      });
+    },
+
+    fieldChoiceAdd: function (event, el) {
+      event.preventDefault();
+
+      var $this = $(el),
+        $parent = $this.parent(),
+        $id = $parent.parent().parent().parent().data("field-id"),
+        next_id = $(".config_field_" + $id)
+          .find("input[name='fields[" + $id + "][next_option_id]']")
+          .val(),
+        $choice = $parent.clone().insertAfter($parent);
+
+      $choice
+        .find("input")
+        .val("")
+        .attr("name", "fields[" + $id + "][options][" + next_id + "]");
+    },
+  };
+
+  app.init();
 })(jQuery);

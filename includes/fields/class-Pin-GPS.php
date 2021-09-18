@@ -4,14 +4,17 @@ if (!defined('ABSPATH')) {
 }
 class Field_Pin_GPS {
     private $field_type = 'Pin-GPS';
+
     public function __construct() {
         $this->init();
     }
+
     function init() {
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
         add_filter("codex_form_config_{$this->field_type}", array($this, 'config'));
     }
+    
     public function get_field() {
         // Check for form ID.
         if (!isset($_POST['id']) || empty($_POST['id'])) {

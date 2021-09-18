@@ -39,3 +39,7 @@
 .col-12 {
   width: 100%;
 }
+
+.layout-column {
+  margin: 15px 3px 0;
+}

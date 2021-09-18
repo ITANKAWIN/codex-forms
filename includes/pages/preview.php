@@ -92,9 +92,11 @@ class preview {
 
             wp_enqueue_style('codex-preview', CODEX_URL . 'assets/public/css/codex-style.css', __FILE__, codex_css_ver);
 
-            wp_enqueue_script('codex-preview', CODEX_URL . 'assets/public/js/codex-style.js', __FILE__, array('jquery'), codex_js_ver, true);
+            wp_enqueue_script('codex-preview', CODEX_URL . 'assets/public/js/codex-style.js', __FILE__, codex_js_ver);
 
             wp_enqueue_style('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.css', __FILE__);
+
+            wp_enqueue_script('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.js', __FILE__);
         } else {
             return;
         }

@@ -83,6 +83,16 @@ class Field_button {
             </div>
             <div class='ui grid'>
                 <div class='five wide column'>
+                    <label>Text</label>
+                </div>
+                <div class='eleven wide column'>
+                    <div class='ui fluid input'>
+                        <input type='text' name='fields[{$config['id']}][text]' value='{$config['text']}' readonly>
+                    </div>
+                </div>
+            </div>
+            <div class='ui grid'>
+                <div class='five wide column'>
                     <label'>Button Align</label>
                 </div>
                 <div class='eleven wide column'>

@@ -24,7 +24,11 @@ class Field_Select {
             'type' => $this->field_type,
             'label' => 'Select',
             'placeholder' => 'select',
-            'value' => '',
+            'options' => array(
+                1 => 'First',
+                2 => 'Second'
+            ),
+            'next_option_id' => 3,
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
@@ -40,13 +44,17 @@ class Field_Select {
 
     public function preview($config = []) {
         $preview = "";
-        $preview .= "<div class='ui big labels'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
 
-            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
+            $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<select name='select' class='ui fluid dropdown' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></select>";
+        $preview .= "<select name='select' class='ui dropdown fluid' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        foreach ($config['options'] as $option) {
+            $preview .= "<option>{$option}</option>";
+        }
+        $preview .= "</select>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -100,15 +108,26 @@ class Field_Select {
                     </div>
                 </div>
             </div>
+
+            <hr>
+
+            <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
             <div class='ui grid'>
                 <div class='five wide column'>
                     <label'>Option</label>
                 </div>
                 <div class='eleven wide column'>
+                    ";
+        foreach ($config['options'] as $option => $v) {
+            $config_field .= "
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
-                        <i class='icon plus circle plus-option'></i>
-                    </div>
+                        <input type='text' class='form-control' name='fields[{$config['id']}][options][{$option}]' value='{$v}'>
+                        <a class='add' href='#'>
+                            <i class='icon plus circle plus-option'></i>
+                        </a>
+                    </div>";
+        }
+        $config_field .= "
                 </div>
             </div>
         </div>
