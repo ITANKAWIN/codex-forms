@@ -252,11 +252,8 @@
 
     $(".field-item").draggable({
       connectToSortable: ".layout-column",
-
       cursor: "grabbing",
-
       opacity: 0.75,
-
       revert: "invalid",
 
       start: function (e, ui) {
@@ -280,7 +277,6 @@
       },
 
       cancel: false,
-
       containment: "document",
     });
 
@@ -306,23 +302,17 @@
 
         cols.each(function (p, c) {
           span = $(c).attr("class").split("-");
-
           rowcols.push(span[1]);
-
           var fields = $(c).find(".panel");
-
           if (fields.length) {
             fields.each(function (x, f) {
               var field = $(f);
-
               field.val(row_index + ":" + (p + 1)).removeAttr("disabled");
             });
           }
         });
-
         struct.push(rowcols.join(":"));
       });
-
       capt.val(struct.join("|"));
     });
 
@@ -359,27 +349,59 @@
     },
 
     ready: function () {
+      // Add Option Field Select
       $(".config-fields").on("click", ".add", function (e) {
-        app.fieldChoiceAdd(e, $(this));
+        app.fieldSelectOptionAdd(e, $(this));
       });
+
+      // Remove Option Field Select
+      $(".config-fields").on("click", ".remove", function (e) {
+        app.fieldSelectOptionRemove(e, $(this));
+      });
+
+      // sortable element
+      app.fieldSelectOptionSortable();
     },
 
-    fieldChoiceAdd: function (event, el) {
+    // Function for add option field select
+    fieldSelectOptionAdd: function (event, el) {
       event.preventDefault();
 
       var $this = $(el),
         $parent = $this.parent(),
         $id = $parent.parent().parent().parent().data("field-id"),
-        next_id = $(".config_field_" + $id)
-          .find("input[name='fields[" + $id + "][next_option_id]']")
-          .val(),
-        $choice = $parent.clone().insertAfter($parent);
+        next_id = $(".config_field_" + $id).find(
+          "input[name='fields[" + $id + "][next_option_id]']"
+        ),
+        next_id_val = next_id.val();
+      $choice = $parent.clone().insertAfter($parent);
 
       $choice
         .find("input")
         .val("")
-        .attr("name", "fields[" + $id + "][options][" + next_id + "]");
+        .attr("name", "fields[" + $id + "][options][" + next_id_val + "]");
+
+      next_id_val++;
+      next_id.val(next_id_val);
     },
+
+    // Function for remove option field select
+    fieldSelectOptionRemove: function (event, el) {
+      event.preventDefault();
+
+      var $this = $(el),
+        $parent = $this.parent(),
+        total = $parent.parent().find(".ui").length;
+      if (confirm(codex_admin.confirm_remove_option)) {
+        if (total === 1) {
+          alert(codex_admin.confirm_remove_option_alert);
+        } else {
+          $parent.remove();
+        }
+      }
+    },
+
+    fieldSelectOptionSortable: function (selector) {},
   };
 
   app.init();

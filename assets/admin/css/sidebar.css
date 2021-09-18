@@ -177,7 +177,8 @@
     margin-top: -12px;
 }
 
-.icon.plus-option{ /* icon Plus Option*/
+/* icon add and remove Option Field Select*/
+a.add, a.remove{ 
     margin-top: 10px;
     margin-left: 5px;
     font-size: 17px;

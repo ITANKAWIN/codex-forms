@@ -1,6 +1,5 @@
 <?php
-function new_form()
-{
+function new_form() {
 
     $form_title = sanitize_text_field($_POST['title']);
 
@@ -63,9 +62,7 @@ add_action('wp_ajax_new_form', 'new_form');
 
 
 
-function delete_form()
-
-{
+function delete_form() {
 
 
 
@@ -102,9 +99,7 @@ add_action('wp_ajax_delete_form', 'delete_form');
 
 
 
-function save_form()
-
-{
+function save_form() {
 
     $form_id = sanitize_text_field($_POST['id']);
 

@@ -18,24 +18,23 @@ class Admin_Script {
 
         add_action('init', array($this, 'codex_jquery_ui'));
 
-        add_action('init', array($this, 'salcodes_enqueue_scripts'));
+        add_action('admin_enqueue_scripts', array($this, 'javascript_api'));
     }
 
+    function javascript_api() {
+        $strings = array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'config_field' => "<div class='config-field'><i class='icon edit'></i></div>",
+            'delete_field' => "<div class='delete-field'><i class='icon trash'></i></div>",
+            'confirm_remove_option' => "Are you sure want to delete option this?",
+            'confirm_remove_option_alert' => "This item must contain at least one option."
+        );
 
-
-    function salcodes_enqueue_scripts() {
-        global $post;
-        if (
-            is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'codex_preview')
-        ) {
-            add_action('wp_head', array($this, 'add_codex_edit_css'));
-        }
-    }
-
-    function add_codex_edit_css() {
-?>
-        <link rel="stylesheet" href="<?= CODEX_URL . 'assets/admin/css/codex-edit.css', __FILE__ ?>">
-<?php
+        wp_localize_script(
+            'codex-admin',
+            'codex_admin',
+            $strings
+        );
     }
 
     function codex_admin_scripts() {
@@ -46,25 +45,6 @@ class Admin_Script {
         wp_enqueue_script('codex-admin', CODEX_URL . 'assets/admin/js/codex.js', __FILE__, array('jquery'), '1.0.0', true);
         wp_enqueue_script('codex-sidebar', CODEX_URL . 'assets/admin/js/sidebar.js', __FILE__, array('jquery'), '1.0.0', true);
         wp_enqueue_script('codex-edit', CODEX_URL . 'assets/admin/js/codex-edit.js', __FILE__, array('jquery'), '1.0.0', true);
-
-
-        $strings = array(
-            'ajax_url' => admin_url('admin-ajax.php'),
-            'config_field' => "<div class='config-field'><i class='icon edit'></i></div>",
-            'delete_field' => "<div class='delete-field'><i class='icon trash'></i></div>",
-        );
-
-
-
-        wp_localize_script(
-
-            'codex-admin',
-
-            'codex_admin',
-
-            $strings
-
-        );
     }
 
     function codex_semantic_ui_scripts() {
@@ -73,30 +53,16 @@ class Admin_Script {
         wp_enqueue_script('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.js', __FILE__);
     }
 
-
-
     function codex_jquery_ui() {
-
         wp_enqueue_script('jquery-ui-core');
-
         wp_enqueue_script('jquery-ui-widget');
-
         wp_enqueue_script('jquery-ui-mouse');
-
         wp_enqueue_script('jquery-ui-tabs');
-
         wp_enqueue_script('jquery-ui-sortable');
-
         wp_enqueue_script('jquery-ui-draggable');
-
         wp_enqueue_script('jquery-ui-droppable');
-
         wp_enqueue_script('jquery-ui-datepicker');
-
         wp_enqueue_script('jquery-ui-resize');
     }
 }
-
-
-
 new Admin_Script();

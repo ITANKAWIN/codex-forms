@@ -52,7 +52,7 @@ class Field_Select {
         }
         $preview .= "<select name='select' class='ui dropdown fluid' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         foreach ($config['options'] as $option) {
-            $preview .= "<option>{$option}</option>";
+            $preview .= "<option value='$option'>{$option}</option>";
         }
         $preview .= "</select>";
         $preview .= "</div>";
@@ -87,8 +87,6 @@ class Field_Select {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
@@ -97,8 +95,6 @@ class Field_Select {
                         <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Placeholder</label>
                 </div>
@@ -108,7 +104,6 @@ class Field_Select {
                     </div>
                 </div>
             </div>
-
             <hr>
 
             <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
@@ -123,7 +118,10 @@ class Field_Select {
                     <div class='ui fluid input'>
                         <input type='text' class='form-control' name='fields[{$config['id']}][options][{$option}]' value='{$v}'>
                         <a class='add' href='#'>
-                            <i class='icon plus circle plus-option'></i>
+                            <i class='icon plus circle green'></i>
+                        </a>
+                        <a class='remove' href='#'>
+                            <i class='icon minus circle red'></i>
                         </a>
                     </div>";
         }
