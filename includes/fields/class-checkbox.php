@@ -47,11 +47,11 @@ class Field_Checkbox {
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
         $preview .= "<div>
-                        <input type='checkbox' id='Option1' name='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+                        <input type='checkbox' name='{$config['id']}' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
                         <label for='Option1'>Option 1</label>
                     </div>
                     <div>
-                        <input type='checkbox' id='Option2' name='Option2' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+                        <input type='checkbox' name='{$config['id']}' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
                         <label for='Option2'>Option 2</label>
                     </div>";
         $preview .= "</div>";

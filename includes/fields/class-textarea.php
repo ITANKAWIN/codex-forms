@@ -51,7 +51,7 @@ class Field_Textarea {
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<textarea  class='form-control' id='exampleFormControlTextarea1' rows='3' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></textarea>";
+        $preview .= "<textarea  class='form-control' name='{$config['id']}' id='{$config['id']}' rows='3' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></textarea>";
         $preview .= "<div class='config-field'><i class='dashicons dashicons-admin-tools'></i></div>";
         $preview .= "<div class='delete-field'><i class='dashicons dashicons-no-alt'></i></div>";
         $preview .= "</div>";
@@ -116,6 +116,19 @@ class Field_Textarea {
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
                         <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                    </div>
+                </div>
+            </div>
+            <div class='ui grid'>
+                <div class='five wide column'>
+                    <label'>Required</label>
+                </div>
+                <div class='eleven wide column'>
+                    <div class='inline field'>
+                        <div class='ui toggle checkbox'>
+                            <input type='checkbox' tabindex='0' class='hidden'>
+                            <label></label>
+                        </div>
                     </div>
                 </div>
             </div>

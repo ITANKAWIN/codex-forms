@@ -61,7 +61,6 @@ class Field_Text {
                     </div>
                 </div>
             </div>
-            
             <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
@@ -74,7 +73,6 @@ class Field_Text {
             $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
         }
         $config_field .= "
-            
                     </select>
                 </div>
             </div>
@@ -88,8 +86,7 @@ class Field_Text {
                         
                         <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
-                </div>
-        
+                </div>   
             </div>
             <div class='ui grid'>
                 <div class='five wide column'>
@@ -102,7 +99,6 @@ class Field_Text {
                     
                 </div>
             </div>
-            
             <div class='ui grid'>
                 <div class='five wide column'>
                     <label'>Value</label>
@@ -111,6 +107,19 @@ class Field_Text {
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
                         <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                    </div>
+                </div>
+            </div>
+            <div class='ui grid'>
+                <div class='five wide column'>
+                    <label'>Required</label>
+                </div>
+                <div class='eleven wide column'>
+                    <div class='inline field'>
+                        <div class='ui toggle checkbox'>
+                            <input type='checkbox' tabindex='0' class='hidden'>
+                            <label></label>
+                        </div>
                     </div>
                 </div>
             </div>

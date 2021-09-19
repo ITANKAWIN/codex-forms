@@ -47,11 +47,11 @@ class Field_Radio {
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
         $preview .= "<div>
-                        <input type='radio' class='fieldradio' id='Option1' name='radio' value='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+                        <input type='radio' class='fieldradio' name='{$config['id']}' id='{$config['id']}' value='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
                         <label for='Option1'>Option 1 </label>
                     </div>
                     <div>
-                        <input type='radio' class='fieldradio' id='Option2' name='radio' value='Option2' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+                        <input type='radio' class='fieldradio' name='{$config['id']}' id='{$config['id']}' value='Option2' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
                         <label for='Option2'>Option 2 </label>
                     </div>";
         $preview .= "</div>";

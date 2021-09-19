@@ -51,7 +51,7 @@ class Field_Divider {
 
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<hr clss='fielddivider' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<hr clss='fielddivider' name='{$config['id']}' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

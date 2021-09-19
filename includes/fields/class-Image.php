@@ -45,7 +45,7 @@ class Field_Image {
 
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
-        $preview .= "<img class='disabled medium ui image' src='http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/image.png' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<img class='disabled medium ui image' name='{$config['id']}' id='{$config['id']}' src='http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/image.png' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
