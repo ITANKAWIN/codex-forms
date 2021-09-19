@@ -52,7 +52,7 @@ class Field_Select {
         }
         $preview .= "<select name='select' class='ui dropdown fluid' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         foreach ($config['options'] as $option) {
-            $preview .= "<option value='$option'>{$option}</option>";
+            $preview .= "<option value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</option>";
         }
         $preview .= "</select>";
         $preview .= "</div>";
@@ -116,7 +116,7 @@ class Field_Select {
         foreach ($config['options'] as $option => $v) {
             $config_field .= "
                     <div class='ui fluid input'>
-                        <div class='index-control'><input type='radio' name='radio' value='Option1'></div>
+                        <div class='index-control'><input type='radio' name='fields[{$config['id']}][option_default]' " . ($config['option_default'] == $v ? 'checked' : '') . " value='{$v}'></div>
                         <input type='text' class='form-control' name='fields[{$config['id']}][options][{$option}]' value='{$v}'>
                         <a class='add' href='#'>
                             <i class='icon plus circle green'></i>

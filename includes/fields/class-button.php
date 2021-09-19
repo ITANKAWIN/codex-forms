@@ -47,7 +47,7 @@ class Field_button {
 
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<button type='{$config['type']}' class='ui primary large basic button' disabled>" . (!empty($config['text']) ? $config['text'] : '') . "</button>";
+        $preview .= "<button type='submit' class='ui primary large basic button' disabled>" . (!empty($config['text']) ? $config['text'] : '') . "</button>";
         $preview .= "</div>";
         $preview .= "</form>";
         return $preview;
@@ -87,7 +87,7 @@ class Field_button {
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' name='fields[{$config['id']}][text]' value='{$config['text']}' readonly>
+                        <input type='text' name='fields[{$config['id']}][text]' value='{$config['text']}'>
                     </div>
                 </div>
             </div>

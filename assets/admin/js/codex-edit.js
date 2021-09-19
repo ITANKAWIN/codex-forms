@@ -377,7 +377,7 @@
       $choice = $parent.clone().insertAfter($parent);
 
       $choice
-        .find("input")
+        .find("input[type=text]")
         .val("")
         .attr("name", "fields[" + $id + "][options][" + next_id_val + "]");
 

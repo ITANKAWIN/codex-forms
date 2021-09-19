@@ -24,9 +24,9 @@ class Codex_Edit_form {
 
         $this->form_content = json_decode(stripslashes($this->form->post_content), true);
 
-        // echo "<pre>";
-        // print_r($this->form_content);
-        // echo "</pre>";
+        echo "<pre>";
+        print_r($this->form_content);
+        echo "</pre>";
     }
 
     function load_field() {
