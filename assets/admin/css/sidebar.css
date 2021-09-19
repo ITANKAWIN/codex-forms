@@ -178,6 +178,11 @@
 }
 
 /* icon add and remove Option Field Select*/
+.index-control{
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 17px;
+}
 a.add, a.remove{ 
     margin-top: 10px;
     margin-left: 5px;

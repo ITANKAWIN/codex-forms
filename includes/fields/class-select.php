@@ -108,14 +108,15 @@ class Field_Select {
 
             <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
             <div class='ui grid'>
-                <div class='five wide column'>
+                <div class='four wide column'>
                     <label'>Option</label>
                 </div>
-                <div class='eleven wide column'>
+                <div class='twelve wide column'>
                     ";
         foreach ($config['options'] as $option => $v) {
             $config_field .= "
                     <div class='ui fluid input'>
+                        <div class='index-control'><input type='radio' name='radio' value='Option1'></div>
                         <input type='text' class='form-control' name='fields[{$config['id']}][options][{$option}]' value='{$v}'>
                         <a class='add' href='#'>
                             <i class='icon plus circle green'></i>

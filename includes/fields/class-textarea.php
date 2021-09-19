@@ -4,7 +4,6 @@ if (!defined('ABSPATH')) {
 }
 
 class Field_Textarea {
-    public $field_id;
     private $field_type = 'textarea';
 
     public function __construct() {
@@ -31,7 +30,7 @@ class Field_Textarea {
             'placeholder' => 'textarea',
             'value' => '',
         );
-        $position = "<input type='hidden' name='panel[{$this->field_id}]' class='panel' value=''>";
+        $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
 
         // Prepare to return compiled results.
         wp_send_json_success(

@@ -3,7 +3,6 @@ if (!defined('ABSPATH')) {
     die();
 }
 class Field_Radio {
-    public $field_id;
     private $field_type = 'radio';
     public function __construct() {
         $this->init();
@@ -27,7 +26,7 @@ class Field_Radio {
             'placeholder' => 'Radio',
             'value' => '',
         );
-        $position = "<input type='hidden' name='panel[{$this->field_id}]' class='panel' value=''>";
+        $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
         wp_send_json_success(
             array(
