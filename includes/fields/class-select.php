@@ -116,11 +116,7 @@ class Field_Select {
         foreach ($config['options'] as $option => $v) {
             $config_field .= "
                     <div class='ui fluid input'>
-<<<<<<< HEAD
-                        <div><input type='radio' name='radio' value='Option1'></div>
-=======
                         <div class='index-control'><input type='radio' name='fields[{$config['id']}][option_default]' " . ($config['option_default'] == $v ? 'checked' : '') . " value='{$v}'></div>
->>>>>>> 59ccbc7e8f02c49757371de832485ff81a347956
                         <input type='text' class='form-control' name='fields[{$config['id']}][options][{$option}]' value='{$v}'>
                         <a class='add' href='#'>
                             <i class='icon plus circle green'></i>
