@@ -60,7 +60,7 @@ class Codex_Show_Forms
                                 </div>
                             </td>
                         ";
-                        echo "<td>short code</td>";
+                        echo "<td><a class='ui button short-code-copy' data-tooltip='Click here copy to clipboard' data-position='top left'>[codex_form_preivew id={$key->ID}]</a></td>";
                         echo "<td>{$key->post_date}</td>";
                         echo "</tr>";
                     }

@@ -108,12 +108,11 @@ class preview {
 
         $form_content = json_decode(stripslashes($form_data->post_content), true);
 
-        echo '<form method="POST">';
+        echo '<form method="POST" enctype="multipart/form-data">';
         echo '<div class="layout-panel">';
         echo '<input type="hidden" id="form_id" name="id" value="' . $form_data->ID . '">';
         if (!empty($form_content['panels'])) {
             $row = 0;
-            echo '<input type="hidden" name="panels" value="' . $form_content['panels'] . '">';
             if (!empty($form_content['panels'])) {
                 $rows = explode("|", $form_content['panels']);
             } else {
@@ -133,9 +132,8 @@ class preview {
                             foreach ($form_content['panel'] as $field => $panel) {
                                 foreach ($form_content['fields'] as $fields) {
                                     if ($field == $fields['id'] && $panel == $row . ":" . $column) {
-                                        echo '<div class="field-row" data-field-type="' . $fields['type'] . '" data-field-id="' . $fields['id'] . '">';
+                                        echo '<div class="field-row">';
                                         echo apply_filters("codex_form_preview_{$form_content['fields'][$fields['id']]['type']}", $form_content['fields'][$fields['id']]);
-                                        echo '<input type="hidden" name="panel[' . $fields['id'] . ']" class="panel" value="' . $row . ":" . $column . '">';
                                         echo '</div>';
                                     }
                                 }

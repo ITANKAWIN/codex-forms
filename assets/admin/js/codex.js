@@ -63,4 +63,9 @@ jQuery(function ($) {
   $(".option-show-form").on("mouseleave", function (e) {
     $(".menu-button").hide();
   });
+
+  $(".option-show-form").on("click", function (e) {
+    var text = $(".short-code-copy").text();
+    navigator.clipboard.writeText(text);
+  });
 });
