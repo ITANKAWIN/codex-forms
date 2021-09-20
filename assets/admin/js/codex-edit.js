@@ -281,6 +281,7 @@
     });
 
     $(".ui.dropdown").dropdown();
+    $('.ui.checkbox').checkbox();
   }
 
   function buildLayout() {
@@ -401,7 +402,7 @@
       }
     },
 
-    fieldSelectOptionSortable: function (selector) {},
+    fieldSelectOptionSortable: function (selector) { },
   };
 
   app.init();
