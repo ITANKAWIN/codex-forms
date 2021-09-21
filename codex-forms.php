@@ -11,6 +11,7 @@ if (!defined('ABSPATH')) {
     exit();
 }
 
+// Path
 define('CODEX_PATH', trailingslashit(plugin_dir_path(__FILE__)));
 define('CODEX_URL', trailingslashit(plugins_url('/', __FILE__)));
 
@@ -21,8 +22,8 @@ if (is_admin()) {
 // When plugin activate, trigger install method.
 register_activation_hook(__FILE__, ['Codex_Install', 'activate']);
 
-require_once(CODEX_PATH . '/includes/class-install.php');
 require_once(CODEX_PATH . '/includes/setting.php');
+require_once(CODEX_PATH . '/includes/class-install.php');
 require_once(CODEX_PATH . '/includes/main-action.php');
 require_once(CODEX_PATH . '/includes/ajax-action.php');
 require_once(CODEX_PATH . '/includes/class-fields.php');

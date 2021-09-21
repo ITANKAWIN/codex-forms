@@ -2,41 +2,25 @@
 function new_form() {
 
     $form_title = sanitize_text_field($_POST['title']);
-
     // $form_template = sanitize_text_field($_POST['template']);
-
     // $title_exists  = get_page_by_title($form_title, 'OBJECT', 'wpforms');
 
     if (empty($form_title)) {
-
         return false;
     }
 
-
     $data      = [
-
         'panels' => 12,
-
         'panel'  => [],
-
         'fields' => []
-
     ];
 
-
-
     // Merge args and create the form.
-
     $form = array(
-
         'post_title'   => $form_title,
-
         'post_status'  => 'publish',
-
         'post_type'    => 'codex-forms',
-
         'post_content' => wp_json_encode($data),
-
         'form_desc'  => '',
 
     );
