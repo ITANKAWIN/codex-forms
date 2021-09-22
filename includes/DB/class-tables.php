@@ -42,6 +42,7 @@ class Codex_Forms_DB_Tables {
 				`name` varchar(18) NOT NULL DEFAULT '',
 				`type` varchar(255) NOT NULL DEFAULT '',
 				`config` longtext NOT NULL,
+                `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 				PRIMARY KEY (`id`)
 				) " . $this->charset_collate . ";";
         dbDelta($forms_table);

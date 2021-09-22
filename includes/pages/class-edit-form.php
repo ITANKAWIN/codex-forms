@@ -1,43 +1,49 @@
 <?php
 class Codex_Edit_form {
 
+    private $form_id;
     private $form;
-    private $form_content;
+    private $form_config;
 
     function __construct() {
 
-        $form_id = array('id' => $_GET['form_id']);
+        if (empty($_GET['form_id'])) {
+            return;
+        }
 
-        $this->init($form_id);
+        $this->form_id = $_GET['form_id'];
+
+        $this->init();
 
         add_action('codex_edit_form', array($this, 'header'));
 
         do_action('codex_edit_form');
     }
 
-    function init($atts = array()) {
-        $this->form = get_post($atts['id']);
+    function init() {
+
+        $this->form = Codex_form_DB::get_by_id($this->form_id, table_forms);
 
         if (empty($this->form)) {
             return;
         }
 
-        $this->form_content = json_decode(stripslashes($this->form->post_content), true);
+        $this->form_config = json_decode(stripslashes($this->form->config), true);
 
         echo "<pre>";
-        print_r($this->form_content);
+        print_r($this->form_config);
         echo "</pre>";
     }
 
     function load_field() {
 
         echo '<div class="layout-panel">';
-        echo '<input type="hidden" id="form_id" name="id" value="' . $this->form->ID . '">';
-        if (!empty($this->form_content['panels'])) {
+        echo '<input type="hidden" id="form_id" name="id" value="' . $this->form->id . '">';
+        if (!empty($this->form_config['panels'])) {
             $row = 0;
-            echo '<input type="hidden" name="panels" value="' . $this->form_content['panels'] . '">';
-            if (!empty($this->form_content['panels'])) {
-                $rows = explode("|", $this->form_content['panels']);
+            echo '<input type="hidden" name="panels" value="' . $this->form_config['panels'] . '">';
+            if (!empty($this->form_config['panels'])) {
+                $rows = explode("|", $this->form_config['panels']);
             } else {
                 $rows = array('12');
             }
@@ -51,12 +57,12 @@ class Codex_Edit_form {
                         $column += 1;
                         echo '<div class="col-' . $span . '">';
                         echo '<div class="layout-column">';
-                        if (!empty($this->form_content['panel'])) {
-                            foreach ($this->form_content['panel'] as $field => $panel) {
-                                foreach ($this->form_content['fields'] as $fields) {
+                        if (!empty($this->form_config['panel'])) {
+                            foreach ($this->form_config['panel'] as $field => $panel) {
+                                foreach ($this->form_config['fields'] as $fields) {
                                     if ($field == $fields['id'] && $panel == $row . ":" . $column) {
                                         echo '<div class="field-row ui segment" data-field-type="' . $fields['type'] . '" data-field-id="' . $fields['id'] . '">';
-                                        echo apply_filters("codex_form_preview_{$this->form_content['fields'][$fields['id']]['type']}", $this->form_content['fields'][$fields['id']]);
+                                        echo apply_filters("codex_form_preview_{$this->form_config['fields'][$fields['id']]['type']}", $this->form_config['fields'][$fields['id']]);
                                         echo '<input type="hidden" name="panel[' . $fields['id'] . ']" class="panel" value="' . $row . ":" . $column . '">';
                                         echo '</div>';
                                     }
@@ -93,13 +99,13 @@ class Codex_Edit_form {
                 Codex-Forms
             </div>
             <div class="item">
-                <input class="form-control me-2" type="text" id="form_name" name="form_name" value="<?= !empty($this->form) ? $this->form->post_title : '' ?>">
+                <input class="form-control me-2" type="text" id="form_name" name="form_name" value="<?= !empty($this->form) ? $this->form->name : '' ?>">
             </div>
             <div class="right item">
                 <button class="ui orange button new-form" id="save_form"><i class="plus icon"></i> Save</button>
             </div>
             <div class="item">
-                <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->ID ?>" target="_blank"><i class="eye icon"></i> Preview</a>
+                <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->id ?>" target="_blank"><i class="eye icon"></i> Preview</a>
             </div>
             <div class="item">
                 <button class="ui button" id="sidebarCollapse">
@@ -136,10 +142,8 @@ class Codex_Edit_form {
                                     <a class="active item" data-tab="fields"><i class="icon sign"></i>Fields</a>
                                     <a class="item" data-tab="config"><i class="icon sign"></i>Config</a>
                                 </div>
-
                                 <div class="ui tab active " data-tab="fields">
                                     <div class="tool-bar" id="tool-bar">
-
                                         <?php
 
                                         $field_types = Codex_Fields::init();
@@ -152,20 +156,18 @@ class Codex_Edit_form {
                                         }
 
                                         ?>
-
                                     </div>
-
                                 </div>
                                 <div class="ui tab" data-tab="config">
                                     <div class="ui form">
                                         <div class="config-fields bg">
                                             <?php
 
-                                            if (isset($this->form_content['fields'])) {
+                                            if (isset($this->form_config['fields'])) {
 
-                                                foreach ($this->form_content['fields'] as $fields) {
+                                                foreach ($this->form_config['fields'] as $fields) {
 
-                                                    echo apply_filters("codex_form_config_{$this->form_content['fields'][$fields['id']]['type']}", $this->form_content['fields'][$fields['id']]);
+                                                    echo apply_filters("codex_form_config_{$this->form_config['fields'][$fields['id']]['type']}", $this->form_config['fields'][$fields['id']]);
                                                 }
                                             }
 

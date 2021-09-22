@@ -197,22 +197,17 @@
   function jQueryui() {
     $(".layout-column, .panel-row").sortable({
       connectWith: ".layout-column",
-
       items: ".field-row",
-
       cursor: "move",
 
       stop: function (e, ui) {
         ui.item.removeAttr("style");
-
         buildLayout();
       },
 
       receive: function (event, ui) {
         var formID = $("#form_id");
-
         var field_id = Math.floor(Math.random() * 900000) + 100000;
-
         var ui_field = ui.item;
 
         if (ui.helper != null) {
@@ -225,9 +220,7 @@
 
           var data = {
             id: formID.val(),
-
             field_id: field_id,
-
             action: "codex_new_field_" + field_type,
           };
 

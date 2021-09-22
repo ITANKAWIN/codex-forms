@@ -37,9 +37,9 @@ jQuery(function ($) {
   });
 
   $(".delete-form").click(function () {
+
     var data = {
       id: $(".delete-form").data("id"),
-
       action: "delete_form",
     };
 

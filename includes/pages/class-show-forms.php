@@ -1,26 +1,21 @@
 <?php
 
-class Codex_Show_Forms
-{
-    public $forms;
-    function __construct()
-    {
+class Codex_Show_Forms {
 
-        $this->get_forms();
+    private $codex_forms = 'wp_codex_forms';
 
-        $this->init();
-    }
+    private $forms;
 
-    function init()
-    {
+    function __construct() {
+
+        $this->forms = Codex_form_DB::get($this->codex_forms);
 
         add_action('codex_show_forms', array($this, 'view'));
 
         do_action('codex_show_forms');
     }
 
-    function view()
-    {
+    function view() {
 ?>
         <div class="ui stackable container menu massive">
             <div href="#" class="item">
@@ -52,16 +47,16 @@ class Codex_Show_Forms
                         echo "
                             <td width='50%'>
                                 <h5 class='ui header'>
-                                    {$key->post_title}
-                                    <a class='menu-button' href='" . home_url() . '/?codex_form_preview=' . $key->ID . "' target='_blank'>View</a> 
-                                    <a class='menu-button' href='" . admin_url('admin.php?page=codex-forms&view=edit&form_id=' . $key->ID) . "'>Edit</a> 
-                                    <a class='menu-button delete-form ' data-id='" . $key->ID . "'>Delete</a>
+                                    {$key->name}
+                                    <a class='menu-button' href='" . home_url() . '/?codex_form_preview=' . $key->id . "' target='_blank'>View</a> 
+                                    <a class='menu-button' href='" . admin_url('admin.php?page=codex-forms&view=edit&form_id=' . $key->id) . "'>Edit</a> 
+                                    <a class='menu-button delete-form ' data-id='" . $key->id . "'>Delete</a>
                                 </h5>
                                 </div>
                             </td>
                         ";
-                        echo "<td><a class='ui button short-code-copy' data-tooltip='Click here copy to clipboard' data-position='top left'>[codex_form_preivew id={$key->ID}]</a></td>";
-                        echo "<td>{$key->post_date}</td>";
+                        echo "<td><a class='ui button short-code-copy' data-tooltip='Click here copy to clipboard' data-position='top left'>[codex_form_preivew id={$key->id}]</a></td>";
+                        echo "<td>{$key->date}</td>";
                         echo "</tr>";
                     }
                     ?>
@@ -143,20 +138,6 @@ class Codex_Show_Forms
 
 <?php
 
-    }
-
-
-    function get_forms()
-
-    {
-
-        $form = array(
-
-            "post_type" => "codex-forms",
-
-        );
-
-        $this->forms = get_posts($form);
     }
 }
 
