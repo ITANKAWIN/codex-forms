@@ -23,8 +23,11 @@ class Field_Radio {
             'id' => $_POST['field_id'],
             'type' => $this->field_type,
             'label' => 'Radio Buttons',
-            'placeholder' => 'Radio',
-            'value' => '',
+            'options' => array(
+                1 => 'Option 1',
+                2 => 'Option 2'
+            ),
+            'next_option_id' => 3,
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
@@ -43,17 +46,12 @@ class Field_Radio {
         $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
-        $preview .= "<div>
-                        <input type='radio' class='fieldradio' name='{$config['id']}' id='{$config['id']}' value='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
-                        <label for='Option1'>Option 1 </label>
-                    </div>
-                    <div>
-                        <input type='radio' class='fieldradio' name='{$config['id']}' id='{$config['id']}' value='Option2' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
-                        <label for='Option2'>Option 2 </label>
-                    </div>";
+        foreach ($config['options'] as $option) {
+            $preview .= "<input type='radio' class='ui radio checkbox' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+                        <label value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label>";
+        }
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -86,8 +84,6 @@ class Field_Radio {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
@@ -96,16 +92,38 @@ class Field_Radio {
                         <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
-                    <label'>Option</label>
+                    <label>Placeholder</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
-                        <i class='icon plus circle plus-option'></i>
-                    </div>     
+                        <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
+            <div class='ui grid'>
+                <div class='four wide column'>
+                    <label'>Option</label>
+                </div>
+                <div class='twelve wide column'>
+                    ";
+        foreach ($config['options'] as $option => $v) {
+            $config_field .= "
+                    <div class='ui fluid input'>
+                        <div class='index-control'><input type='radio' name='fields[{$config['id']}][option_default]' " . ($config['option_default'] == $v ? 'checked' : '') . " value='{$v}'></div>
+                        <input type='text' class='form-control' name='fields[{$config['id']}][options][{$option}]' value='{$v}'>
+                        <a class='add' href='#'>
+                            <i class='icon plus circle green'></i>
+                        </a>
+                        <a class='remove' href='#'>
+                            <i class='icon minus circle red'></i>
+                        </a>
+                    </div>";
+        }
+        $config_field .= "
                 </div>
             </div>
         </div>

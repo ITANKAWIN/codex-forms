@@ -46,7 +46,7 @@ class Field_Email {
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<input type='email' name='{$config['id']}' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<input type='email' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

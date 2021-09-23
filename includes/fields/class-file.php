@@ -46,7 +46,7 @@ class Field_File {
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<input type='file' class='fieldinput' name='{$config['id']}' id='{$config['id']}' accept='image/png, image/jpeg' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<input type='file' class='fieldinput' name='field[{$config['id']}]' id='{$config['id']}' accept='image/png, image/jpeg' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

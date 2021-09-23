@@ -51,7 +51,7 @@ class Field_Textarea {
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<textarea  class='form-control' name='{$config['id']}' id='{$config['id']}' rows='3' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></textarea>";
+        $preview .= "<textarea  class='form-control' name='field[{$config['id']}]' id='{$config['id']}' rows='3' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></textarea>";
         $preview .= "<div class='config-field'><i class='dashicons dashicons-admin-tools'></i></div>";
         $preview .= "<div class='delete-field'><i class='dashicons dashicons-no-alt'></i></div>";
         $preview .= "</div>";

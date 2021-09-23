@@ -50,7 +50,7 @@ class Field_Select {
 
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<select name='select' class='ui dropdown fluid' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<select name='select' class='ui dropdown fluid' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         foreach ($config['options'] as $option) {
             $preview .= "<option value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</option>";
         }
@@ -104,6 +104,8 @@ class Field_Select {
                     </div>
                 </div>
             </div>
+            <hr>
+
             <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
             <div class='ui grid'>
                 <div class='four wide column'>

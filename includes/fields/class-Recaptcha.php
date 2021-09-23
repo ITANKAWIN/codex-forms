@@ -46,7 +46,7 @@ class Field_reCAPTCHA {
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
         $preview .= "<div class='captcha_text'>Your captcha will not appear on your form until you set up the Site and Secret Keys</div>
-                    <div><img src='http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/recaptcha.png' class='fieldcaptcha' alt='reCaptcha'></div>";
+                    <div><img src='http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/recaptcha.png' class='fieldcaptcha' name='field[{$config['id']}]' id='{$config['id']}' alt='reCaptcha'></div>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

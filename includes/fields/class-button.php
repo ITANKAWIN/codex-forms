@@ -47,7 +47,7 @@ class Field_button {
 
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<button type='submit' class='ui primary large basic button' disabled>" . (!empty($config['text']) ? $config['text'] : '') . "</button>";
+        $preview .= "<button type='submit' class='ui primary large basic button' name='field[{$config['id']}]' id='{$config['id']}' disabled>" . (!empty($config['text']) ? $config['text'] : '') . "</button>";
         $preview .= "</div>";
         $preview .= "</form>";
         return $preview;

@@ -27,7 +27,86 @@ class Field_Provinces{
             'type' => $this->field_type,
             'label' => 'Thai-provinces',
             'placeholder' => 'thai-provinces',
-            'value' => '',
+            'options' => array(
+                1 => 'กรุงเทพมหานคร', 
+                2 => 'จังหวัดกระบี่', 
+                3 => 'จังหวัดกาญจนบุรี',
+                4 => 'จังหวัดกาฬสินธุ์', 
+                5 => 'จังหวัดกำแพงเพชร',
+                6 => 'จังหวัดขอนแก่น', 
+                7 => 'จังหวัดจันทบุรี',
+                8 => 'จังหวัดฉะเชิงเทรา', 
+                9 => 'จังหวัดชลบุรี', 
+                10 => 'จังหวัดชัยนาท', 
+                11 => 'จังหวัดชัยภูมิ', 
+                12 => 'จังหวัดชุมพร', 
+                13 => 'จังหวัดเชียงราย', 
+                14 => 'จังหวัดเชียงใหม่',
+                15 => 'จังหวัดตรัง', 
+                16 => 'จังหวัดตราด', 
+                17 => 'จังหวัดตาก', 
+                18 => 'จังหวัดนครนายก',
+                19 => 'จังหวัดนครปฐม', 
+                20 => 'จังหวัดนครพนม', 
+                21 => 'จังหวัดนครราชสีมา',
+                22 => 'จังหวัดนครศรีธรรมราช',
+                23 => 'จังหวัดนครสวรรค์',
+                24 => 'จังหวัดนนทบุรี',
+                25 => 'จังหวัดนราธิวาส',
+                26 => 'จังหวัดน่าน',
+                27 => 'จังหวัดบึงกาฬ',
+                28 => 'จังหวัดบุรีรัมย์',
+                29 => 'จังหวัดปทุมธานี',
+                30 => 'จังหวัดประจวบคีรีขันธ์',
+                31 => 'จังหวัดปราจีนบุรี',
+                32 => 'จังหวัดปัตตานี',
+                33 => 'จังหวัดพระนครศรีอยุธยา',
+                34 => 'จังหวัดพะเยา',
+                35 => 'จังหวัดพังงา',
+                36 => 'จังหวัดพัทลุง',
+                37 => 'จังหวัดพิจิตร',
+                38 => 'จังหวัดพิษณุโลก',
+                39 => 'จังหวัดเพชรบุรี',
+                40 => 'จังหวัดเพชรบูรณ์',
+                41 => 'จังหวัดแพร่',
+                42 => 'จังหวัดภูเก็ต',
+                43 => 'จังหวัดมหาสารคาม',
+                44 => 'จังหวัดมุกดาหาร',
+                45 => 'จังหวัดแม่ฮ่องสอน',
+                46 => 'จังหวัดยโสธร',
+                47 => 'จังหวัดยะลา',
+                48 => 'จังหวัดร้อยเอ็ด',
+                49 => 'จังหวัดระนอง',
+                50 => 'จังหวัดระยอง',
+                51 => 'จังหวัดราชบุรี',
+                52 => 'จังหวัดลพบุรี',
+                53 => 'จังหวัดลำปาง',
+                54 => 'จังหวัดลำพูน',
+                55 => 'จังหวัดเลย',
+                56 => 'จังหวัดศรีสะเกษ',
+                57 => 'จังหวัดสกลนคร',
+                58 => 'จังหวัดสงขลา',
+                59 => 'จังหวัดสตูล',
+                60 => 'จังหวัดสมุทรปราการ',
+                61 => 'จังหวัดสมุทรสงคราม',
+                62 => 'จังหวัดสมุทรสาคร',
+                63 => 'จังหวัดสระแก้ว',
+                64 => 'จังหวัดสระบุรี',
+                65 => 'จังหวัดสิงห์บุรี',
+                66 => 'จังหวัดสุโขทัย',
+                67 => 'จังหวัดสุพรรณบุรี',
+                68 => 'จังหวัดสุราษฎร์ธานี',
+                69 => 'จังหวัดสุรินทร์',
+                70 => 'จังหวัดหนองคาย',
+                71 => 'จังหวัดหนองบัวลำภู',
+                72 => 'จังหวัดอ่างทอง',
+                73 => 'จังหวัดอำนาจเจริญ',
+                74 => 'จังหวัดอุดรธานี',
+                75 => 'จังหวัดอุตรดิตถ์',
+                76 => 'จังหวัดอุทัยธานี',
+                77 => 'จังหวัดอุบลราชธานี'
+            ),
+            'next_option_id' => 78,
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
@@ -43,13 +122,17 @@ class Field_Provinces{
 
     public function preview($config = []){
         $preview = "";
-        $preview .= "<div class='ui big labels'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
 
-            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
+            $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<select name='select' class='fieldselect' name='{$config['id']}' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></select>";
+        $preview .= "<select name='select' class='ui dropdown fluid' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        foreach ($config['options'] as $option) {
+            $preview .= "<option value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</option>";
+        }
+        $preview .= "</select>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -103,14 +186,29 @@ class Field_Provinces{
                     </div>
                 </div>
             </div>
+            <hr>
+
+            <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
             <div class='ui grid'>
-                <div class='five wide column'>
-                    <label'>Value</label>
+                <div class='four wide column'>
+                    <label'>Option</label>
                 </div>
-                <div class='eleven wide column'>
+                <div class='twelve wide column'>
+                    ";
+        foreach ($config['options'] as $option => $v) {
+            $config_field .= "
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
-                    </div>
+                        <div class='index-control'><input type='radio' name='fields[{$config['id']}][option_default]' " . ($config['option_default'] == $v ? 'checked' : '') . " value='{$v}'></div>
+                        <input type='text' class='form-control' name='fields[{$config['id']}][options][{$option}]' value='{$v}'>
+                        <a class='add' href='#'>
+                            <i class='icon plus circle green'></i>
+                        </a>
+                        <a class='remove' href='#'>
+                            <i class='icon minus circle red'></i>
+                        </a>
+                    </div>";
+        }
+        $config_field .= "
                 </div>
             </div>
         </div>

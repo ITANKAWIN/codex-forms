@@ -48,7 +48,7 @@ class Field_Pin_GPS {
 
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
-        $preview .= "<select name='select' class='ui fluid dropdown' name='{$config['id']}' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></select>";
+        $preview .= "<select name='select' class='ui fluid dropdown' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></select>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

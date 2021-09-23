@@ -24,8 +24,11 @@ class Field_Checkbox {
             'id' => $_POST['field_id'],
             'type' => $this->field_type,
             'label' => 'CheckBoxes',
-            'placeholder' => 'CheckBoxes',
-            'value' => '',
+            'options' => array(
+                1 => 'Option 1',
+                2 => 'Option 2'
+            ),
+            'next_option_id' => 3,
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
@@ -46,14 +49,12 @@ class Field_Checkbox {
         if (isset($config['label'])) {
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
-        $preview .= "<div>
-                        <input type='checkbox' name='{$config['id']}' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
-                        <label for='Option1'>Option 1</label>
-                    </div>
-                    <div>
-                        <input type='checkbox' name='{$config['id']}' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
-                        <label for='Option2'>Option 2</label>
-                    </div>";
+        
+        foreach ($config['options'] as $option) {
+            $preview .= "<div><input type='checkbox' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+                        <option value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</option></div>";
+        }
+
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -61,7 +62,7 @@ class Field_Checkbox {
 
     public function config($config = []) {
         $config_field = "
-        <div class='wrapper-instance-pane config_field_{$config['id']}' data-field-id='{$config['id']}' style='display: none;'>
+        <div class='wrapper-instance-pane properties-config config_field_{$config['id']}' data-field-id='{$config['id']}' style='display: none;'>
             <div class='ui grid'>
                 <div class='five wide column'>
                     <label>ID</label>
@@ -86,8 +87,6 @@ class Field_Checkbox {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
@@ -96,18 +95,42 @@ class Field_Checkbox {
                         <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
-                    <label'>Option</label>
+                    <label>Placeholder</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
-                        <i class='icon plus circle plus-option'></i>
+                        <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
                     </div>
                 </div>
             </div>
+            <hr>
+
+            <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
+            <div class='ui grid'>
+                <div class='four wide column'>
+                    <label'>Option</label>
+                </div>
+                <div class='twelve wide column'>
+                    ";
+        foreach ($config['options'] as $option => $v) {
+            $config_field .= "
+                    <div class='ui fluid input'>
+                        <div class='index-control'><input type='radio' name='fields[{$config['id']}][option_default]' " . ($config['option_default'] == $v ? 'checked' : '') . " value='{$v}'></div>
+                        <input type='text' class='form-control' name='fields[{$config['id']}][options][{$option}]' value='{$v}'>
+                        <a class='add' href='#'>
+                            <i class='icon plus circle green'></i>
+                        </a>
+                        <a class='remove' href='#'>
+                            <i class='icon minus circle red'></i>
+                        </a>
+                    </div>";
+        }
+        $config_field .= "
+                </div>
+            </div>
+
+        
         </div>
         ";
         return $config_field;
