@@ -27,6 +27,7 @@ class Field_Provinces{
             'type' => $this->field_type,
             'label' => 'Thai-provinces',
             'placeholder' => 'thai-provinces',
+            'option_default' => 1,
             'options' => array(
                 1 => 'กรุงเทพมหานคร', 
                 2 => 'จังหวัดกระบี่', 
@@ -121,6 +122,11 @@ class Field_Provinces{
     }
 
     public function preview($config = []){
+
+        if (!isset($config['option_default'])) {
+            $config['option_default'] = null;
+        }
+        
         $preview = "";
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";

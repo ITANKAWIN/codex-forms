@@ -30,9 +30,9 @@ class Codex_Edit_form {
 
         $this->form_config = json_decode(stripslashes($this->form->config), true);
 
-        // echo "<pre>";
-        // print_r($this->form_config);
-        // echo "</pre>";
+        echo "<pre>";
+        print_r($this->form_config);
+        echo "</pre>";
     }
 
     function load_field() {

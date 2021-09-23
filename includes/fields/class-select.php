@@ -18,18 +18,21 @@ class Field_Select {
         if (!isset($_POST['id']) || empty($_POST['id'])) {
             die(esc_html__('No form ID found'));
         }
+
         //default config for field
         $default_config = array(
             'id' => $_POST['field_id'],
             'type' => $this->field_type,
             'label' => 'Select',
             'placeholder' => 'select',
+            'option_default' => '',
             'options' => array(
                 1 => 'First',
                 2 => 'Second'
             ),
             'next_option_id' => 3,
         );
+
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
         wp_send_json_success(
@@ -43,13 +46,20 @@ class Field_Select {
     }
 
     public function preview($config = []) {
+
+        if (!isset($config['option_default'])) {
+            $config['option_default'] = null;
+        }
+        
         $preview = "";
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
+
         if (isset($config['label'])) {
 
             $preview .= "<label>{$config['label']}</label>";
         }
+
         $preview .= "<select name='select' class='ui dropdown fluid' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         foreach ($config['options'] as $option) {
             $preview .= "<option value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</option>";
