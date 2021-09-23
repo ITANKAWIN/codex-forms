@@ -1,30 +1,33 @@
 .wrapper {
-  display: flex;
+  margin-right: 420px;
+  transition: all 0.3s;
+}
 
-  width: 100%;
-
-  align-items: stretch;
+.wrapper.sidebar_close{
+  margin-right: 0px;
+  transition: all 0.3s;
 }
 
 /* Content */
 #content {
-  width: 75%;
-  transition: all 0.3s;
-}
-
-#content.active {
+  float: left;
   width: 100%;
   transition: all 0.3s;
 }
 
 /* Sidebar */
 #sidebar {
-  width: 25%;
-  color: rgb(0, 0, 0);
   transition: all 0.3s;
+  bottom: 30px;
+  overflow-y: scroll;
+  padding-right: 15px;
+  position: fixed;
+  right: 0;
+  top: 147px;
+  width: 400px;
 }
 
-#sidebar.active {
+#sidebar.sidebar_close {
   width: 450px;
   margin-right: -450px;
 }
@@ -40,155 +43,81 @@
   border-bottom: 1px solid #47748b;
 }
 
-/* ---------------------------------------------------
-
-    MEDIAQUERIES
-
------------------------------------------------------ */
-@media only screen and (max-width: 992px) {
-  .wrapper {
-    display: block;
-  }
-
-  #content {
-    width: 100%;
-  }
-
-  #sidebar {
-    min-width: 100%;
-    padding: 5px;
-  }
-  #sidebar.active {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .wrapper {
-    display: block;
-  }
-
-  #content {
-    width: 100%;
-  }
-
-  #sidebar {
-    min-width: 100%;
-  }
-  #sidebar.active {
-    display: none;
-  }
-}
-
 /* Tool Bar Field & Properties */
-
 .tab-menu {
   background-color: #ebedee;
 }
 
 .tool-bar {
   flex: 25%;
-
   padding-top: 20px;
-
-  background-color: #ebedee;
-
+  background-color: #ffbd6b38;
   column-count: 2;
-
   padding: 20px;
-
   margin-top: -15px;
 }
 
 .label-item {
   text-align: center;
-
   font-family: system-ui;
 }
 
 .label-toolbar {
   background-color: #ebedee;
-
   height: 50px;
-
   padding: 10px 20px;
-
   text-align: center;
-
   font-family: sans-serif;
 }
 
 .field-item {
   height: 50px;
-
   margin-bottom: 5px;
-
   background-color: #ffffff;
-
   padding: 15px 0px;
-
   display: block;
-
   text-align: center;
-
   font-family: inherit;
-
   border-radius: 5px;
-
   font-size: 14px;
-
   border-width: 1px;
-
   border-style: solid;
 }
 
 .field-item:hover {
   background-color: #ffffff;
-
   padding: 15px 0px;
-
   display: block;
-
-  /* border-radius: 35px; */
-
   text-decoration: none;
-
   font-weight: normal;
-
   font-size: 15px !important;
-
   color: rgb(40, 47, 54, 0.85);
-
-  /* margin: 15px 30px; */
-
   text-align: center;
-
-  font-family: inherit;
-
   border-radius: 5px;
-
   font-size: 14px;
 }
 
 /* Tool Bar Field & Config */
-.config-fields.bg{
-    background-color: #ebedee;
-    padding: 5%;
-    margin-top: -12px;
+.config-fields.bg {
+  background-color: #ffbd6b38;
+  margin-top: -12px;
+  padding: 0px 10px 10px 10px;
 }
 
 /* icon add and remove Option Field Select*/
-.index-control{
-    margin-top: 10px;
-    margin-left: 15px;
-    font-size: 17px;
+.index-control {
+  margin-top: 10px;
+  margin-left: 15px;
+  font-size: 17px;
 }
-a.add, a.remove{ 
-    margin-top: 10px;
-    margin-left: 5px;
-    font-size: 17px;
+a.add,
+a.remove {
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 17px;
 }
-.ui.basic.label.align{
+.ui.basic.label.align {
   padding: 0px;
   border: 0px;
 }
+

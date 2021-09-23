@@ -113,7 +113,7 @@ class preview {
         $form_data = Codex_form_DB::get_by_id($id, 'wp_codex_forms');
         $form_content = json_decode(stripslashes($form_data->config), true);
 
-        echo "<form method='POST' enctype='multipart/form-data' id='{$form_data->id}'>";
+        echo "<form method='POST' enctype='multipart/form-data' id='{$form_data->id}' class='codex_forms_form'>";
         echo "<div class='layout-panel'>";
         echo "<input type='hidden' name='id' value='{$form_data->id}'>";
         if (!empty($form_content['panels'])) {

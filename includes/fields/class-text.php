@@ -3,15 +3,19 @@ if (!defined('ABSPATH')) {
     die();
 }
 class Field_Text {
+
     private $field_type = 'text';
+
     public function __construct() {
         $this->init();
     }
+
     function init() {
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
         add_filter("codex_form_config_{$this->field_type}", array($this, 'config'));
     }
+
     public function get_field() {
         // Check for form ID.
         if (!isset($_POST['id']) || empty($_POST['id'])) {
@@ -36,6 +40,7 @@ class Field_Text {
             )
         );
     }
+
     public function preview($config = []) {
         $preview = "";
         $preview .= "<div class='ui form big'>";
@@ -43,11 +48,12 @@ class Field_Text {
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<input type='text' name='{$config['id']}' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<input type='text' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
     }
+
     public function config($config = []) {
         $config_field = "
         <div class='wrapper-instance-pane properties-config config_field_{$config['id']}' data-field-id='{$config['id']}' style='display: none;'>

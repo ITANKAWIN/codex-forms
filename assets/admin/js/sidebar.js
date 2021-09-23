@@ -1,7 +1,7 @@
 jQuery(function ($) {
   $("#sidebarCollapse").on("click", function () {
-    $("#sidebar").toggleClass("active");
-    $("#content").toggleClass("active");
+    $("#sidebar").toggleClass("sidebar_close");
+    $(".wrapper").toggleClass("sidebar_close");
   });
 
   $(".top.menu .item").tab({

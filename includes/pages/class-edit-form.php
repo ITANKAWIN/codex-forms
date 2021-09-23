@@ -30,9 +30,9 @@ class Codex_Edit_form {
 
         $this->form_config = json_decode(stripslashes($this->form->config), true);
 
-        echo "<pre>";
-        print_r($this->form_config);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($this->form_config);
+        // echo "</pre>";
     }
 
     function load_field() {
@@ -137,42 +137,40 @@ class Codex_Edit_form {
                 <nav id="sidebar">
                     <div class="ui grid">
                         <div class="column">
-                            <div class="ui segment">
-                                <div class="ui menu two item top">
-                                    <a class="active item" data-tab="fields"><i class="icon sign"></i>Fields</a>
-                                    <a class="item" data-tab="config"><i class="icon sign"></i>Config</a>
+                            <div class="ui menu two item top yellow  inverted">
+                                <a class="active yellow item" data-tab="fields"><i class="icon sign"></i>Fields</a>
+                                <a class="yellow item" data-tab="config"><i class="icon sign"></i>Config</a>
+                            </div>
+                            <div class="ui tab active " data-tab="fields">
+                                <div class="tool-bar" id="tool-bar">
+                                    <?php
+
+                                    $field_types = Codex_Fields::init();
+
+                                    foreach ($field_types as $field) {
+
+                                        echo "<div class='field-item' data-field-type='{$field['type']}'>";
+                                        echo "<i class='{$field['icon']}'></i>" . $field['type'];
+                                        echo "</div>";
+                                    }
+
+                                    ?>
                                 </div>
-                                <div class="ui tab active " data-tab="fields">
-                                    <div class="tool-bar" id="tool-bar">
+                            </div>
+                            <div class="ui tab" data-tab="config">
+                                <div class="ui form">
+                                    <div class="config-fields bg">
                                         <?php
 
-                                        $field_types = Codex_Fields::init();
+                                        if (isset($this->form_config['fields'])) {
 
-                                        foreach ($field_types as $field) {
+                                            foreach ($this->form_config['fields'] as $fields) {
 
-                                            echo "<div class='field-item' data-field-type='{$field['type']}'>";
-                                            echo "<i class='{$field['icon']}'></i>" . $field['type'];
-                                            echo "</div>";
+                                                echo apply_filters("codex_form_config_{$this->form_config['fields'][$fields['id']]['type']}", $this->form_config['fields'][$fields['id']]);
+                                            }
                                         }
 
                                         ?>
-                                    </div>
-                                </div>
-                                <div class="ui tab" data-tab="config">
-                                    <div class="ui form">
-                                        <div class="config-fields bg">
-                                            <?php
-
-                                            if (isset($this->form_config['fields'])) {
-
-                                                foreach ($this->form_config['fields'] as $fields) {
-
-                                                    echo apply_filters("codex_form_config_{$this->form_config['fields'][$fields['id']]['type']}", $this->form_config['fields'][$fields['id']]);
-                                                }
-                                            }
-
-                                            ?>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

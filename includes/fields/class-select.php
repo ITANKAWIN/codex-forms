@@ -104,8 +104,6 @@ class Field_Select {
                     </div>
                 </div>
             </div>
-            <hr>
-
             <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
             <div class='ui grid'>
                 <div class='four wide column'>

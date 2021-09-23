@@ -3,7 +3,9 @@ if (!defined('ABSPATH')) {
     die();
 }
 class Field_Provinces{
+
     private $field_type = 'thai-provinces';
+    
     public function __construct(){
         $this->init();
     }
