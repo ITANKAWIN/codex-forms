@@ -3,7 +3,9 @@ if (!defined('ABSPATH')) {
     die();
 }
 class Field_Checkbox {
+
     private $field_type = 'checkbox';
+    
     public function __construct() {
         $this->init();
     }
@@ -15,10 +17,12 @@ class Field_Checkbox {
     }
 
     public function get_field() {
+
         // Check for form ID.
         if (!isset($_POST['id']) || empty($_POST['id'])) {
             die(esc_html__('No form ID found'));
         }
+
         //default config for field
         $default_config = array(
             'id' => $_POST['field_id'],
@@ -30,6 +34,7 @@ class Field_Checkbox {
             ),
             'next_option_id' => 3,
         );
+
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
         wp_send_json_success(
@@ -43,16 +48,18 @@ class Field_Checkbox {
     }
 
     public function preview($config = []) {
+
         $preview = "";
         $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
+
         if (isset($config['label'])) {
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
         
         foreach ($config['options'] as $option) {
-            $preview .= "<div><input type='checkbox' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
-                        <option value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</option></div>";
+            $preview .= "<div><input type='checkbox' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+            $preview .= "<option value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</option></div>";
         }
 
         $preview .= "</div>";

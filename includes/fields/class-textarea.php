@@ -17,6 +17,7 @@ class Field_Textarea {
     }
 
     public function get_field() {
+        
         // Check for form ID.
         if (!isset($_POST['id']) || empty($_POST['id'])) {
             die(esc_html__('No form ID found'));
@@ -48,12 +49,12 @@ class Field_Textarea {
         $preview = "";
         $preview .= "<div class='ui form huge'>";
         $preview .= "<div class='field'>";
+
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<textarea  class='form-control' name='field[{$config['id']}]' id='{$config['id']}' rows='3' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></textarea>";
-        $preview .= "<div class='config-field'><i class='dashicons dashicons-admin-tools'></i></div>";
-        $preview .= "<div class='delete-field'><i class='dashicons dashicons-no-alt'></i></div>";
+
+        $preview .= "<textarea name='field_id[{$config['id']}]' id='{$config['id']}' rows='3' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></textarea>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

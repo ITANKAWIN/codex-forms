@@ -3,10 +3,13 @@ if (!defined('ABSPATH')) {
     die();
 }
 class Field_Password {
+
     private $field_type = 'password';
+
     public function __construct() {
         $this->init();
     }
+
     function init() {
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
@@ -14,10 +17,12 @@ class Field_Password {
     }
 
     public function get_field() {
+
         // Check for form ID.
         if (!isset($_POST['id']) || empty($_POST['id'])) {
             die(esc_html__('No form ID found'));
         }
+
         //default config for field
         $default_config = array(
             'id' => $_POST['field_id'],
@@ -26,6 +31,7 @@ class Field_Password {
             'placeholder' => 'password',
             'value' => '',
         );
+
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
         wp_send_json_success(
@@ -39,13 +45,16 @@ class Field_Password {
     }
 
     public function preview($config = []) {
+
         $preview = "";
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
+
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<input type='password' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+
+        $preview .= "<input type='password' name='field_id[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

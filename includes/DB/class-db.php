@@ -2,16 +2,34 @@
 
 class Codex_form_DB {
 
-    static public function add($data, $table) {
+    static public function add_form($data) {
 
         global $wpdb;
 
-        $wpdb->insert($table, $data);
+        $wpdb->insert($wpdb->prefix . 'codex_forms', $data);
 
         return $wpdb->insert_id;
     }
 
-    static public function delete($row_id, $table) {
+    static public function entry($id) {
+
+        global $wpdb;
+
+        $wpdb->insert($wpdb->prefix . 'codex_form_entry', array('form_id' => $id));
+
+        return $wpdb->insert_id;
+    }
+
+    static public function entry_value($entry_id, $field_id, $value) {
+
+        global $wpdb;
+
+        $wpdb->insert($wpdb->prefix . 'codex_form_entry_meta', array('entry_id' => $entry_id, 'field_id' => $field_id, 'value' => $value));
+
+        return true;
+    }
+
+    static public function delete_form($row_id) {
 
         global $wpdb;
 
@@ -19,14 +37,14 @@ class Codex_form_DB {
             return false;
         }
 
-        if ($wpdb->query($wpdb->prepare("DELETE FROM $table WHERE `id` = %d", $row_id)) === false) {
+        if ($wpdb->query($wpdb->prepare("DELETE FROM $wpdb->prefix . 'codex_forms' WHERE `id` = %d", $row_id)) === false) {
             return false;
         }
 
         return true;
     }
 
-    static public function update($row_id, $data = [], $table, $where = '') {
+    static public function update_form($row_id, $data = []) {
 
         global $wpdb;
 
@@ -42,7 +60,7 @@ class Codex_form_DB {
         }
 
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
-        if ($wpdb->update($table, $data, [$where => $row_id]) === false) {
+        if ($wpdb->update($wpdb->prefix . 'codex_forms', $data, [$where => $row_id]) === false) {
             return false;
         }
 
@@ -61,14 +79,14 @@ class Codex_form_DB {
         );
     }
 
-    static public function get_by_id($row_id, $table) {
+    static public function get_form_by_id($row_id) {
 
         global $wpdb;
 
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
         return $wpdb->get_row(
             $wpdb->prepare(
-                "SELECT * FROM $table WHERE `id` = %d LIMIT 1;", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                "SELECT * FROM {$wpdb->prefix}codex_forms WHERE `id` = %d LIMIT 1;", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                 (int) $row_id
             )
         );

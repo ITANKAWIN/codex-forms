@@ -46,7 +46,7 @@ class Field_Date {
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<input type='date' name='field[{$config['id']}]' id='{$config['id']}' value='' min='1997-01-01' max='2030-12-31' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<input name='field_id[{$config['id']}]' id='{$config['id']}' type='date' value='' min='1997-01-01' max='2030-12-31' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

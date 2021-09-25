@@ -35,10 +35,7 @@ class preview {
 
 
         // Fetch form details for the entry.
-        $this->form_data = Codex_form_DB::get_by_id(
-            $form_id,
-            table_forms
-        );
+        $this->form_data = Codex_form_DB::get_form_by_id($form_id);
 
         // Check valid form was found.
         if (empty($this->form_data)) {
@@ -93,6 +90,7 @@ class preview {
 
     public function preview_style() {
         if (isset($_GET['codex_form_preview']) &&  !empty($_GET['codex_form_preview'])) {
+
             wp_enqueue_script('jquery-ui-core');
 
             wp_enqueue_style('codex-preview', CODEX_URL . 'assets/public/css/codex-style.css', __FILE__, codex_css_ver);
@@ -102,6 +100,16 @@ class preview {
             wp_enqueue_style('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.css', __FILE__);
 
             wp_enqueue_script('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.js', __FILE__);
+
+            $strings = array(
+                'ajax_url' => admin_url('admin-ajax.php'),
+            );
+
+            wp_localize_script(
+                'codex-preview',
+                'codex_admin',
+                $strings
+            );
         } else {
             return;
         }
@@ -110,12 +118,12 @@ class preview {
     public static function view($id) {
 
         // Fetch form details for the entry.
-        $form_data = Codex_form_DB::get_by_id($id, 'wp_codex_forms');
+        $form_data = Codex_form_DB::get_form_by_id($id, 'wp_codex_forms');
         $form_content = json_decode(stripslashes($form_data->config), true);
 
         echo "<form method='POST' enctype='multipart/form-data' id='{$form_data->id}' class='codex_forms_form'>";
         echo "<div class='layout-panel'>";
-        echo "<input type='hidden' name='id' value='{$form_data->id}'>";
+        echo "<input type='hidden' name='form_id' value='{$form_data->id}'>";
         if (!empty($form_content['panels'])) {
             $row = 0;
             if (!empty($form_content['panels'])) {
