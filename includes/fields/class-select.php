@@ -56,14 +56,15 @@ class Field_Select {
         $preview .= "<div class='field'>";
 
         if (isset($config['label'])) {
-
             $preview .= "<label>{$config['label']}</label>";
         }
 
-        $preview .= "<select name='select' class='ui dropdown fluid' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<select name='field_id[{$config['id']}]' id='{$config['id']}' class='ui dropdown fluid' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        
         foreach ($config['options'] as $option) {
             $preview .= "<option value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</option>";
         }
+
         $preview .= "</select>";
         $preview .= "</div>";
         $preview .= "</div>";

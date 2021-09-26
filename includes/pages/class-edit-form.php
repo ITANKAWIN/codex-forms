@@ -22,7 +22,7 @@ class Codex_Edit_form {
 
     function init() {
 
-        $this->form = Codex_form_DB::get_by_id($this->form_id, table_forms);
+        $this->form = Codex_form_DB::get_form_by_id($this->form_id);
 
         if (empty($this->form)) {
             return;
@@ -30,9 +30,9 @@ class Codex_Edit_form {
 
         $this->form_config = json_decode(stripslashes($this->form->config), true);
 
-        echo "<pre>";
-        print_r($this->form_config);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($this->form_config);
+        // echo "</pre>";
     }
 
     function load_field() {

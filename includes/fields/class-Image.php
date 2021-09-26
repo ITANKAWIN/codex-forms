@@ -4,10 +4,13 @@ if (!defined('ABSPATH')) {
 }
 
 class Field_Image {
+    
     private $field_type = 'Image';
+
     public function __construct() {
         $this->init();
     }
+
     function init() {
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
@@ -38,14 +41,17 @@ class Field_Image {
     }
 
     public function preview($config = []) {
+
         $preview = "";
         $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
+
         if (isset($config['label'])) {
 
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
-        $preview .= "<img class='disabled medium ui image' name='field[{$config['id']}]' id='{$config['id']}' src='http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/image.png' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+
+        $preview .= "<img name='field_id[{$config['id']}]' id='{$config['id']}' class='disabled medium ui image' src='http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/image.png' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

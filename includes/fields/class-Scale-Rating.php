@@ -45,7 +45,7 @@ class Field_Scale_Rating {
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
         $preview .= "<div>
-                    <input type='radio' class='fieldradio' name='field[{$config['id']}]' id='{$config['id']}' value='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+                    <input type='radio' name='field_id[{$config['id']}]' id='{$config['id']}' class='fieldradio' value='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
                     <label for='Option1'>One</label></div>";
         $preview .= "</div>";
         $preview .= "</div>";

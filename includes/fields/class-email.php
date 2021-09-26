@@ -3,7 +3,9 @@ if (!defined('ABSPATH')) {
     die();
 }
 class Field_Email {
+
     private $field_type = 'email';
+
     public function __construct() {
         $this->init();
     }
@@ -15,10 +17,12 @@ class Field_Email {
     }
 
     public function get_field() {
+
         // Check for form ID.
         if (!isset($_POST['id']) || empty($_POST['id'])) {
             die(esc_html__('No form ID found'));
         }
+
         //default config for field
         $default_config = array(
             'id' => $_POST['field_id'],
@@ -27,6 +31,7 @@ class Field_Email {
             'placeholder' => 'name@example.com',
             'value' => '',
         );
+
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
         wp_send_json_success(
@@ -40,13 +45,16 @@ class Field_Email {
     }
 
     public function preview($config = []) {
+
         $preview = "";
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
+
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<input type='email' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+
+        $preview .= "<input type='email' name='field_id[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

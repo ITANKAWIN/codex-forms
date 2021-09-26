@@ -4,10 +4,13 @@ if (!defined('ABSPATH')) {
 }
 
 class Field_Divider {
+
     private $field_type = 'divider';
+
     public function __construct() {
         $this->init();
     }
+
     function init() {
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
@@ -15,6 +18,7 @@ class Field_Divider {
     }
 
     public function get_field() {
+
         // Check for form ID.
         if (!isset($_POST['id']) || empty($_POST['id'])) {
             die(esc_html__('No form ID found'));
@@ -44,14 +48,16 @@ class Field_Divider {
     }
 
     public function preview($config = []) {
+
         $preview = "";
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field hg'>";
-        if (isset($config['label'])) {
 
+        if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<hr clss='fielddivider' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+
+        $preview .= "<hr name='field_id[{$config['id']}]' id='{$config['id']}' clss='fielddivider' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

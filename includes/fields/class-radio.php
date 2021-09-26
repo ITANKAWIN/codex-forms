@@ -3,10 +3,13 @@ if (!defined('ABSPATH')) {
     die();
 }
 class Field_Radio {
+
     private $field_type = 'radio';
+
     public function __construct() {
         $this->init();
     }
+
     function init() {
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
@@ -14,10 +17,12 @@ class Field_Radio {
     }
 
     public function get_field() {
+
         // Check for form ID.
         if (!isset($_POST['id']) || empty($_POST['id'])) {
             die(esc_html__('No form ID found'));
         }
+
         //default config for field
         $default_config = array(
             'id' => $_POST['field_id'],
@@ -29,7 +34,9 @@ class Field_Radio {
             ),
             'next_option_id' => 3,
         );
+
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
+        
         // Prepare to return compiled results.
         wp_send_json_success(
             array(
@@ -42,16 +49,20 @@ class Field_Radio {
     }
 
     public function preview($config = []) {
+
         $preview = "";
         $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
+
         if (isset($config['label'])) {
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
+        
         foreach ($config['options'] as $option) {
-            $preview .= "<input type='radio' class='ui radio checkbox' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+            $preview .= "<input type='radio' name='field_id[{$config['id']}]' id='{$config['id']}' class='ui radio checkbox' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
                         <label value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label>";
         }
+
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
