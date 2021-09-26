@@ -28,6 +28,7 @@ class Field_Provinces{
             'label' => 'Thai-provinces',
             'placeholder' => 'thai-provinces',
             'option_default' => 1,
+            #provinces
             'options' => array(
                 1 => 'กรุงเทพมหานคร', 
                 2 => 'จังหวัดกระบี่', 
