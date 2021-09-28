@@ -47,8 +47,9 @@ class Field_Star_Rating {
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
         $preview .= "<div>
-                    <input type='radio' class='fieldradio' name='field[{$config['id']}]' id='{$config['id']}' value='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
-                    <label for='Option1'>Star 1 </label></div>";
+                    <input class='rating' max='5' oninput='this.style.setProperty('--value', this.value)' step='0.5' style='--value:2.5' type='range' value='2.5'
+                    name='field[{$config['id']}]' id='{$config['id']}' value='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+                    </div>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
