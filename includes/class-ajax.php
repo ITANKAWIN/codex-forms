@@ -8,7 +8,7 @@ class Codex_AJAX {
     function __construct() {
 
         if (!class_exists('Codex_form_DB')) {
-            include_once CODEX_PATH . 'includes/db/class-db.php';
+            require_once(CODEX_PATH . 'includes/db/class-db.php');
         }
 
         add_action('wp_ajax_new_form', array($this, 'new_form'));

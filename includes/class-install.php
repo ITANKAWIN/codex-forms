@@ -7,7 +7,7 @@ class Codex_Install {
         global $wpdb;
 
         if (!class_exists('Codex_Forms_DB_Tables')) {
-            include_once CODEX_PATH . 'includes/db/class-tables.php';
+            require_once(CODEX_PATH . 'includes/db/class-tables.php');
         }
 
         new Codex_Forms_DB_Tables($wpdb);

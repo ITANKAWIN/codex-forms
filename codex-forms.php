@@ -12,8 +12,8 @@ if (!defined('ABSPATH')) {
 }
 
 // Path
-define('CODEX_PATH', trailingslashit(plugin_dir_path(__FILE__)));
-define('CODEX_URL', trailingslashit(plugins_url('/', __FILE__)));
+define('CODEX_PATH', plugin_dir_path(__FILE__));
+define('CODEX_URL', plugin_dir_url(__FILE__));
 
 // When plugin activate, trigger install method.
 register_activation_hook(__FILE__, ['Codex_Install', 'activate']);

@@ -6,7 +6,7 @@ class preview {
     public function __construct() {
 
         if (!class_exists('Codex_form_DB')) {
-            include_once CODEX_PATH . 'includes/db/class-db.php';
+            require_once(CODEX_PATH . 'includes/db/class-db.php');
         }
 
         add_shortcode('codex_form_preview', array($this, 'preview'));
