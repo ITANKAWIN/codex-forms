@@ -48,25 +48,39 @@ class Field_Radio {
         );
     }
 
-    public function preview($config = []) {
+    public function preview($config = []) { #vertical(แนวตั้ง)
 
         $preview = "";
         $preview .= "<div class='ui big labels'>";
-        $preview .= "<div class='field'>";
-
+        $preview .= "<div class='grouped fields'>";
         if (isset($config['label'])) {
             $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
         }
-        
         foreach ($config['options'] as $option) {
-            $preview .= "<input type='radio' name='field_id[{$config['id']}]' id='{$config['id']}' class='ui radio checkbox' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
-                        <label value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label>";
+            $preview .= "<div class='ui'><input type='radio' name='field_id[{$config['id']}]' id='{$config['id']}' class='ui radio checkbox' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+                        <label value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label></div>";
         }
-
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
     }
+
+    // public function preview($config = []) { #horizontal(แนวนอน)
+
+    //     $preview = "";
+    //     $preview .= "<div class='ui big labels'>";
+    //     $preview .= "<div class='inline fields'>";
+    //     if (isset($config['label'])) {
+    //         $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
+    //     }
+    //     foreach ($config['options'] as $option) {
+    //         $preview .= "<div class='ui radio checkbox'><input type='radio' name='field_id[{$config['id']}]' id='{$config['id']}' class='ui radio checkbox' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
+    //                     <label value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label></div>";
+    //     }
+    //     $preview .= "</div>";
+    //     $preview .= "</div>";
+    //     return $preview;
+    // }
 
     public function config($config = []) {
         $config_field = "
@@ -110,6 +124,17 @@ class Field_Radio {
                     <div class='ui fluid input'>
                         <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
                     </div>
+                </div>
+            </div>
+            <div class='ui grid'>
+                <div class='five wide column'>
+                    <label'>Orientation</label>
+                </div>
+                <div class='eleven wide column'>
+                    <select class='ui fluid dropdown' name='fields[{$config['id']}][orientation]'>
+                     <option value='left' " . ('left' == $config['orientation'] ? 'selected' : '') . ">Vertical</option>
+                     <option value='middle' " . ('middle' == $config['orientation'] ? 'selected' : '') . ">Horizontal</option>
+                    </select>
                 </div>
             </div>
             <hr>
