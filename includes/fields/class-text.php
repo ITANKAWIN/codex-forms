@@ -44,11 +44,11 @@ class Field_Text {
     public function preview($config = []) {
         $preview = "";
         $preview .= "<div class='ui form big'>";
-        $preview .= "<div class='field'>";
+        $preview .= "<div class='field " . ($config['require'] == 'on' ? 'required' : '') . "'>";
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<input type='text' name='field_id[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<input type='text' name='field_id[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -123,7 +123,7 @@ class Field_Text {
                 <div class='eleven wide column'>
                     <div class='inline field'>
                         <div class='ui toggle checkbox'>
-                            <input type='checkbox' tabindex='0' class='hidden'>
+                            <input type='checkbox' name='fields[{$config['id']}][require]' tabindex='0' class='hidden' " . ($config['require'] == 'on' ? 'checked' : '') . ">
                             <label></label>
                         </div>
                     </div>

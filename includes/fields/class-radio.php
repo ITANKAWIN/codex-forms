@@ -28,6 +28,7 @@ class Field_Radio {
             'id' => $_POST['field_id'],
             'type' => $this->field_type,
             'label' => 'Radio Buttons',
+            'option_default ' => '',
             'options' => array(
                 1 => 'Option 1',
                 2 => 'Option 2'
@@ -50,11 +51,15 @@ class Field_Radio {
 
     public function preview($config = []) { #vertical(แนวตั้ง)
 
+        if (!isset($config['option_default'])) {
+            $config['option_default'] = null;
+        }
+
         $preview = "";
-        $preview .= "<div class='ui big labels'>";
+        $preview .= "<div class='ui big form'>";
         $preview .= "<div class='grouped fields'>";
         if (isset($config['label'])) {
-            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
+            $preview .= "<label>{$config['label']}</label>";
         }
         foreach ($config['options'] as $option) {
             $preview .= "<div class='ui'><input type='radio' name='field_id[{$config['id']}]' id='{$config['id']}' class='ui radio checkbox' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
