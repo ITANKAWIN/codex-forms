@@ -37,7 +37,7 @@ class Field_Radio {
         );
 
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
-        
+
         // Prepare to return compiled results.
         wp_send_json_success(
             array(
@@ -62,8 +62,9 @@ class Field_Radio {
             $preview .= "<label>{$config['label']}</label>";
         }
         foreach ($config['options'] as $option) {
-            $preview .= "<div class='ui'><input type='radio' name='field_id[{$config['id']}]' id='{$config['id']}' class='ui radio checkbox' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
-                        <label value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label></div>";
+            $preview .= "<div class='ui'><input type='radio' name='field_id[{$config['id']}]' id='{$config['id']}' class='ui radio checkbox' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') .
+                "' value='$option'>
+                        <label " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label></div>";
         }
         $preview .= "</div>";
         $preview .= "</div>";

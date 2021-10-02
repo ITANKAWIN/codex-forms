@@ -90,7 +90,7 @@ class Field_Text {
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
                         
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>   
             </div>
@@ -100,7 +100,7 @@ class Field_Text {
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
+                        <input type='text' class='config-form-placeholder' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
                     </div>
                     
                 </div>
@@ -112,7 +112,7 @@ class Field_Text {
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                        <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
                     </div>
                 </div>
             </div>

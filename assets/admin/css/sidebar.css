@@ -1,34 +1,39 @@
-.wrapper {
-  margin-right: 420px;
-  transition: all 0.3s;
+.ui.stackable.menu.massive {
+  position: sticky;
+  top: 30px;
+  z-index: 99;
 }
 
-.wrapper.sidebar_close{
-  margin-right: 0px;
+.wrapper {
+  margin-top: 22px;
+  display: flex;
   transition: all 0.3s;
 }
 
 /* Content */
 #content {
-  float: left;
+  width: 80%;
+  transition: all 0.3s;
+}
+
+#content.sidebar_close {
   width: 100%;
   transition: all 0.3s;
 }
 
 /* Sidebar */
 #sidebar {
+  align-self: flex-start;
   transition: all 0.3s;
-  bottom: 30px;
+  top: 130px;
+  position: sticky;
   overflow-y: scroll;
   padding-right: 15px;
-  position: fixed;
-  right: 0;
-  top: 147px;
-  width: 400px;
+  height: 100vh;
+  width: 20%;
 }
 
 #sidebar.sidebar_close {
-  width: 450px;
   margin-right: -450px;
 }
 
@@ -41,6 +46,20 @@
 #sidebar ul.components {
   padding: 20px 0;
   border-bottom: 1px solid #47748b;
+}
+
+@media screen and (max-width: 1120px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  #content {
+    width: 100%;
+  }
+
+  #sidebar {
+    width: 100%;
+  }
 }
 
 /* Tool Bar Field & Properties */
@@ -120,4 +139,3 @@ a.remove {
   padding: 0px;
   border: 0px;
 }
-

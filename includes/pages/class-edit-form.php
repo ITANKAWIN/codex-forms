@@ -91,7 +91,7 @@ class Codex_Edit_form {
 
 ?>
 
-        <div class="ui stackable menu massive">
+        <div class="ui stackable menu massive ">
             <div href="#" class="item">
                 <img class="logo" src="<?= CODEX_URL ?>assets/image/codex-plugin_logo.png">
             </div>
@@ -99,7 +99,9 @@ class Codex_Edit_form {
                 Codex-Forms
             </div>
             <div class="item">
-                <input class="form-control me-2" type="text" id="form_name" name="form_name" value="<?= !empty($this->form) ? $this->form->name : '' ?>">
+                <div class="ui input">
+                    <input type="text" id="form_name" name="form_name" value="<?= !empty($this->form) ? $this->form->name : '' ?>" placeholder="Form name">
+                </div>
             </div>
             <div class="right item">
                 <button class="ui orange button new-form" id="save_form"><i class="plus icon"></i> Save</button>
@@ -108,8 +110,8 @@ class Codex_Edit_form {
                 <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->id ?>" target="_blank"><i class="eye icon"></i> Preview</a>
             </div>
             <div class="item">
-                <button class="ui button" id="sidebarCollapse">
-                    <span class="dashicons dashicons-menu-alt3"></span>
+                <button class="circular ui icon button blue" id="sidebarCollapse">
+                    <i class="plus circle icon"></i>
                 </button>
             </div>
         </div>
