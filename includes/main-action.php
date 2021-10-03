@@ -34,7 +34,7 @@ class Main_action {
         add_submenu_page(
             'codex-forms',
             __('Entires', 'CODEX-FORMS'),
-            __('Entries Value', 'CODEX-FORMS'),
+            __('Entires Value', 'CODEX-FORMS'),
             'manage_options',
             'entire-codex-forms',
             array($this, 'codex_admin_page'),
