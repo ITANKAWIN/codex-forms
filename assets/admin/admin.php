@@ -4,8 +4,7 @@ class Admin_Script {
 
     function __construct() {
         $page = isset($_GET['page']) ? $_GET['page'] : '';
-        if ($page !== 'codex-forms') {
-
+        if ($page !== 'codex-forms' || $page !== 'entire-codex-forms') {
             return;
         }
         $this->init();
