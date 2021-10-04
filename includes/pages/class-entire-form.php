@@ -1,5 +1,5 @@
  <form>
-     <div class="ui stackable container menu massive">
+     <div class="ui container menu massive">
          <div href="#" class="item">
              <img class="logo" src="<?= CODEX_URL ?>assets/image/codex-plugin_logo.png">
          </div>
@@ -13,41 +13,19 @@
                  <option></option>
              </select>
          </div>
-         <div class="right item">
-             <button class="ui blue button"><i class="download icon"></i> Export</button>
-         </div>
      </div>
      <div class="ui form">
-         <div class="inline fields">
-             <div class="twelve wide field">
-                 <a href="#">My Forms</a> | &nbsp;&nbsp; <a href="#">Trashed</a>
-             </div>
-             <div class="four wide field">
-                 <input type="text" name="search" id="">
-                 <button class="Medium ui primary basic button">Search</button>
-             </div>
-         </div>
-     </div>
-     <!-- <div class="ui form">
-         <div class="inline fields">
-             <div class="twelve wide field">
-                 <a href="#">Forms</a> | <a href="#">Trashed</a>
-             </div>
-         </div>
-     </div> -->
-     <div class="ui form">
-         <div class="inline fields">
-             <div class="four wide field">
+         <div class="fields">
+             <div class="three wide field">
                  <select class="ui dropdown" name="actions" id="">
                      <option>Bulk actions</option>
                      <option>Move to Trash</option>
                      <option>Export</option>
                  </select>
+             </div>
+             <div class="one wide field">
                  <button class="Medium ui primary basic button">Apply</button>
              </div>
-             <!-- <div class="two wide field">
-                 <input type="text" class="ui" placeholder="Filter Forms">
-             </div> -->
              <div class="two wide field">
                  <input type="text" placeholder="Begin Date">
              </div>
@@ -56,6 +34,14 @@
              </div>
              <div class="one wide field">
                  <button class="Medium ui primary basic button">Filter</button>
+             </div>
+             <div class="two wide field">
+             </div>
+             <div class="three wide field">
+                 <input type="text" name="search" id="">
+             </div>
+             <div class="one wide field">
+                <button class="Medium ui primary basic button">Search</button>
              </div>
          </div>
      </div>
@@ -98,22 +84,18 @@
                  <td>30:10:2021</td>
              </tr>
          </tbody>
-         <tfoot>
-             <tr>
-                 <th colspan="7">
-                     <div class="ui right floated pagination menu">
-                         <a class="icon item">
-                             <i class="left chevron icon"></i>
-                         </a>
-                         <a class="item">1</a>
-                         <a class="item">2</a>
-                         <a class="item">3</a>
-                         <a class="icon item">
-                             <i class="right chevron icon"></i>
-                         </a>
-                     </div>
-                 </th>
-             </tr>
-         </tfoot>
      </table>
+     <div class="ui centered grid">
+         <div class="ui right floated pagination menu">
+             <a class="icon item">
+                 <i class="left chevron icon"></i>
+             </a>
+             <a class="item">1</a>
+             <a class="item">2</a>
+             <a class="item">3</a>
+             <a class="icon item">
+                 <i class="right chevron icon"></i>
+             </a>
+         </div>
+     </div>
  </form>
