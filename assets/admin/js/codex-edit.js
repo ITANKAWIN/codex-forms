@@ -176,6 +176,7 @@
       );
 
       app.buildLayout();
+      app.jQueryui();
     },
 
     deleteRow_panel: function (el) {
