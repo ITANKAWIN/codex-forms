@@ -1,16 +1,26 @@
  <form>
-     <div class="ui stackable menu massive ">
+     <div class="ui stackable container menu massive">
          <div href="#" class="item">
              <img class="logo" src="<?= CODEX_URL ?>assets/image/codex-plugin_logo.png">
          </div>
          <div class="item header">
              Codex-Forms
          </div>
+         <div class="item">
+             <select class="ui dropdown" name="select-forms" id="">
+                 <option>Select Forms</option>
+                 <option></option>
+                 <option></option>
+             </select>
+         </div>
+         <div class="right item">
+             <button class="ui blue button"><i class="download icon"></i> Export</button>
+         </div>
      </div>
      <div class="ui form">
          <div class="inline fields">
              <div class="twelve wide field">
-                 <a href="#">My Forms</a>|<a href="#">Trashed</a>
+                 <a href="#">My Forms</a> | &nbsp;&nbsp; <a href="#">Trashed</a>
              </div>
              <div class="four wide field">
                  <input type="text" name="search" id="">
@@ -18,6 +28,13 @@
              </div>
          </div>
      </div>
+     <!-- <div class="ui form">
+         <div class="inline fields">
+             <div class="twelve wide field">
+                 <a href="#">Forms</a> | <a href="#">Trashed</a>
+             </div>
+         </div>
+     </div> -->
      <div class="ui form">
          <div class="inline fields">
              <div class="four wide field">
@@ -28,9 +45,9 @@
                  </select>
                  <button class="Medium ui primary basic button">Apply</button>
              </div>
-             <div class="two wide field">
+             <!-- <div class="two wide field">
                  <input type="text" class="ui" placeholder="Filter Forms">
-             </div>
+             </div> -->
              <div class="two wide field">
                  <input type="text" placeholder="Begin Date">
              </div>
