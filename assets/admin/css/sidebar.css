@@ -62,6 +62,13 @@
   }
 }
 
+/* on field config open */
+.field-row.ui.segment.config-open {
+  border: 1px solid transparent;
+  border-color: rgb(65, 153, 253);
+  transition: 0.5s border-color ease-in-out;
+}
+
 /* Tool Bar Field & Properties */
 .tab-menu {
   background-color: #ebedee;
@@ -117,7 +124,7 @@
 }
 
 /* Tool Bar Field & Config */
-.config-fields.bg {
+.config-fields {
   background-color: #ffbd6b38;
   margin-top: -12px;
   padding: 0px 10px 10px 10px;

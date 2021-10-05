@@ -67,6 +67,24 @@
         app.save_form();
       });
 
+      //
+      // For config realtime preview
+      //
+
+      // realtime chang placeholder
+      $(".config-form-label").keyup(function () {
+        app.fieldconfig_label($(this));
+      });
+
+      // realtime chang placeholder
+      $(".config-form-placeholder").keyup(function () {
+        app.fieldconfig_placeholder($(this));
+      });
+
+      //
+      // For config field
+      //
+
       // Add Option Field Select
       $(".config-fields").on("click", ".add", function (e) {
         app.fieldSelectOptionAdd(e, $(this));
@@ -383,6 +401,28 @@
         capt.val(struct.join("|"));
       });
     },
+
+    //
+    // For realtime config field
+    //
+
+    // Function for realtime change label
+    fieldconfig_label: function (el) {
+      var id = el.parent().parent().parent().parent().data("field-id");
+      var val = el.val();
+      $("label[id=" + id + "]").text(val);
+    },
+
+    // Function for realtime change placeholder
+    fieldconfig_placeholder: function (el) {
+      var id = el.parent().parent().parent().parent().data("field-id");
+      var val = el.val();
+      $("input[id=" + id + "]").attr("placeholder", val);
+    },
+
+    //
+    // For config fields
+    //
 
     // Function for add option field select
     fieldSelectOptionAdd: function (event, el) {

@@ -3,10 +3,13 @@ if (!defined('ABSPATH')) {
     die();
 }
 class Field_Select {
+
     private $field_type = 'select';
+
     public function __construct() {
         $this->init();
     }
+
     function init() {
         add_action("wp_ajax_codex_new_field_{$this->field_type}", array($this, 'get_field'));
         add_filter("codex_form_preview_{$this->field_type}", array($this, 'preview'));
@@ -56,7 +59,7 @@ class Field_Select {
         $preview .= "<div class='field'>";
 
         if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
 
         $preview .= "<select name='field_id[{$config['id']}]' id='{$config['id']}' class='ui dropdown fluid' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
@@ -83,8 +86,6 @@ class Field_Select {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -103,15 +104,7 @@ class Field_Select {
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
-                    </div>
-                </div>
-                <div class='five wide column'>
-                    <label>Placeholder</label>
-                </div>
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
             </div>

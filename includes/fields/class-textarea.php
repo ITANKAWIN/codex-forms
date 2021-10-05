@@ -4,6 +4,7 @@ if (!defined('ABSPATH')) {
 }
 
 class Field_Textarea {
+
     private $field_type = 'textarea';
 
     public function __construct() {
@@ -51,7 +52,7 @@ class Field_Textarea {
         $preview .= "<div class='field'>";
 
         if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
 
         $preview .= "<textarea name='field_id[{$config['id']}]' id='{$config['id']}' rows='3' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></textarea>";
@@ -73,15 +74,12 @@ class Field_Textarea {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
                 <div class='eleven wide column'>
                     <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
-                    ";
-
+                ";
         $field_types = Codex_Fields::init();
         foreach ($field_types as $field) {
             $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
@@ -89,8 +87,6 @@ class Field_Textarea {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>

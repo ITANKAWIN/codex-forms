@@ -46,7 +46,7 @@ class Field_Text {
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field " . ($config['require'] == 'on' ? 'required' : '') . "'>";
         if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
         $preview .= "<input type='text' name='field_id[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
         $preview .= "</div>";
@@ -66,8 +66,6 @@ class Field_Text {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -81,8 +79,6 @@ class Field_Text {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 
@@ -93,8 +89,6 @@ class Field_Text {
                         <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>   
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Placeholder</label>
                 </div>
@@ -104,19 +98,14 @@ class Field_Text {
                     </div>
                     
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label'>Value</label>
-                
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
                         <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label'>Required</label>
                 </div>

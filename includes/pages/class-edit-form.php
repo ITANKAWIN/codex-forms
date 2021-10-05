@@ -161,7 +161,7 @@ class Codex_Edit_form {
                             </div>
                             <div class="ui tab" data-tab="config">
                                 <div class="ui form">
-                                    <div class="config-fields bg">
+                                    <div class="config-fields">
                                         <?php
 
                                         if (isset($this->form_config['fields'])) {

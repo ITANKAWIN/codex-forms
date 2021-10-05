@@ -133,7 +133,7 @@ class Field_Provinces{
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
 
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
         $preview .= "<select name='field_id[{$config['id']}]' id='{$config['id']}' class='ui dropdown fluid' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         foreach ($config['options'] as $option) {
@@ -157,8 +157,6 @@ class Field_Provinces{
                     <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -172,27 +170,16 @@ class Field_Provinces{
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
             </div>
-            <div class='ui grid'>
-                <div class='five wide column'>
-                    <label>Placeholder</label>
-                </div>
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
-                    </div>
-                </div>
-            </div>
+
             <hr>
 
             <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
