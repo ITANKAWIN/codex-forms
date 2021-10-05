@@ -37,7 +37,7 @@ class Codex_form_DB {
             return false;
         }
 
-        if ($wpdb->query($wpdb->prepare("DELETE FROM $wpdb->prefix . 'codex_forms' WHERE `id` = %d", $row_id)) === false) {
+        if ($wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}codex_forms WHERE `id` = %d", $row_id)) === false) {
             return false;
         }
 
@@ -79,6 +79,20 @@ class Codex_form_DB {
         );
     }
 
+    static public function get_forms($type, $status) {
+
+        global $wpdb;
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
+        return $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT id, name, type, status, date FROM {$wpdb->prefix}codex_forms WHERE `type` = %s AND `status` = %s",
+                $type,
+                $status
+            )
+        );
+    }
+
     static public function get_form_by_id($row_id) {
 
         global $wpdb;
@@ -86,7 +100,7 @@ class Codex_form_DB {
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
         return $wpdb->get_row(
             $wpdb->prepare(
-                "SELECT * FROM {$wpdb->prefix}codex_forms WHERE `id` = %d LIMIT 1;", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                "SELECT * FROM {$wpdb->prefix}codex_forms WHERE `id` = %d LIMIT 1", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                 (int) $row_id
             )
         );
