@@ -89,12 +89,39 @@
 
       $.post(codex_admin.ajax_url, data, function (res) {
         if (res.success) {
-          console.log(res);
-          res.data.forEach((entry) => {
-            $("#entire-val").append("<tr><td>" + entry.id + "</td></tr>");
-          });
+          console.log(res.data);
+          // res.data.forEach((entry) => {
+          //   $("#entire-val").append("<tr><td>" + entry.id + "</td></tr>");
+          // });
+
+          var entry_val = "",
+            entry_name = "";
+
+          for (i in res.data) {
+            entry_name += "<tr>";
+            entry_val += "<tr>";
+            entry_val +=
+              "<td><input type='checkbox' name='check[]' value='" +
+              res.data[i] +
+              "'></td>";
+
+            res.data[i].forEach((entry, idx, arr) => {
+              console.log(arr.length);
+
+              // if (idx === arr.length - 1) {
+              //   entry_name += "<th>" + entry.field_id + "</th>";
+              // }
+              entry_val += "<td>" + entry.value + "</td>";
+            });
+
+            entry_val += "</tr>";
+            entry_name += "</tr>";
+          }
+
+          // $("#entire-name").append(entry_name);
+          $("#entire-val").append(entry_val);
         } else {
-          console.log(res);
+          // console.log(res);
         }
       });
     },

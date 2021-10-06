@@ -65,31 +65,9 @@ class Codex_Entire_forms {
             </div>
         </div>
         <table class="ui table">
-            <thead>
-                <tr>
-                    <th class="one wide"><input type="checkbox"></th>
-                    <th class="one wide">ID</th>
-                    <th class="six wide">Form Title</th>
-                    <th class="one wide">
-                        <h5 class="ui center aligned">Entries</h5>
-                    </th>
-                    <th class="three wide">Shortcodes</th>
-                    <th class="two wide">Date</th>
-                </tr>
+            <thead id='entire-name'>
             </thead>
             <tbody id="entire-val">
-                <!-- <tr>
-                    <td><input type="checkbox"></td>
-                    <td>1</td>
-                    <td>Customer</td>
-                    <td>
-                        <a href="#">
-                            <h5 class="ui center aligned">0</h5>
-                        </a>
-                    </td>
-                    <td>[codex_form_preivew id=2]</td>
-                    <td>30:10:2021</td>
-                </tr> -->
             </tbody>
         </table>
         <div class="ui centered grid">

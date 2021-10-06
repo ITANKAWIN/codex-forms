@@ -199,14 +199,13 @@ class Codex_AJAX {
 
         $entrys = Codex_form_DB::get_entry($form_id);
 
-        // echo "<pre>";
-        // print_r($entrys);
-        // echo "</pre>";
-
-        foreach ($entrys as $entry => $value) {
-            // $entry_val[$entry['id']] = Codex_form_DB::get_entry_meta($entry['id']);
-            echo $entry . " " . $value;
+        foreach ($entrys as $key => $entry) {
+            $entry_val[$entry->id] = Codex_form_DB::get_entry_meta($entry->id);
         }
+
+        // echo "<pre>";
+        // print_r($entrys[0]['id']);
+        // echo "</pre>";
 
         wp_send_json_success($entry_val);
     }
