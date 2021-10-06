@@ -44,9 +44,9 @@ class Field_Date {
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<input name='field_id[{$config['id']}]' id='{$config['id']}' type='date' value='' min='1997-01-01' max='2030-12-31' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<input type='date' name='field_id[{$config['id']}]' id='{$config['id']}'  disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -64,8 +64,6 @@ class Field_Date {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -79,28 +77,22 @@ class Field_Date {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Placeholder</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
+                        <input type='text' class='config-form-placeholder' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label'>Value</label>
                 </div>

@@ -45,12 +45,9 @@ class Field_Image {
         $preview = "";
         $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
-
         if (isset($config['label'])) {
-
-            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-
         $preview .= "<img name='field_id[{$config['id']}]' id='{$config['id']}' class='disabled medium ui image' src='http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/image.png' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
@@ -69,8 +66,6 @@ class Field_Image {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -84,14 +79,20 @@ class Field_Image {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                    </div>
+                </div>
+                <div class='five wide column'>
+                    <label>Add File</label>
+                </div>
+                <div class='eleven wide column'>
+                    <div class='ui fluid input'>
+                        <input type='file' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
             </div>

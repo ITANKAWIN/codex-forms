@@ -49,12 +49,9 @@ class Field_button {
         $preview = "";
         $preview .= "<form class='ui form huge'>";
         $preview .= "<div class='field'>";
-
         if (isset($config['label'])) {
-
             $preview .= "<label>{$config['label']}</label>";
         }
-
         $preview .= "<button type='submit' name='field_id[{$config['id']}]' id='{$config['id']}' class='ui primary large basic button' disabled>" . (!empty($config['text']) ? $config['text'] : '') . "</button>";
         $preview .= "</div>";
         $preview .= "</form>";
@@ -73,8 +70,6 @@ class Field_button {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -88,8 +83,6 @@ class Field_button {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Text</label>
                 </div>
@@ -98,8 +91,6 @@ class Field_button {
                         <input type='text' name='fields[{$config['id']}][text]' value='{$config['text']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label'>Button Align</label>
                 </div>

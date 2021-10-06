@@ -44,9 +44,9 @@ class Field_File {
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<input type='file' name='field_id[{$config['id']}]' id='{$config['id']}' class='fieldinput' accept='image/png, image/jpeg' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<input type='file' name='field_id[{$config['id']}]' id='{$config['id']}' accept='image/png, image/jpeg' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -64,8 +64,6 @@ class Field_File {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -79,19 +77,14 @@ class Field_File {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
-                
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
-        
             </div>
         </div>
         ";

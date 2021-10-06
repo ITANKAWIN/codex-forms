@@ -42,8 +42,7 @@ class Field_reCAPTCHA {
         $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-
-            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
+            $preview .= "<label class='ui basic label align' id='{$config['id']}'>{$config['label']}</label>";
         }
         $preview .= "<div class='captcha_text'>Your captcha will not appear on your form until you set up the Site and Secret Keys</div>
                     <div><img src='http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/recaptcha.png' class='fieldcaptcha' name='field[{$config['id']}]' id='{$config['id']}' alt='reCaptcha'></div>";
@@ -64,8 +63,6 @@ class Field_reCAPTCHA {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -79,14 +76,12 @@ class Field_reCAPTCHA {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
             </div>

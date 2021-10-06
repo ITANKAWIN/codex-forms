@@ -81,11 +81,9 @@ class Field_Text {
                 </div>
                 <div class='five wide column'>
                     <label>Label</label>
-                
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        
                         <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>   

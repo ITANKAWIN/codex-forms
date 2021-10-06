@@ -48,10 +48,9 @@ class Field_Password {
 
         $preview = "";
         $preview .= "<div class='ui form big'>";
-        $preview .= "<div class='field'>";
-
+        $preview .= "<div class='field " . ($config['require'] == 'on' ? 'required' : '') . "'>";
         if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
 
         $preview .= "<input type='password' name='field_id[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
@@ -72,8 +71,6 @@ class Field_Password {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -87,45 +84,37 @@ class Field_Password {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Placeholder</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
+                        <input type='text' class='config-form-placeholder' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label'>Value</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                        <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label'>Required</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='inline field'>
                         <div class='ui toggle checkbox'>
-                            <input type='checkbox' tabindex='0' class='hidden'>
+                            <input type='checkbox' name='fields[{$config['id']}][require]' tabindex='0' class='hidden' " . ($config['require'] == 'on' ? 'checked' : '') . ">
                             <label></label>
                         </div>
                     </div>

@@ -43,8 +43,7 @@ class Field_Star_Rating {
         $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-
-            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
+            $preview .= "<label class='ui basic label align' id='{$config['id']}'>{$config['label']}</label>";
         }
         $preview .= "<div>
                     <input class='rating' max='5' oninput='this.style.setProperty('--value', this.value)' step='0.5' style='--value:2.5' type='range' value='2.5'
@@ -67,8 +66,6 @@ class Field_Star_Rating {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -82,14 +79,12 @@ class Field_Star_Rating {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
             </div>

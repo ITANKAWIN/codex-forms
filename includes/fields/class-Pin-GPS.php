@@ -45,14 +45,14 @@ class Field_Pin_GPS {
         $preview .= "<div class='ui big labels'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-
-            $preview .= "<div class='ui basic label align'>{$config['label']}</div>";
+            $preview .= "<label class='ui basic label align' id='{$config['id']}'>{$config['label']}</label>";
         }
         $preview .= "<select name='select' class='ui fluid dropdown' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></select>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
     }
+   
 
     public function config($config = []) {
         $config_field = "
@@ -66,8 +66,6 @@ class Field_Pin_GPS {
                         <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
                     </div>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Type</label>
                 </div>
@@ -81,34 +79,12 @@ class Field_Pin_GPS {
         $config_field .= "
                     </select>
                 </div>
-            </div>
-            <div class='ui grid'>
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
-                    </div>
-                </div>
-            </div>
-            <div class='ui grid'>
-                <div class='five wide column'>
-                    <label>Placeholder</label>
-                </div>
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][placeholder]' value='{$config['placeholder']}'>
-                    </div>
-                </div>
-            </div>
-            <div class='ui grid'>
-                <div class='five wide column'>
-                    <label'>Value</label>
-                </div>
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
             </div>
