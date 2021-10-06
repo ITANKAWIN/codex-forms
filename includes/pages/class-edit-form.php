@@ -15,7 +15,7 @@ class Codex_Edit_form {
 
         $this->init();
 
-        add_action('codex_edit_form', array($this, 'header'));
+        add_action('codex_edit_form', array($this, 'content'));
 
         do_action('codex_edit_form');
     }
@@ -87,7 +87,7 @@ class Codex_Edit_form {
         echo '</div>';
     }
 
-    function header() {
+    function content() {
 
 ?>
 

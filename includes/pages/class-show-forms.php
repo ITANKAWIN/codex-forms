@@ -2,13 +2,11 @@
 
 class Codex_Show_Forms {
 
-    private $codex_forms = 'wp_codex_forms';
-
     private $forms;
 
     function __construct() {
 
-        $this->forms = Codex_form_DB::get($this->codex_forms);
+        $this->forms = Codex_form_DB::get_forms('form', 'active');
 
         add_action('codex_show_forms', array($this, 'view'));
 

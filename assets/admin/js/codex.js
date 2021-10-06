@@ -1,4 +1,4 @@
-jQuery(function ($) {
+(function ($) {
   $(".new-form").on("click", function () {
     $(".ui.modal").modal("show");
     $(".message").addClass("hidden");
@@ -37,7 +37,7 @@ jQuery(function ($) {
   });
 
   $(".delete-form").click(function () {
-
+    console.log("asdasd");
     var data = {
       id: $(".delete-form").data("id"),
       action: "delete_form",
@@ -68,4 +68,15 @@ jQuery(function ($) {
     var text = $(".short-code-copy").text();
     navigator.clipboard.writeText(text);
   });
-});
+
+  var app = {
+    init: function () {
+      app.ready();
+    },
+
+    ready: function () {
+      $("#select-form").on("change", function () {});
+    },
+  };
+  app.init();
+})(jQuery);
