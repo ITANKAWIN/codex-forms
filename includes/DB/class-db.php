@@ -106,6 +106,32 @@ class Codex_form_DB {
         );
     }
 
+    static public function get_entry($row_id) {
+
+        global $wpdb;
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
+        return $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT * FROM {$wpdb->prefix}codex_form_entry WHERE `form_id` = %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                (int) $row_id
+            )
+        );
+    }
+
+    static public function get_entry_meta($row_id) {
+
+        global $wpdb;
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
+        return $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT * FROM `{$wpdb->prefix}codex_form_entry_meta` 
+                WHERE entry_id = %d",
+                (int) $row_id
+            )
+        );
+    }
 }
 
 new Codex_form_DB();

@@ -75,7 +75,28 @@
     },
 
     ready: function () {
-      $("#select-form").on("change", function () {});
+      $("#select-form").on("change", function () {
+        var id = $(this).val();
+        app.load_entire(id);
+      });
+    },
+
+    load_entire: function (id) {
+      var data = {
+        id: id,
+        action: "load_entire",
+      };
+
+      $.post(codex_admin.ajax_url, data, function (res) {
+        if (res.success) {
+          console.log(res);
+          res.data.forEach((entry) => {
+            $("#entire-val").append("<tr><td>" + entry.id + "</td></tr>");
+          });
+        } else {
+          console.log(res);
+        }
+      });
     },
   };
   app.init();

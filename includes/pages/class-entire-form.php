@@ -26,8 +26,9 @@ class Codex_Entire_forms {
             </div>
             <div class="item">
                 <select class="ui dropdown" id="select-form">
+                    <option>-- Select Form --</option>
                     <?php foreach ($this->forms as $form) {
-                        echo "<option>{$form->name}</option>";
+                        echo "<option value='{$form->id}'>{$form->name}</option>";
                     } ?>
                 </select>
             </div>

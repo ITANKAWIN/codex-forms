@@ -18,6 +18,8 @@ class Codex_AJAX {
         add_action('wp_ajax_save_form', array($this, 'save_form'));
 
         add_action('wp_ajax_entry_value', array($this, 'form_entry'));
+
+        add_action('wp_ajax_load_entire', array($this, 'load_entire'));
     }
 
     function new_form() {
@@ -183,6 +185,30 @@ class Codex_AJAX {
         }
 
         wp_send_json_success();
+    }
+
+    function load_entire() {
+
+        $form_id = sanitize_text_field($_POST['id']);
+
+        if (empty($form_id)) {
+            wp_send_json_error();
+        }
+
+        $entry_val = array();
+
+        $entrys = Codex_form_DB::get_entry($form_id);
+
+        // echo "<pre>";
+        // print_r($entrys);
+        // echo "</pre>";
+
+        foreach ($entrys as $entry => $value) {
+            // $entry_val[$entry['id']] = Codex_form_DB::get_entry_meta($entry['id']);
+            echo $entry . " " . $value;
+        }
+
+        wp_send_json_success($entry_val);
     }
 }
 
