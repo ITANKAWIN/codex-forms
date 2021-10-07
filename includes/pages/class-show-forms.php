@@ -29,6 +29,18 @@ class Codex_Show_Forms {
                 <button class="ui blue button"><i class="upload icon"></i> Import</button>
             </div>
         </div>
+        <div class="ui form">
+            <div class="fields">
+                <div class="eleven wide field"> 
+                </div>
+                <div class="two wide field">
+                    <input type="text" name="search" id="">
+                </div>
+                <div class="one wide field">
+                    <button class="Medium ui primary basic button">Search</button>
+                </div>
+            </div>
+        </div>
         <div class="ui container">
             <table class="ui inverted olive table">
                 <thead>
@@ -131,6 +143,27 @@ class Codex_Show_Forms {
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="ui form">
+            <div class="fields">
+                <div></div>
+            </div>
+            <div class="fields">
+                <div></div>
+            </div>
+        </div>
+        <div class="ui centered grid">
+            <div class="ui right floated pagination menu">
+                <a class="icon item">
+                    <i class="left chevron icon"></i>
+                </a>
+                <a class="item">1</a>
+                <a class="item">2</a>
+                <a class="item">3</a>
+                <a class="icon item">
+                    <i class="right chevron icon"></i>
+                </a>
             </div>
         </div>
 
