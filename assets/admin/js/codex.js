@@ -79,6 +79,8 @@
         var id = $(this).val();
         app.load_entire(id);
       });
+
+      $("#show_form").DataTable();
     },
 
     load_entire: function (id) {
@@ -98,28 +100,28 @@
             entry_name = "";
 
           for (i in res.data) {
-            entry_name += "<tr>";
+            console.log(i);
+            console.log(res.data[i]);
+            // entry_name += "<tr>";
             entry_val += "<tr>";
             entry_val +=
               "<td><input type='checkbox' name='check[]' value='" +
-              res.data[i] +
+              i +
               "'></td>";
 
-            res.data[i].forEach((entry, idx, arr) => {
-              console.log(arr.length);
-
+            for (j in res.data[i]) {
               // if (idx === arr.length - 1) {
               //   entry_name += "<th>" + entry.field_id + "</th>";
               // }
-              entry_val += "<td>" + entry.value + "</td>";
-            });
+              entry_val += "<td>" + j + "</td>";
+            }
 
             entry_val += "</tr>";
-            entry_name += "</tr>";
+            // entry_name += "</tr>";
           }
 
           // $("#entire-name").append(entry_name);
-          $("#entire-val").append(entry_val);
+          $("#entire-val").html(entry_val);
         } else {
           // console.log(res);
         }

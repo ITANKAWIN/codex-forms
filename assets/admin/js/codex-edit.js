@@ -277,6 +277,7 @@
 
       $(".column-tools").remove();
 
+      app.jQueryui();
       app.buildLayout();
     },
 

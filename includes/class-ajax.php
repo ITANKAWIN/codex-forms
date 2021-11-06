@@ -195,20 +195,41 @@ class Codex_AJAX {
             wp_send_json_error();
         }
 
-        $entry_val = array();
+        $meta_id = array();
 
         $entrys = Codex_form_DB::get_entry($form_id);
 
         foreach ($entrys as $key => $entry) {
-            $entry_val[$entry->id] = Codex_form_DB::get_entry_meta($entry->id);
+            array_push($meta_id, $entry->id);
         }
 
+        $where  = '(' . $this->prepare_array_values($meta_id, '%s') . ')';
+        // $values = array_merge($values, $value);
+
+        $meta_val = Codex_form_DB::get_entry_meta($where, $meta_id);
+
+        $entry_val = array();
+        foreach ($meta_val as $key => $v) {
+            // include sub entries in an array
+            if (!isset($entry_val[$v->entry_id])) {
+                $entry_val[$v->entry_id] = array();
+            }
+
+            $entry_val[$v->entry_id][$v->field_id] =  $v->value;
+        }
         // echo "<pre>";
         // print_r($entrys[0]['id']);
         // echo "</pre>";
 
         wp_send_json_success($entry_val);
     }
+
+    function prepare_array_values($array, $type = '%s') {
+        $placeholders = array_fill(0, count($array), $type);
+
+        return implode(', ', $placeholders);
+    }
+
 }
 
 new Codex_AJAX();
