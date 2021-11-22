@@ -15,7 +15,7 @@ class Codex_Entire_forms {
     }
 
     function content() {
-        print_r($this->forms);
+        // print_r($this->forms);
 ?>
         <div class="ui menu massive">
             <div href="#" class="item">
