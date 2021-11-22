@@ -15,6 +15,8 @@ class Admin_Script {
 
         add_action('admin_enqueue_scripts', array($this, 'codex_semantic_ui_scripts'));
 
+        add_action('admin_enqueue_scripts', array($this, 'codex_DataTables_scripts'));
+
         add_action('init', array($this, 'codex_jquery_ui'));
 
         add_action('admin_enqueue_scripts', array($this, 'javascript_api'));
@@ -44,13 +46,18 @@ class Admin_Script {
         wp_enqueue_script('codex-admin', CODEX_URL . 'assets/admin/js/codex.js', __FILE__, array('jquery'), '1.0.0', true);
         wp_enqueue_script('codex-sidebar', CODEX_URL . 'assets/admin/js/sidebar.js', __FILE__, array('jquery'), '1.0.0', true);
         wp_enqueue_script('codex-edit', CODEX_URL . 'assets/admin/js/codex-edit.js', __FILE__, array('jquery'), '1.0.0', true);
-
     }
 
     function codex_semantic_ui_scripts() {
         wp_enqueue_style('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.css', __FILE__);
 
         wp_enqueue_script('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.js', __FILE__);
+    }
+
+    function codex_DataTables_scripts() {
+        wp_enqueue_style('codex-DataTables', CODEX_URL . 'assets/admin/DataTables/datatables.min.css', __FILE__);
+
+        wp_enqueue_script('codex-DataTables', CODEX_URL . 'assets/admin/DataTables/datatables.min.js', __FILE__);
     }
 
     function codex_jquery_ui() {

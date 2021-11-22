@@ -119,7 +119,7 @@ class Codex_form_DB {
         );
     }
 
-    static public function get_entry_meta($row_id) {
+    static public function get_entry_meta($where, $value) {
 
         global $wpdb;
 
@@ -127,8 +127,8 @@ class Codex_form_DB {
         return $wpdb->get_results(
             $wpdb->prepare(
                 "SELECT * FROM `{$wpdb->prefix}codex_form_entry_meta` 
-                WHERE entry_id = %d",
-                (int) $row_id
+                WHERE entry_id in {$where} ORDER BY id ASC",
+                $value
             )
         );
     }
