@@ -51,10 +51,10 @@ class Field_Checkbox {
     public function preview($config = []) { #vertical(แนวตั้ง)
 
         $preview = "";
-        $preview .= "<div class='ui big labels'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='grouped fields'>";
         if (isset($config['label'])) {
-            $preview .= "<label class='ui basic label align' id='{$config['id']}'>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
         foreach ($config['options'] as $option) {
             $preview .= "<div class='ui'><input type='checkbox' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
@@ -68,10 +68,10 @@ class Field_Checkbox {
     // public function preview($config = []) { #horizontal(แนวนอน)
 
     //     $preview = "";
-    //     $preview .= "<div class='ui big labels'>";
+    //     $preview .= "<div class='ui form big'>";
     //     $preview .= "<div class='inline fields'>";
     //     if (isset($config['label'])) {
-    //         $preview .= "<label class='ui basic label align' id='{$config['id']}'>{$config['label']}</label>";
+    //         $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
     //     }
     //     foreach ($config['options'] as $option) {
     //         $preview .= "<div class='ui checkbox'><input type='checkbox' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";

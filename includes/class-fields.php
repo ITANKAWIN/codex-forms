@@ -108,11 +108,6 @@ class Codex_Fields
                 "description"   => "input string or integer one line",
                 "icon"          => "icon ellipsis horizontal"
             ),
-            'reCAPTCHA' => array(
-                "type"          => "reCAPTCHA",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon filter"
-            ),
             'Image' => array(
                 "type"          => "Image",
                 "description"   => "input string or integer one line",
