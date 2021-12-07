@@ -43,7 +43,7 @@ class Field_Image {
     public function preview($config = []) {
 
         $preview = "";
-        $preview .= "<div class='ui big labels'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
@@ -88,7 +88,7 @@ class Field_Image {
                     </div>
                 </div>
                 <div class='five wide column'>
-                    <label>Add File</label>
+                    <label>Image</label>
                 </div>
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
