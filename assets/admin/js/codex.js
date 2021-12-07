@@ -82,51 +82,6 @@
 
       $("#show_form").DataTable();
     },
-
-    load_entire: function (id) {
-      var data = {
-        id: id,
-        action: "load_entire",
-      };
-
-      $.post(codex_admin.ajax_url, data, function (res) {
-        if (res.success) {
-          console.log(res.data);
-          // res.data.forEach((entry) => {
-          //   $("#entire-val").append("<tr><td>" + entry.id + "</td></tr>");
-          // });
-
-          var entry_val = "",
-            entry_name = "";
-
-          for (i in res.data) {
-            console.log(i);
-            console.log(res.data[i]);
-            // entry_name += "<tr>";
-            entry_val += "<tr>";
-            entry_val +=
-              "<td><input type='checkbox' name='check[]' value='" +
-              i +
-              "'></td>";
-
-            for (j in res.data[i]) {
-              // if (idx === arr.length - 1) {
-              //   entry_name += "<th>" + entry.field_id + "</th>";
-              // }
-              entry_val += "<td>" + j + "</td>";
-            }
-
-            entry_val += "</tr>";
-            // entry_name += "</tr>";
-          }
-
-          // $("#entire-name").append(entry_name);
-          $("#entire-val").html(entry_val);
-        } else {
-          // console.log(res);
-        }
-      });
-    },
   };
   app.init();
 })(jQuery);

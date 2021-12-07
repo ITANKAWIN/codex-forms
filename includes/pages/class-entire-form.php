@@ -5,6 +5,10 @@ class Codex_Entire_forms {
 
     private $forms;
 
+    private $form_id;
+
+    private $entry_title = array();
+
     function __construct() {
 
         $this->forms = Codex_form_DB::get_forms('form', 'active');
@@ -15,7 +19,7 @@ class Codex_Entire_forms {
     }
 
     function content() {
-        print_r($this->forms);
+        // print_r($this->forms);
 ?>
         <div class="ui menu massive">
             <div href="#" class="item">
@@ -25,6 +29,7 @@ class Codex_Entire_forms {
                 Codex-Forms
             </div>
             <div class="item">
+                <form action=""></form>
                 <select class="ui dropdown" id="select-form">
                     <option>-- Select Form --</option>
                     <?php foreach ($this->forms as $form) {
@@ -63,14 +68,66 @@ class Codex_Entire_forms {
                     <button class="Medium ui primary basic button">Search</button>
                 </div>
             </div>
+            <?php $this->display(); ?>
         </div>
-        <table class="ui table" id="show_form">
-            <thead id='entire-name'>
-            </thead>
-            <tbody id="entire-val">
-            </tbody>
-        </table>
+
+        <?php
+    }
+
+    function display() {
+        if (isset($_GET['form'])) {
+            $this->form_id = $_GET['form'];
+        ?>
+            <table class="ui table" id="entire_form">
+                <thead>
+                    <?php $this->print_column_headers(); ?>
+                </thead>
+                <tbody>
+                    <?php $this->print_column_content(); ?>
+                </tbody>
+            </table>
 <?php
+        }
+    }
+
+    function print_column_headers() {
+
+        $entrys = Codex_form_DB::get_entry($this->form_id);
+
+        $last_entry = end($entrys);
+
+        $entry_meta = Codex_form_DB::get_entry_meta($last_entry->id);
+
+        echo "<th><input type='checkbox'></th>";
+        foreach ($entry_meta as $entry_val) {
+            array_push($this->entry_title, $entry_val->field_id);
+            echo "<th>" . $entry_val->field_id . "</th>";
+        }
+    }
+
+    function print_column_content() {
+
+        $entry_val = array();
+
+        $entrys = Codex_form_DB::get_entry($this->form_id);
+
+        foreach ($entrys as $entry) {
+            $i = 0;
+            echo "<tr>";
+            $entry_meta = Codex_form_DB::get_entry_meta($entry->id);
+
+            echo "<td><input type='checkbox'></td>";
+            foreach ($entry_meta as $meta_val) {
+                if ($meta_val->field_id == $this->entry_title[$i]) {
+                    echo "<td>{$meta_val->value}</td>";
+                } else {
+                    echo "<td></td>";
+                }
+                $i++;
+            }
+
+            echo "</tr>";
+        }
     }
 }
 

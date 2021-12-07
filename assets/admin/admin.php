@@ -46,6 +46,7 @@ class Admin_Script {
         wp_enqueue_script('codex-admin', CODEX_URL . 'assets/admin/js/codex.js', __FILE__, array('jquery'), '1.0.0', true);
         wp_enqueue_script('codex-sidebar', CODEX_URL . 'assets/admin/js/sidebar.js', __FILE__, array('jquery'), '1.0.0', true);
         wp_enqueue_script('codex-edit', CODEX_URL . 'assets/admin/js/codex-edit.js', __FILE__, array('jquery'), '1.0.0', true);
+        wp_enqueue_script('codex-entire', CODEX_URL . 'assets/admin/js/codex-entire.js', __FILE__, array('jquery'), '1.0.0', true);
     }
 
     function codex_semantic_ui_scripts() {
