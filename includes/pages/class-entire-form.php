@@ -1,8 +1,6 @@
 <?php
 class Codex_Entire_forms {
 
-    private $codex_forms = 'wp_codex_forms';
-
     private $forms;
 
     private $form_id;
@@ -78,12 +76,9 @@ class Codex_Entire_forms {
         if (isset($_GET['form'])) {
             $this->form_id = $_GET['form'];
         ?>
-            <table class="ui celled table" id="entire_form">
+            <table class="ui table" id="entire_form">
                 <thead>
-                    <th><input type='checkbox'></th>
-                    <th>ID</th>
-                    <th>Submitted</th>
-                    <th></th>
+                    <?php $this->print_column_headers(); ?>
                 </thead>
                 <tbody>
                     <?php $this->print_column_content(); ?>
@@ -93,25 +88,56 @@ class Codex_Entire_forms {
         }
     }
 
+    function print_column_headers() {
+
+        $entrys = Codex_form_DB::get_entry($this->form_id);
+
+        $last_entry = $entrys[0];
+
+        $entry_meta = Codex_form_DB::get_entry_meta($last_entry->id);
+
+        echo "<th><input type='checkbox'></th>";
+        echo "<th>ID</th>";
+        foreach ($entry_meta as $entry_val) {
+            array_push($this->entry_title, $entry_val->field_id);
+            echo "<th>" . $entry_val->field_id . "</th>";
+        }
+    }
+
     function print_column_content() {
 
         $entry_val = array();
 
         $entrys = Codex_form_DB::get_entry($this->form_id);
 
+
+
         foreach ($entrys as $entry) {
+
+            $entry_meta = Codex_form_DB::get_entry_meta($entry->id);
+
+            foreach ($entry_meta as $meta_val) {
+                $entry_val[$entry->id][$meta_val->field_id] = $meta_val->value;
+            }
+        }
+
+        foreach ($entrys as $entry) {
+            $i = 0;
             echo "<tr>";
-            echo "<td><input type='checkbox' id='$entry->id'></td>";
-            echo "<td>$entry->id</td>";
-            $date_submitted = strtotime($entry->date);
-            echo "<td>" . date("d F Y, H:i:s", $date_submitted) . "</td>";
-            echo "<td >";
-            echo "<button class='ui green button'><i class='eye icon'></i>view</button>";
-            echo "<button class='ui red button'><i class='trash icon'></i>trash</button>";
-            echo "</td>";
+            echo "<td><input type='checkbox'></td>";
+            echo "<td>" . $entry->id . "</td>";
+            $output = "<td></td>";
+            foreach ($entry_val as $field_id ) {
+
+                $output = "<td>" . $entry_val[$entry->id][$this->entry_title[$i]] . "</td>";
+                echo $output;
+                $i++;
+            }
             echo "</tr>";
         }
+        // echo "<pre>";
+        // print_r($entry_val);
+        // echo "</pre>";
     }
 }
-
 new Codex_Entire_forms();

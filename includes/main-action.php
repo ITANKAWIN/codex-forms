@@ -15,6 +15,10 @@ class Main_action {
             if ($_GET['page'] == 'entire-codex-forms') {
                 add_action('codex_admin_page', array($this, 'class_entire_forms'));
             }
+
+            if ($_GET['page'] == 'entire-codex-forms' && isset($_GET['export'])) {
+                add_action('codex_admin_page', array($this, 'class_export_forms'));
+            }
         }
 
         require_once(CODEX_PATH . 'includes/pages/preview.php');
@@ -57,6 +61,8 @@ class Main_action {
         require_once(CODEX_PATH . '/includes/pages/class-entire-form.php');
     }
 
-    
+    function class_export_forms() {
+        require_once(CODEX_PATH . '/includes/pages/class-export-form.php');
+    }
 }
 new Main_action();
