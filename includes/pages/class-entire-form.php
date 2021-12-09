@@ -78,30 +78,18 @@ class Codex_Entire_forms {
         if (isset($_GET['form'])) {
             $this->form_id = $_GET['form'];
         ?>
-            <table class="ui table" id="entire_form">
+            <table class="ui celled table" id="entire_form">
                 <thead>
-                    <?php $this->print_column_headers(); ?>
+                    <th><input type='checkbox'></th>
+                    <th>ID</th>
+                    <th>Submitted</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <?php $this->print_column_content(); ?>
                 </tbody>
             </table>
 <?php
-        }
-    }
-
-    function print_column_headers() {
-
-        $entrys = Codex_form_DB::get_entry($this->form_id);
-
-        $last_entry = end($entrys);
-
-        $entry_meta = Codex_form_DB::get_entry_meta($last_entry->id);
-
-        echo "<th><input type='checkbox'></th>";
-        foreach ($entry_meta as $entry_val) {
-            array_push($this->entry_title, $entry_val->field_id);
-            echo "<th>" . $entry_val->field_id . "</th>";
         }
     }
 
@@ -112,20 +100,15 @@ class Codex_Entire_forms {
         $entrys = Codex_form_DB::get_entry($this->form_id);
 
         foreach ($entrys as $entry) {
-            $i = 0;
             echo "<tr>";
-            $entry_meta = Codex_form_DB::get_entry_meta($entry->id);
-
-            echo "<td><input type='checkbox'></td>";
-            foreach ($entry_meta as $meta_val) {
-                if ($meta_val->field_id == $this->entry_title[$i]) {
-                    echo "<td>{$meta_val->value}</td>";
-                } else {
-                    echo "<td></td>";
-                }
-                $i++;
-            }
-
+            echo "<td><input type='checkbox' id='$entry->id'></td>";
+            echo "<td>$entry->id</td>";
+            $date_submitted = strtotime($entry->date);
+            echo "<td>" . date("d F Y, H:i:s", $date_submitted) . "</td>";
+            echo "<td >";
+            echo "<button class='ui green button'><i class='eye icon'></i>view</button>";
+            echo "<button class='ui red button'><i class='trash icon'></i>trash</button>";
+            echo "</td>";
             echo "</tr>";
         }
     }
