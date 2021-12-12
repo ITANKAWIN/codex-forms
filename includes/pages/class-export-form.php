@@ -1,40 +1,84 @@
 <?php
-
 class Class_Export_Forms {
-    /**
-     * Constructor
-     */
+
+    // The ID number of the form to be exported.
+    private $form_id;
+
+    // collect column head to be drawn out to show correctly
+    private $entry_title = array();
+
+    // Store an array of data to be inserted into excel.
+    private $entry_content = array();
+
     function __construct() {
-        if (isset($_GET['export'])) {
-            // $this->generate_table();
-
-            header("Content-Type: text/csv charset=utf-8");
-            header("Content-Disposition: attachment; filename=test.csv");
-            $output = fopen("php://output", 'w');
-
-            $entry_title = array();
-            $delimiter = ',';
-            $entrys = Codex_form_DB::get_entry($_GET['export']);
-
-            $last_entry = $entrys[0];
-
-            $entry_meta = Codex_form_DB::get_entry_meta($last_entry->id);
-
-            foreach ($entry_meta as $entry_val) {
-                array_push($entry_title, $entry_val->field_id);
-            }
-            fputcsv($output, $entry_title, $delimiter);
-            fclose($output);
-        }
+        // I use the download feature on the frontend so I use the init action hook.
+        add_action('admin_init', array($this, 'print_excel'));
     }
 
-    /**
-     * Converting data to CSV
-     */
-    public function generate_table() {
+    function print_excel() {
+
+        // # check the URL in order to perform the downloading
+        if (!isset($_GET['excel'])) {
+            return false;
+        }
+
+        $this->form_id = $_GET['excel'];
+
+        // # set the destination file
+        $fileLocation = 'output.xlsx';
+
+        $this->generate_data_header();
+
+        $this->generate_data_content();
+
+        // # call the class and generate the excel file from the $data
+        $writer = new XLSXWriter();
+        $writer->writeSheet($this->entry_content);
+        $writer->writeToFile($fileLocation);
+
+        // # prompt download popup
+        header('Content-Description: File Transfer');
+        header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        header("Content-Disposition: attachment; filename=" . basename($fileLocation));
+        header("Content-Transfer-Encoding: binary");
+        header("Expires: 0");
+        header("Pragma: public");
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header('Content-Length: ' . filesize($fileLocation));
+
+        ob_clean();
+        flush();
+
+        readfile($fileLocation);
+        unlink($fileLocation);
+        exit;
+    }
+
+    function generate_data_header() {
+
+        $header = array();
+
         $entrys = Codex_form_DB::get_entry($this->form_id);
 
+        $last_entry = $entrys[0];
 
+        $entry_meta = Codex_form_DB::get_entry_meta($last_entry->id);
+        array_push($header, 'ID');
+        foreach ($entry_meta as $entry_val) {
+            array_push($header, $entry_val->field_id);
+            array_push($this->entry_title, $entry_val->field_id);
+        }
+
+        array_push($this->entry_content, $header);
+    }
+
+    function generate_data_content() {
+
+        array_push($this->entry_content, $this->entry_title);
+
+        $entry_val = array();
+
+        $entrys = Codex_form_DB::get_entry($this->form_id);
 
         foreach ($entrys as $entry) {
 
@@ -47,17 +91,17 @@ class Class_Export_Forms {
 
         foreach ($entrys as $entry) {
             $i = 0;
-            echo "<tr>";
-            echo "<td><input type='checkbox'></td>";
-            echo "<td>" . $entry->id . "</td>";
-            $output = "<td></td>";
-            foreach ($entry_val as $field_id) {
+            $entry_row = array();
+            array_push($entry_row, $entry->id);
 
-                $output = "<td>" . $entry_val[$entry->id][$this->entry_title[$i]] . "</td>";
-                echo $output;
+            foreach ($entry_val as $field_id) {
+                $output = $entry_val[$entry->id][$this->entry_title[$i]];
+                array_push($entry_row, $output);
+
                 $i++;
             }
-            echo "</tr>";
+
+            array_push($this->entry_content, $entry_row);
         }
     }
 }

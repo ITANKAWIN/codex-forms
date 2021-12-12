@@ -2,7 +2,9 @@
 class Main_action {
 
     function __construct() {
+
         add_action('admin_menu', array($this, 'admin_menu'));
+
         if (isset($_GET['page'])) {
             if ($_GET['page'] == 'codex-forms' && !isset($_GET['view'])) {
                 add_action('codex_admin_page', array($this, 'class_show_forms'));
@@ -16,12 +18,11 @@ class Main_action {
                 add_action('codex_admin_page', array($this, 'class_entire_forms'));
             }
 
-            if ($_GET['page'] == 'entire-codex-forms' && isset($_GET['export'])) {
-                add_action('codex_admin_page', array($this, 'class_export_forms'));
-            }
         }
 
         require_once(CODEX_PATH . 'includes/pages/preview.php');
+
+        require_once(CODEX_PATH . '/includes/pages/class-export-form.php');
     }
 
     function admin_menu() {
@@ -59,10 +60,6 @@ class Main_action {
 
     function class_entire_forms() {
         require_once(CODEX_PATH . '/includes/pages/class-entire-form.php');
-    }
-
-    function class_export_forms() {
-        require_once(CODEX_PATH . '/includes/pages/class-export-form.php');
     }
 }
 new Main_action();

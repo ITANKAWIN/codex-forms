@@ -75,11 +75,6 @@
     },
 
     ready: function () {
-      $("#select-form").on("change", function () {
-        var id = $(this).val();
-        app.load_entire(id);
-      });
-
       $("#show_form").DataTable();
     },
   };
