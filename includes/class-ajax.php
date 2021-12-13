@@ -7,10 +7,6 @@ class Codex_AJAX {
 
     function __construct() {
 
-        if (!class_exists('Codex_form_DB')) {
-            require_once(CODEX_PATH . 'includes/db/class-db.php');
-        }
-
         add_action('wp_ajax_new_form', array($this, 'new_form'));
 
         add_action('wp_ajax_delete_form', array($this, 'delete_form'));
@@ -25,9 +21,6 @@ class Codex_AJAX {
     function new_form() {
 
         $form_title = sanitize_text_field($_POST['title']);
-        // $form_template = sanitize_text_field($_POST['template']);
-        // $title_exists  = get_page_by_title($form_title, 'OBJECT', 'wpforms');
-
         if (empty($form_title)) {
             return false;
         }
@@ -195,39 +188,9 @@ class Codex_AJAX {
             wp_send_json_error();
         }
 
-        $meta_id = array();
-
         $entrys = Codex_form_DB::get_entry($form_id);
 
-        foreach ($entrys as $key => $entry) {
-            array_push($meta_id, $entry->id);
-        }
-
-        $where  = '(' . $this->prepare_array_values($meta_id, '%s') . ')';
-        // $values = array_merge($values, $value);
-
-        $meta_val = Codex_form_DB::get_entry_meta($where, $meta_id);
-
-        $entry_val = array();
-        foreach ($meta_val as $key => $v) {
-            // include sub entries in an array
-            if (!isset($entry_val[$v->entry_id])) {
-                $entry_val[$v->entry_id] = array();
-            }
-
-            $entry_val[$v->entry_id][$v->field_id] =  $v->value;
-        }
-        // echo "<pre>";
-        // print_r($entrys[0]['id']);
-        // echo "</pre>";
-
-        wp_send_json_success($entry_val);
-    }
-
-    function prepare_array_values($array, $type = '%s') {
-        $placeholders = array_fill(0, count($array), $type);
-
-        return implode(', ', $placeholders);
+        wp_send_json_success($entrys);
     }
 
 }

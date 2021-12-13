@@ -1,13 +1,10 @@
 <?php
 class Codex_Entire_forms {
 
-    private $codex_forms = 'wp_codex_forms';
-
     private $forms;
 
     private $form_id;
 
-    private $entry_title = array();
 
     function __construct() {
 
@@ -19,7 +16,6 @@ class Codex_Entire_forms {
     }
 
     function content() {
-        // print_r($this->forms);
 ?>
         <div class="ui menu massive">
             <div href="#" class="item">
@@ -29,80 +25,57 @@ class Codex_Entire_forms {
                 Codex-Forms
             </div>
             <div class="item">
-                <form action=""></form>
                 <select class="ui dropdown" id="select-form">
-                    <option>-- Select Form --</option>
+                    <option value="-">-- Select Form --</option>
                     <?php foreach ($this->forms as $form) {
-                        echo "<option value='{$form->id}'>{$form->name}</option>";
+                        echo "<option value='{$form->id}' " . ($_GET['form'] == $form->id ? 'selected' : '') . ">{$form->name}</option>";
                     } ?>
                 </select>
             </div>
         </div>
-        <div class="ui form">
-            <div class="fields">
-                <div class="three wide field">
+        <?php
+        if (isset($_GET['form'])) {
+            $this->form_id = $_GET['form'];
+        ?>
+            <div class="ui two column grid">
+                <div class="column">
                     <select class="ui dropdown" name="actions" id="">
                         <option>Bulk actions</option>
                         <option>Move to Trash</option>
                         <option>Export</option>
                     </select>
-                </div>
-                <div class="one wide field">
                     <button class="Medium ui primary basic button">Apply</button>
+                    <a href="?excel=<?= $this->form_id ?>" class="ui teal button"><i class="download icon"></i>Export All</a>
                 </div>
-                <div class="two wide field">
-                    <input type="text" placeholder="Begin Date">
+                <div class="column">
+                    <label for="min">From:</label>
+                    <input type="text" id="min" name="min" placeholder='From date'>
+                    <input type="text" id="max" name="max" placeholder='To date'>
+                    <button type="button" class="ui  button">Clear</button>
                 </div>
-                <div class="two wide field">
-                    <input type="text" placeholder="End Date">
-                </div>
-                <div class="one wide field">
-                    <button class="Medium ui primary basic button">Filter</button>
-                </div>
-                <div class="two wide field">
-                </div>
-                <div class="three wide field">
-                    <input type="text" name="search" id="">
-                </div>
-                <div class="one wide field">
-                    <button class="Medium ui primary basic button">Search</button>
-                </div>
+
             </div>
             <?php $this->display(); ?>
-        </div>
-
         <?php
+        }
     }
 
     function display() {
-        if (isset($_GET['form'])) {
-            $this->form_id = $_GET['form'];
         ?>
-            <table class="ui table" id="entire_form">
-                <thead>
-                    <?php $this->print_column_headers(); ?>
-                </thead>
-                <tbody>
-                    <?php $this->print_column_content(); ?>
-                </tbody>
-            </table>
+        <table class="ui celled table" id="entire_form">
+            <thead>
+                <th><input type='checkbox'></th>
+                <th>ID</th>
+                <th>Submitted</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <?php
+                $this->print_column_content();
+                ?>
+            </tbody>
+        </table>
 <?php
-        }
-    }
-
-    function print_column_headers() {
-
-        $entrys = Codex_form_DB::get_entry($this->form_id);
-
-        $last_entry = end($entrys);
-
-        $entry_meta = Codex_form_DB::get_entry_meta($last_entry->id);
-
-        echo "<th><input type='checkbox'></th>";
-        foreach ($entry_meta as $entry_val) {
-            array_push($this->entry_title, $entry_val->field_id);
-            echo "<th>" . $entry_val->field_id . "</th>";
-        }
     }
 
     function print_column_content() {
@@ -112,20 +85,15 @@ class Codex_Entire_forms {
         $entrys = Codex_form_DB::get_entry($this->form_id);
 
         foreach ($entrys as $entry) {
-            $i = 0;
             echo "<tr>";
-            $entry_meta = Codex_form_DB::get_entry_meta($entry->id);
-
-            echo "<td><input type='checkbox'></td>";
-            foreach ($entry_meta as $meta_val) {
-                if ($meta_val->field_id == $this->entry_title[$i]) {
-                    echo "<td>{$meta_val->value}</td>";
-                } else {
-                    echo "<td></td>";
-                }
-                $i++;
-            }
-
+            echo "<td><input type='checkbox' id='$entry->id'></td>";
+            echo "<td>$entry->id</td>";
+            $date_submitted = strtotime($entry->date);
+            echo "<td>" . date("d F Y, H:i:s", $date_submitted) . "</td>";
+            echo "<td >";
+            echo "<button class='ui green button'><i class='eye icon'></i>view</button>";
+            echo "<button class='ui red button'><i class='trash icon'></i>trash</button>";
+            echo "</td>";
             echo "</tr>";
         }
     }
