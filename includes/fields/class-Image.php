@@ -82,6 +82,14 @@ class Field_Image {
                 <div class='five wide column'>
                     <label>Label</label>
                 </div>
+                <div class='five wide column'>
+                    <label>Name</label>
+                </div>
+                <div class='eleven wide column'>
+                    <div class='ui fluid input'>
+                        <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                    </div>
+                </div>  
                 <div class='eleven wide column'>
                     <div class='ui fluid input'>
                         <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>

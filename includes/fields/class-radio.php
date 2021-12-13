@@ -119,6 +119,14 @@ class Field_Radio {
                     </div>
                 </div>
                 <div class='five wide column'>
+                    <label>Name</label>
+                </div>
+                <div class='eleven wide column'>
+                    <div class='ui fluid input'>
+                        <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                    </div>
+                </div>  
+                <div class='five wide column'>
                     <label'>Orientation</label>
                 </div>
                 <div class='eleven wide column'>
