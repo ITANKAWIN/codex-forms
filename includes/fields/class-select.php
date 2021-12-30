@@ -107,6 +107,14 @@ class Field_Select {
                         <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                 </div>
+                <div class='five wide column'>
+                    <label>Name</label>
+                </div>
+                <div class='eleven wide column'>
+                    <div class='ui fluid input'>
+                        <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                    </div>
+                </div>  
             </div>
             <hr>
 
