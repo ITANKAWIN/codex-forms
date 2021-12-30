@@ -65,7 +65,10 @@ class Class_Export_Forms {
         $entry_meta = Codex_form_DB::get_entry_meta($last_entry->id);
         array_push($header, 'ID');
         foreach ($entry_meta as $entry_val) {
+            // header id field
             array_push($header, $entry_val->field_id);
+
+            // header foreach id field
             array_push($this->entry_title, $entry_val->field_id);
         }
 
@@ -73,8 +76,6 @@ class Class_Export_Forms {
     }
 
     function generate_data_content() {
-
-        array_push($this->entry_content, $this->entry_title);
 
         $entry_val = array();
 

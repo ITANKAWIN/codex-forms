@@ -15,7 +15,11 @@ class Codex_AJAX {
 
         add_action('wp_ajax_entry_value', array($this, 'form_entry'));
 
+        // load all entry id from id form
         add_action('wp_ajax_load_entire', array($this, 'load_entire'));
+
+        // load all value in entry id
+        add_action('wp_ajax_load_entire_value', array($this, 'load_entire_value'));
     }
 
     function new_form() {
@@ -192,6 +196,21 @@ class Codex_AJAX {
 
         wp_send_json_success($entrys);
     }
+
+    function load_entire_value() {
+
+        $entry_id = sanitize_text_field($_POST['id']);
+
+        if (empty($entry_id)) {
+            wp_send_json_error();
+        }
+
+        $entrys = Codex_form_DB::get_entry_meta($entry_id);
+
+        wp_send_json_success($entrys);
+    }
+
+    
 
 }
 

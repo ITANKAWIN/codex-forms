@@ -37,7 +37,6 @@
   });
 
   $(".delete-form").click(function () {
-    console.log("asdasd");
     var data = {
       id: $(".delete-form").data("id"),
       action: "delete_form",
@@ -47,9 +46,7 @@
       if (res.success) {
         window.location.href = res.data.redirect;
       } else {
-        console.log($(this));
-
-        // $(".notify-alert").html("Something wrong");
+        $(".notify-alert").html("Something wrong");
       }
     }).fail(function (xhr, textStatus, e) {
       console.log(xhr.responseText);

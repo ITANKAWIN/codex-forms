@@ -10,6 +10,12 @@ class Codex_Entire_forms {
 
         $this->forms = Codex_form_DB::get_forms('form', 'active');
 
+        // add modal show entry value 
+        add_action('codex_entire_form', array($this, 'modal_view'));
+
+        // add modal edit entry value
+        add_action('codex_entire_form', array($this, 'modal_edit'));
+
         add_action('codex_entire_form', array($this, 'content'));
 
         do_action('codex_entire_form');
@@ -51,7 +57,6 @@ class Codex_Entire_forms {
                     <label for="min">From:</label>
                     <input type="text" id="min" name="min" placeholder='From date'>
                     <input type="text" id="max" name="max" placeholder='To date'>
-                    <button type="button" class="ui  button">Clear</button>
                 </div>
 
             </div>
@@ -64,7 +69,7 @@ class Codex_Entire_forms {
         ?>
         <table class="ui celled table" id="entire_form">
             <thead>
-                <th><input type='checkbox'></th>
+                <th><input type='checkbox' id="selectAll"></th>
                 <th>ID</th>
                 <th>Submitted</th>
                 <th></th>
@@ -75,7 +80,7 @@ class Codex_Entire_forms {
                 ?>
             </tbody>
         </table>
-<?php
+    <?php
     }
 
     function print_column_content() {
@@ -86,16 +91,56 @@ class Codex_Entire_forms {
 
         foreach ($entrys as $entry) {
             echo "<tr>";
-            echo "<td><input type='checkbox' id='$entry->id'></td>";
-            echo "<td>$entry->id</td>";
+            echo "<td><input type='checkbox' class='cf-select' value='{$entry->id}'></td>";
+            echo "<td>{$entry->id}</td>";
             $date_submitted = strtotime($entry->date);
             echo "<td>" . date("d F Y, H:i:s", $date_submitted) . "</td>";
             echo "<td >";
-            echo "<button class='ui green button'><i class='eye icon'></i>view</button>";
+            echo "<button class='ui green button view-entry' data-entry-id='{$entry->id}'><i class='eye icon'></i>view</button>";
             echo "<button class='ui red button'><i class='trash icon'></i>trash</button>";
             echo "</td>";
             echo "</tr>";
         }
+    }
+
+    function modal_view() {
+    ?>
+        <div class="ui tiny modal modal-view">
+            <i class="close icon"></i>
+            <div class="header">
+            </div>
+            <div class="content">
+            </div>
+            <div class="actions">
+                <div class="ui positive basic button entry-edit">
+                    Edit
+                </div>
+                <div class="ui black deny right button">
+                    Close
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+
+    function modal_edit() {
+    ?>
+        <div class="ui tiny modal modal-edit">
+            <i class="close icon"></i>
+            <div class="header">
+            </div>
+            <div class="content">
+            </div>
+            <div class="actions">
+                <div class="ui positive button ">
+                    View
+                </div>
+                <div class="ui right primary button entry-save">
+                    Save
+                </div>
+            </div>
+        </div>
+<?php
     }
 }
 

@@ -64,8 +64,6 @@ class Admin_Script {
         wp_enqueue_style('codex-DataTables-dateTime', CODEX_URL . 'assets/admin/DataTables/dataTables.dateTime.min.css', __FILE__);
 
         wp_enqueue_script('codex-DataTables-dateTime', CODEX_URL . 'assets/admin/DataTables/dataTables.dateTime.min.js', __FILE__);
-
-        wp_enqueue_script('codex-Moment', CODEX_URL . 'assets/admin/DataTables/moment.min.js', __FILE__);
     }
 
     function codex_jquery_ui() {
