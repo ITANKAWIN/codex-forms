@@ -109,6 +109,7 @@
   border-width: 1px;
   border-style: solid;
   width: 105px;
+  margin: 1%;
 }
 
 .field-item:hover {
@@ -122,6 +123,7 @@
   text-align: center;
   border-radius: 5px;
   font-size: 12px;
+  margin: 1%;
 }
 
 /* Tool Bar Field & Config */
@@ -146,4 +148,26 @@ a.remove {
 .ui.basic.label.align {
   padding: 0px;
   border: 0px;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  /* flex-basis: 100%; */
+  flex: 1;
+}
+.ui.vertical.menu.size {
+  width: 100%;
+}
+.ui.vertical.menu .item.size{
+  padding: 10px;
+}
+.ui.vertical.menu .item.size .menu.size{
+  column-count: 2;
 }
