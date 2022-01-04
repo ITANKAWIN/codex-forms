@@ -109,11 +109,6 @@ class Codex_Edit_form {
             <div class="item">
                 <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->id ?>" target="_blank"><i class="eye icon"></i> Preview</a>
             </div>
-            <div class="item">
-                <button class="circular ui icon button blue" id="sidebarCollapse">
-                    <i class="plus circle icon"></i>
-                </button>
-            </div>
         </div>
 
 
@@ -137,6 +132,12 @@ class Codex_Edit_form {
 
                 <!-- Sidebar -->
                 <nav id="sidebar">
+                    <div class="sidebar-menu">
+                        <button class="circular ui icon button blue" id="sidebarCollapse">
+                            <i class="plus circle icon"></i>
+                        </button>
+                    </div>
+
                     <div class="ui grid">
                         <div class="column">
                             <div class="ui menu two item top yellow  inverted">
@@ -148,22 +149,21 @@ class Codex_Edit_form {
                                     <div class="ui vertical menu size">
                                         <div class="item size">
                                             <div class="header">Basic</div>
-                                                <div class='row'>
-                                                    <div class='column'>
-                                                        <div class="menu size">
-                                                            <?php
+                                            <div class='row'>
+                                                <div class='column'>
+                                                    <div class="menu size">
+                                                        <?php
 
-                                                            $field_types = Codex_Fields::init();
+                                                        $field_types = Codex_Fields::init();
 
-                                                            foreach ($field_types as $field) {
+                                                        foreach ($field_types as $field) {
 
-                                                                echo "<div class='field-item' data-field-type='{$field['type']}'>";
-                                                                echo "<i class='{$field['icon']}'></i>" . $field['type'];
-                                                                echo "</div>";
-                                                            }
+                                                            echo "<div class='field-item' data-field-type='{$field['type']}'>";
+                                                            echo "<i class='{$field['icon']}'></i>" . $field['type'];
+                                                            echo "</div>";
+                                                        }
 
-                                                            ?>
-                                                        </div>
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -171,27 +171,26 @@ class Codex_Edit_form {
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                    <div class="ui tab" data-tab="config">
-                        <div class="ui form">
-                            <div class="config-fields">
-                                <?php
+                            <div class="ui tab" data-tab="config">
+                                <div class="ui form">
+                                    <div class="config-fields">
+                                        <?php
 
-                                if (isset($this->form_config['fields'])) {
+                                        if (isset($this->form_config['fields'])) {
 
-                                    foreach ($this->form_config['fields'] as $fields) {
+                                            foreach ($this->form_config['fields'] as $fields) {
 
-                                        echo apply_filters("codex_form_config_{$this->form_config['fields'][$fields['id']]['type']}", $this->form_config['fields'][$fields['id']]);
-                                    }
-                                }
+                                                echo apply_filters("codex_form_config_{$this->form_config['fields'][$fields['id']]['type']}", $this->form_config['fields'][$fields['id']]);
+                                            }
+                                        }
 
-                                ?>
+                                        ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-            </div>
-            </div>
-            </nav>
+                </nav>
             </div>
         </form>
 

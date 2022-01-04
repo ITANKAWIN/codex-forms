@@ -4,6 +4,17 @@
   z-index: 99;
 }
 
+.sidebar-menu {
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  margin-left: -20px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
 .wrapper {
   margin-top: 22px;
   display: flex;

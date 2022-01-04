@@ -33,11 +33,11 @@ class Codex_Fields
                 "description"   => "input string or integer one line",
                 "icon"          => "icon font"
             ),
-            // 'select' => array(
-            //     "type"          => "select",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon caret square down outline"
-            // ),
+            'select' => array(
+                "type"          => "select",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon caret square down outline"
+            ),
             'password' => array(
                 "type"          => "password",
                 "description"   => "input string or integer one line",
@@ -53,66 +53,66 @@ class Codex_Fields
                 "description"   => "input string or integer one line",
                 "icon"          => "icon envelope outline"
             ),
-            // 'date' => array(
-            //     "type"          => "date",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon calendar alternate outline"
-            // ),
-            // 'radio' => array(
-            //     "type"          => "radio",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon dot circle outline"
-            // ),
-            // 'checkbox' => array(
-            //     "type"          => "checkbox",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon check square outline"
-            // ),
+            'date' => array(
+                "type"          => "date",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon calendar alternate outline"
+            ),
+            'radio' => array(
+                "type"          => "radio",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon dot circle outline"
+            ),
+            'checkbox' => array(
+                "type"          => "checkbox",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon check square outline"
+            ),
             'button' => array(
                 "type"          => "button",
                 "description"   => "input string or integer one line",
                 "icon"          => "icon square outline"
             ),
-            // 'file' => array(
-            //     "type"          => "file",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon upload"
-            // ),
+            'file' => array(
+                "type"          => "file",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon upload"
+            ),
             'textarea' => array(
                 "type"          => "textarea",
                 "description"   => "input string or integer one line",
                 "icon"          => "icon paragraph"
             ),
-            // 'divider' => array(
-            //     "type"          => "divider",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon arrows alternate horizontal"
-            // ),
-            // 'thai-provinces' => array(
-            //     "type"          => "thai-provinces",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon map marker alternate"
-            // ),
-            // 'Pin-GPS' => array(
-            //     "type"          => "Pin-GPS",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon map marker alternate"
-            // ),
-            // 'Star-Rating' => array(
-            //     "type"          => "Star-Rating",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon star outline"
-            // ),
-            // 'Scale-Rating' => array(
-            //     "type"          => "Scale-Rating",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon ellipsis horizontal"
-            // ),
-            // 'Image' => array(
-            //     "type"          => "Image",
-            //     "description"   => "input string or integer one line",
-            //     "icon"          => "icon image outline"
-            // ),
+            'divider' => array(
+                "type"          => "divider",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon arrows alternate horizontal"
+            ),
+            'thai-provinces' => array(
+                "type"          => "thai-provinces",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon map marker alternate"
+            ),
+            'Pin-GPS' => array(
+                "type"          => "Pin-GPS",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon map marker alternate"
+            ),
+            'Star-Rating' => array(
+                "type"          => "Star-Rating",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon star outline"
+            ),
+            'Scale-Rating' => array(
+                "type"          => "Scale-Rating",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon ellipsis horizontal"
+            ),
+            'Image' => array(
+                "type"          => "Image",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
         );
 
         return $fields;
