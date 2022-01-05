@@ -149,23 +149,20 @@ class Codex_Edit_form {
                                     <div class="ui vertical menu size">
                                         <div class="item size">
                                             <div class="header">Basic</div>
-                                            <div class='row'>
-                                                <div class='column'>
-                                                    <div class="menu size">
-                                                        <?php
+                                            <div class="menu size">
+                                            
+                                                <?php
 
-                                                        $field_types = Codex_Fields::init();
+                                                $field_types = Codex_Fields::init();
 
-                                                        foreach ($field_types as $field) {
+                                                foreach ($field_types as $field) {
 
-                                                            echo "<div class='field-item' data-field-type='{$field['type']}'>";
-                                                            echo "<i class='{$field['icon']}'></i>" . $field['type'];
-                                                            echo "</div>";
-                                                        }
+                                                    echo "<div class='field-item' data-field-type='{$field['type']}'>";
+                                                    echo "<i class='{$field['icon']}'></i>" . $field['type'];
+                                                    echo "</div>";
+                                                }
 
-                                                        ?>
-                                                    </div>
-                                                </div>
+                                                ?>
                                             </div>
                                         </div>
                                     </div>

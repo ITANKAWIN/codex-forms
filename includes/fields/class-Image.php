@@ -57,50 +57,59 @@ class Field_Image {
     public function config($config = []) {
         $config_field = "
         <div class='wrapper-instance-pane properties-config config_field_{$config['id']}' data-field-id='{$config['id']}' style='display: none;'>
-            <div class='ui grid'>
-                <div class='five wide column'>
-                    <label>ID</label>
-                </div>
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
+            <div class='ui two column grid'>
+                <div class='row'>
+                    <div class='column'>
+                        <label>ID</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='text' name='fields[{$config['id']}][id]' value='{$config['id']}' readonly>
+                        </div>
                     </div>
                 </div>
-                <div class='five wide column'>
-                    <label>Type</label>
-                </div>
-                <div class='eleven wide column'>
-                    <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
-                    ";
-        $field_types = Codex_Fields::init();
-        foreach ($field_types as $field) {
-            $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
-        }
-        $config_field .= "
-                    </select>
-                </div>
-                <div class='five wide column'>
-                    <label>Label</label>
-                </div>
-                <div class='five wide column'>
-                    <label>Name</label>
-                </div>
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                <div class='row'>
+                    <div class='column'>
+                        <label>Type</label>
                     </div>
-                </div>  
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                    <div class='column'>
+                        <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
+                        ";
+            $field_types = Codex_Fields::init();
+            foreach ($field_types as $field) {
+                $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
+            }
+            $config_field .= "
+                        </select>
+                    </div>
+                <div class='row'>    
+                    <div class='column'>
+                        <label>Label</label>
+                    </div>
+                    <div class='column'>
+                        <label>Name</label>
                     </div>
                 </div>
-                <div class='five wide column'>
-                    <label>Image</label>
+                <div class='row'>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                        </div>
+                    </div>  
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                        </div>
+                    </div>
                 </div>
-                <div class='eleven wide column'>
-                    <div class='ui fluid input'>
-                        <input type='file' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                <div class='row'>
+                    <div class='column'>
+                        <label>Image</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='file' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                        </div>
                     </div>
                 </div>
             </div>
