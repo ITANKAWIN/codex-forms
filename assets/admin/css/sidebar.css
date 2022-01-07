@@ -107,33 +107,29 @@
 }
 
 .field-item {
-  /* height: 50px;
-  margin-top: -20px;
-  margin-bottom: 30px; */
   background-color: #ffffff;
   padding: 15px 0px 15px 0px;
-  display: block;
+  display: inline-block;
   text-align: center;
-  font-family: 'Lato';
+  font-family: sans-serif;
   border-radius: 5px;
-  font-size: 13px;
+  font-size: 14px;
   border-width: 1px;
   border-style: solid;
-  width: 105px;
-  margin: 1%;
+  width: 100%;
 }
 
 .field-item:hover {
   background-color: #ffffff;
   padding: 15px 0px 15px 0px;
-  display: block;
+  display: inline-block;
   text-decoration: none;
   font-weight: normal;
-  font-size: 12px !important;
+  font-size: 14px !important;
   color: rgb(40, 47, 54, 0.85);
   text-align: center;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 14px;
   margin: 1%;
 }
 
@@ -181,4 +177,5 @@ a.remove {
 }
 .ui.vertical.menu .item.size .menu.size{
   column-count: 2;
+  margin-top: 10px;
 }

@@ -149,45 +149,57 @@ class Codex_Edit_form {
                                     <div class="ui vertical menu size">
                                         <div class="item size">
                                             <div class="header">Basic</div>
-                                            <div class="menu size">
-                                            
-                                                <?php
+                                            <div class="row">
+                                                <div class="column">
 
-                                                $field_types = Codex_Fields::init();
+                                                    <div class="menu size">
 
-                                                foreach ($field_types as $field) {
+                                                        <?php
 
-                                                    echo "<div class='field-item' data-field-type='{$field['type']}'>";
-                                                    echo "<i class='{$field['icon']}'></i>" . $field['type'];
-                                                    echo "</div>";
-                                                }
+                                                        $field_types = Codex_Fields::init();
 
-                                                ?>
+                                                        foreach ($field_types as $field) {
+                                                            echo "<div class='ui two column grid'>";
+                                                            echo "<div class='row'>";
+                                                            echo "<div class='column'>";
+                                                            echo "<div class='field-item' data-field-type='{$field['type']}'>";
+                                                            echo "<i class='{$field['icon']}'></i>" . $field['type'];
+                                                            echo "</div>";
+                                                            echo "</div>";
+                                                            echo "</div>";
+                                                            echo "</div>";
+                                                        }
+
+                                                        ?>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="ui tab" data-tab="config">
-                                <div class="ui form">
-                                    <div class="config-fields">
-                                        <?php
+                        </div>
+                    </div>
+                    <div class="ui tab" data-tab="config">
+                        <div class="ui form">
+                            <div class="config-fields">
+                                <?php
 
-                                        if (isset($this->form_config['fields'])) {
+                                if (isset($this->form_config['fields'])) {
 
-                                            foreach ($this->form_config['fields'] as $fields) {
+                                    foreach ($this->form_config['fields'] as $fields) {
 
-                                                echo apply_filters("codex_form_config_{$this->form_config['fields'][$fields['id']]['type']}", $this->form_config['fields'][$fields['id']]);
-                                            }
-                                        }
+                                        echo apply_filters("codex_form_config_{$this->form_config['fields'][$fields['id']]['type']}", $this->form_config['fields'][$fields['id']]);
+                                    }
+                                }
 
-                                        ?>
-                                    </div>
-                                </div>
+                                ?>
                             </div>
                         </div>
                     </div>
-                </nav>
+            </div>
+            </div>
+            </nav>
             </div>
         </form>
 
