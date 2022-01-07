@@ -43,6 +43,7 @@
       // Create date inputs
       app.search_by_date();
 
+      // View each entry value
       $(".view-entry").on("click", function () {
         var id = $(this).data("entry-id");
 

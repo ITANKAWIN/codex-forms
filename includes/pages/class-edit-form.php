@@ -178,28 +178,26 @@ class Codex_Edit_form {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="ui tab" data-tab="config">
-                        <div class="ui form">
-                            <div class="config-fields">
-                                <?php
+                            <div class="ui tab" data-tab="config">
+                                <div class="ui form">
+                                    <div class="config-fields">
+                                        <?php
 
-                                if (isset($this->form_config['fields'])) {
+                                        if (isset($this->form_config['fields'])) {
 
-                                    foreach ($this->form_config['fields'] as $fields) {
+                                            foreach ($this->form_config['fields'] as $fields) {
 
-                                        echo apply_filters("codex_form_config_{$this->form_config['fields'][$fields['id']]['type']}", $this->form_config['fields'][$fields['id']]);
-                                    }
-                                }
+                                                echo apply_filters("codex_form_config_{$this->form_config['fields'][$fields['id']]['type']}", $this->form_config['fields'][$fields['id']]);
+                                            }
+                                        }
 
-                                ?>
+                                        ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-            </div>
-            </div>
-            </nav>
+                </nav>
             </div>
         </form>
 
