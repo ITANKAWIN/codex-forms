@@ -310,13 +310,3 @@
   animation-delay: 0.4s;
 }
 
-#sidebarCollapse {
-  display: inline-block;
-  position: absolute;
-  top: 20px;
-  left: 0;
-  margin-left: 20px;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
-}
