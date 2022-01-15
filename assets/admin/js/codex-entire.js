@@ -46,40 +46,26 @@
       // View each entry value
       $(".view-entry").on("click", function () {
         var id = $(this).data("entry-id");
-
-        var data = {
-          id: id,
-          action: "load_entire_value",
-        };
-
-        $.post(codex_admin.ajax_url, data, function (res) {
-          if (res.success) {
-            // show modal detail value
-            $(".modal-view").modal("show");
-
-            // show id entry
-            $(".modal-view .header").html("Entry ID:" + id);
-
-            let content = "";
-
-            res.data.forEach(function (val) {
-              content += val["field_id"] + " :" + val["value"] + "<br>";
-            });
-
-            $(".modal-view .content").html(content);
-
-            $(".modal-view .actions .entry-edit").attr("data-entry-id", id);
-          } else {
-            console.log($(this));
-          }
-        }).fail(function (xhr, textStatus, e) {
-          console.log(xhr.responseText);
-        });
+        app.entry_view(id);
       });
 
       $(".modal-view .actions .entry-edit").on("click", function () {
-        // show modal edit value
-        $(".modal-edit").modal("show");
+        var id = $(this).data("entry-id");
+        app.entry_edit(id);
+      });
+
+      $(".modal-edit .actions .entry-view").on("click", function () {
+        // show modal detail value
+        var id = $(this).data("entry-id");
+        app.entry_view(id);
+      });
+
+      $(".modal-edit .actions .entry-save").on("click", function (e) {
+        e.preventDefault();
+        var id = $(this).data("entry-id");
+        var form_data = JSON.stringify($(".edit_entry_value").serializeArray());
+
+        app.entry_save_value(id, form_data);
       });
     },
 
@@ -111,6 +97,97 @@
 
       $("#min, #max").on("change", function () {
         table.draw();
+      });
+    },
+
+    entry_view: function (id) {
+      var data = {
+        id: id,
+        action: "load_entry_value",
+      };
+
+      $.post(codex_admin.ajax_url, data, function (res) {
+        if (res.success) {
+          // show modal detail value
+          $(".modal-view").modal("show");
+
+          // show id entry
+          $(".modal-view .header").html("Entry ID:" + id);
+
+          var content =
+            "<thead><tr><th>Field Name</th><th>Value</th></tr></thead>";
+
+          res.data.forEach(function (val) {
+            content += "<tr>";
+            content += "<td>" + val["field_id"] + "</td>";
+            content += "<td>" + val["value"] + "</td>";
+            content += "</tr>";
+          });
+
+          $(".modal-view .content .table").html(content);
+
+          $(".modal-view .actions .entry-edit").attr("data-entry-id", id);
+        } else {
+          console.log($(this));
+        }
+      }).fail(function (xhr, textStatus, e) {
+        console.log(xhr.responseText);
+      });
+    },
+
+    entry_edit: function (id) {
+      var data = {
+        id: id,
+        action: "load_entry_value",
+      };
+
+      $.post(codex_admin.ajax_url, data, function (res) {
+        if (res.success) {
+          // show modal edit value
+          $(".modal-edit").modal("show");
+
+          // show id entry
+          $(".modal-edit .header").html("Entry ID:" + id);
+
+          var content =
+            "<thead><tr><th>Field Name</th><th>Value</th></tr></thead>";
+
+          res.data.forEach(function (val) {
+            content += "<tr>";
+            content += "<td>" + val["field_id"] + "</td>";
+            content +=
+              "<td><input type='text' name='" +
+              val["field_id"] +
+              "' value='" +
+              val["value"] +
+              "'</td>";
+            content += "</tr>";
+          });
+
+          $(".modal-edit .content .table").html(content);
+
+          $(".modal-edit .actions .entry-view").attr("data-entry-id", id);
+          $(".modal-edit .actions .entry-save").attr("data-entry-id", id);
+        }
+      });
+    },
+
+    // save entry edit value
+    entry_save_value: function (id, form_data) {
+      var data = {
+        id_entry: id,
+        entry_value: form_data,
+        action: "save_edit_entry",
+      };
+
+      console.log(data.entry_value);
+      $.post(codex_admin.ajax_url, data, function (res) {
+        if (res.success) {
+        } else {
+          console.log(res);
+        }
+      }).fail(function (xhr, textStatus, e) {
+        console.log(xhr.responseText);
       });
     },
   };

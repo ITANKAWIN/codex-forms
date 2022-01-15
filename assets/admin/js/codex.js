@@ -61,8 +61,8 @@
     $(".menu-button").hide();
   });
 
-  $(".option-show-form").on("click", function (e) {
-    var text = $(".short-code-copy").text();
+  $(".short-code-copy").on("click", function (e) {
+    var text = $(this).text();
     navigator.clipboard.writeText(text);
   });
 

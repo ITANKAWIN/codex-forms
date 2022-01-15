@@ -20,7 +20,7 @@ class Main_action {
 
         }
 
-        require_once(CODEX_PATH . 'includes/pages/preview.php');
+        require_once(CODEX_PATH . '/includes/pages/preview.php');
 
         require_once(CODEX_PATH . '/includes/pages/class-export-form.php');
     }

@@ -143,6 +143,26 @@ class Codex_form_DB {
             )
         );
     }
+
+    // save edit entry to db
+    static public function save_entry_value($id, $field_id, $value) {
+
+        global $wpdb;
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
+        $test = $wpdb->query(
+            $wpdb->prepare(
+                "UPDATE `{$wpdb->prefix}codex_form_entry_meta`
+                SET value = %s
+                WHERE entry_id = %d AND field_id = %d",
+                $value,
+                $id,
+                $field_id
+            )
+        );
+
+        return $test;
+    }
 }
 
 new Codex_form_DB();

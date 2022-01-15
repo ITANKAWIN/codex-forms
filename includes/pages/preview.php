@@ -11,11 +11,8 @@ class preview {
 
         add_shortcode('codex_form_preview', array($this, 'preview'));
 
-        if (!$this->is_preview_page()) {
-            return;
-        }
-
-        $this->hooks();
+        // Check preview page and include style
+        $this->is_preview_page();
     }
 
     function preview($atts = array()) {
@@ -27,37 +24,34 @@ class preview {
     public function is_preview_page() {
 
         // Only proceed for the form preview page.
-        if (empty($_GET['codex_form_preview'])) { // phpcs:ignore
-            return false;
+        if (!empty($_GET['codex_form_preview'])) { // phpcs:ignore
+            $form_id = \absint($_GET['codex_form_preview']); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+
+            // Fetch form details for the entry.
+            $this->form_data = Codex_form_DB::get_form_by_id($form_id);
+
+            // Check valid form was found.
+            if (empty($this->form_data)) {
+                return false;
+            }
+
+            add_filter('the_title', array($this, 'the_title'), 100, 1);
+
+            add_filter('the_content', array($this, 'the_content'), 999);
+
+            add_filter('get_the_excerpt', array($this, 'the_content'), 999);
+
+            // add_filter('template_include', array($this, 'template_include'));
+
+            // add_filter('post_thumbnail_html', '__return_empty_string');
+
+            add_action('wp_enqueue_scripts', array($this, 'preview_style'));
         }
 
-        $form_id = \absint($_GET['codex_form_preview']); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-
-
-        // Fetch form details for the entry.
-        $this->form_data = Codex_form_DB::get_form_by_id($form_id);
-
-        // Check valid form was found.
-        if (empty($this->form_data)) {
-            return false;
+        if (isset($_GET['preview_id'])) {
+            add_action('wp_enqueue_scripts', array($this, 'preview_style'));
         }
-
-        return true;
-    }
-
-    public function hooks() {
-
-        add_filter('the_title', array($this, 'the_title'), 100, 1);
-
-        add_filter('the_content', array($this, 'the_content'), 999);
-
-        add_filter('get_the_excerpt', array($this, 'the_content'), 999);
-
-        add_filter('template_include', array($this, 'template_include'));
-
-        add_filter('post_thumbnail_html', '__return_empty_string');
-
-        add_action('wp_enqueue_scripts', array($this, 'preview_style'));
     }
 
     public function the_title($title) {
@@ -89,7 +83,7 @@ class preview {
     }
 
     public function preview_style() {
-        if (isset($_GET['codex_form_preview']) &&  !empty($_GET['codex_form_preview'])) {
+        if (isset($_GET['codex_form_preview']) &&  !empty($_GET['codex_form_preview']) || isset($_GET['preview_id'])) {
 
             wp_enqueue_script('jquery-ui-core');
 

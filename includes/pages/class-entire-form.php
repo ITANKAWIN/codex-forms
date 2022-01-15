@@ -110,6 +110,8 @@ class Codex_Entire_forms {
             <div class="header">
             </div>
             <div class="content">
+                <table class="ui large celled table">
+                </table>
             </div>
             <div class="actions">
                 <div class="ui positive basic button entry-edit">
@@ -130,9 +132,13 @@ class Codex_Entire_forms {
             <div class="header">
             </div>
             <div class="content">
+                <form method="post" class='edit_entry_value'>
+                    <table class="ui large celled table">
+                    </table>
+                </form>
             </div>
             <div class="actions">
-                <div class="ui positive button ">
+                <div class="ui positive button entry-view">
                     View
                 </div>
                 <div class="ui right primary button entry-save">
