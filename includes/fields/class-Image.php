@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 }
 
 class Field_Image {
-    
+
     private $field_type = 'Image';
 
     public function __construct() {
@@ -75,32 +75,33 @@ class Field_Image {
                     <div class='column'>
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
                         ";
-            $field_types = Codex_Fields::init();
-            foreach ($field_types as $field) {
-                $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
-            }
-            $config_field .= "
+        $field_types = Codex_Fields::init();
+        foreach ($field_types as $field) {
+            $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
+        }
+        $config_field .= "
                         </select>
                     </div>
+                </div>
                 <div class='row'>    
                     <div class='column'>
                         <label>Label</label>
                     </div>
                     <div class='column'>
-                        <label>Name</label>
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class='column'>
-                        <div class='ui fluid input'>
-                            <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
-                        </div>
-                    </div>  
-                    <div class='column'>
                         <div class='ui fluid input'>
                             <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                         </div>
                     </div>
+                </div>
+                <div class='row'>
+                    <div class='column'>
+                        <label>Name</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='text' class='config-form-name' name='fields[{$config['id']}][name]' value='{$config['name']}'>
+                        </div>
+                    </div>  
                 </div>
                 <div class='row'>
                     <div class='column'>
@@ -111,7 +112,7 @@ class Field_Image {
                             <input type='file' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
         ";
