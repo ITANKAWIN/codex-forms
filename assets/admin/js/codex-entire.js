@@ -100,9 +100,12 @@
       });
     },
 
-    entry_view: function (id) {
+    entry_view: function (entry_id) {
+      var form_id = $("#form_id").val();
+
       var data = {
-        id: id,
+        form_id: form_id,
+        entry_id: entry_id,
         action: "load_entry_value",
       };
 
@@ -112,7 +115,7 @@
           $(".modal-view").modal("show");
 
           // show id entry
-          $(".modal-view .header").html("Entry ID:" + id);
+          $(".modal-view .header").html("Entry ID:" + entry_id);
 
           var content =
             "<thead><tr><th>Field Name</th><th>Value</th></tr></thead>";
@@ -126,7 +129,7 @@
 
           $(".modal-view .content .table").html(content);
 
-          $(".modal-view .actions .entry-edit").attr("data-entry-id", id);
+          $(".modal-view .actions .entry-edit").attr("data-entry-id", entry_id);
         } else {
           console.log($(this));
         }
@@ -135,9 +138,9 @@
       });
     },
 
-    entry_edit: function (id) {
+    entry_edit: function (entry_id) {
       var data = {
-        id: id,
+        entry_id: entry_id,
         action: "load_entry_value",
       };
 
@@ -147,7 +150,7 @@
           $(".modal-edit").modal("show");
 
           // show id entry
-          $(".modal-edit .header").html("Entry ID:" + id);
+          $(".modal-edit .header").html("Entry ID:" + entry_id);
 
           var content =
             "<thead><tr><th>Field Name</th><th>Value</th></tr></thead>";
@@ -166,16 +169,16 @@
 
           $(".modal-edit .content .table").html(content);
 
-          $(".modal-edit .actions .entry-view").attr("data-entry-id", id);
-          $(".modal-edit .actions .entry-save").attr("data-entry-id", id);
+          $(".modal-edit .actions .entry-view").attr("data-entry-id", entry_id);
+          $(".modal-edit .actions .entry-save").attr("data-entry-id", entry_id);
         }
       });
     },
 
     // save entry edit value
-    entry_save_value: function (id, form_data) {
+    entry_save_value: function (entry_id, form_data) {
       var data = {
-        id_entry: id,
+        entry_id: entry_id,
         entry_value: form_data,
         action: "save_edit_entry",
       };

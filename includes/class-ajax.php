@@ -189,20 +189,22 @@ class Codex_AJAX {
 
     function load_entry() {
 
-        $form_id = sanitize_text_field($_POST['id']);
+        // load entry data
+        $entry_id = sanitize_text_field($_POST['entry_id']);
 
-        if (empty($form_id)) {
+        if (empty($entry_id)) {
             wp_send_json_error();
         }
 
-        $entrys = Codex_form_DB::get_entry($form_id);
+        $entrys = Codex_form_DB::get_entry($entry_id);
 
         wp_send_json_success($entrys);
     }
 
     function load_entry_value() {
 
-        $entry_id = sanitize_text_field($_POST['id']);
+        // load entry data
+        $entry_id = sanitize_text_field($_POST['entry_id']);
 
         if (empty($entry_id)) {
             wp_send_json_error();
@@ -210,12 +212,22 @@ class Codex_AJAX {
 
         $entrys = Codex_form_DB::get_entry_meta($entry_id);
 
-        wp_send_json_success($entrys);
+        // load form data
+        $form = Codex_form_DB::get_form_by_id($_POST['form_id']);
+
+        $form_config = json_decode(stripslashes($form->config));
+
+        $test = [];
+
+        foreach ($entrys as $key => $value) {
+            array_push($test, $form_config->fields->$value->field_id->id);
+        }
+        wp_send_json_success($test);
     }
 
     function save_edit_entry() {
 
-        $id_entry = json_decode(stripslashes($_POST['id_entry']));
+        $id_entry = json_decode(stripslashes($_POST['entry_id']));
 
         $entry_data = json_decode(stripslashes($_POST['entry_value']));
 

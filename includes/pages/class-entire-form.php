@@ -42,7 +42,9 @@ class Codex_Entire_forms {
         <?php
         if (isset($_GET['form'])) {
             $this->form_id = $_GET['form'];
+            echo "<input type='hidden' id='form_id' value='{$this->form_id}'>";
         ?>
+
             <div class="ui two column grid">
                 <div class="column">
                     <select class="ui dropdown" name="actions" id="">

@@ -1,5 +1,5 @@
 <?php
-class preview {
+class Codex_Show_Preview {
 
     public $form_data;
 
@@ -158,4 +158,4 @@ class preview {
     }
 }
 
-new preview();
+new Codex_Show_Preview();

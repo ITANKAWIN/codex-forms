@@ -409,14 +409,14 @@
 
     // Function for realtime change label
     fieldconfig_label: function (el) {
-      var id = el.parent().parent().parent().parent().data("field-id");
+      var id = el.parent().parent().parent().parent().parent().data("field-id");
       var val = el.val();
       $("label[id=" + id + "]").text(val);
     },
 
     // Function for realtime change placeholder
     fieldconfig_placeholder: function (el) {
-      var id = el.parent().parent().parent().parent().data("field-id");
+      var id = el.parent().parent().parent().parent().parent().data("field-id");
       var val = el.val();
       $("input[id=" + id + "]").attr("placeholder", val);
     },
@@ -431,7 +431,7 @@
 
       var $this = $(el),
         $parent = $this.parent(),
-        $id = $parent.parent().parent().parent().data("field-id"),
+        $id = $parent.parent().parent().parent().parent().data("field-id"),
         next_id = $(".config_field_" + $id).find(
           "input[name='fields[" + $id + "][next_option_id]']"
         ),
