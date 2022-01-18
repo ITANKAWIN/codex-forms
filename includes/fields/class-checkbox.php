@@ -103,7 +103,7 @@ class Field_Checkbox {
                     <div class='column'>
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
                         ";
-            $field_types = Codex_Fields::init();
+        $field_types = Codex_Fields::field_types();
             foreach ($field_types as $field) {
                 $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
             }

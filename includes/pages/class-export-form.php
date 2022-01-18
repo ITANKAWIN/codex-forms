@@ -58,15 +58,31 @@ class Class_Export_Forms {
 
         $header = array();
 
+        $form = Codex_form_DB::get_form_by_id($this->form_id);
+
+        $form_config = json_decode(stripslashes($form->config));
+
         $entrys = Codex_form_DB::get_entry($this->form_id);
 
         $last_entry = $entrys[0];
 
         $entry_meta = Codex_form_DB::get_entry_meta($last_entry->id);
+
+        $meta_val = [];
+
+        $i = 0;
+
+        // foreach name field to entry meta value
+        foreach ($entry_meta as $key => $value) {
+            $meta_val[$i] = $entry_meta[$key];
+            $meta_val[$i]->name = $form_config->fields->{$value->field_id}->name;
+            $i++;
+        }
+
         array_push($header, 'ID');
-        foreach ($entry_meta as $entry_val) {
+        foreach ($meta_val as $entry_val) {
             // header id field
-            array_push($header, $entry_val->field_id);
+            array_push($header, $entry_val->name);
 
             // header foreach id field
             array_push($this->entry_title, $entry_val->field_id);
@@ -81,6 +97,7 @@ class Class_Export_Forms {
 
         $entrys = Codex_form_DB::get_entry($this->form_id);
 
+        // extract value data
         foreach ($entrys as $entry) {
 
             $entry_meta = Codex_form_DB::get_entry_meta($entry->id);
@@ -95,12 +112,21 @@ class Class_Export_Forms {
             $entry_row = array();
             array_push($entry_row, $entry->id);
 
-            foreach ($entry_val as $field_id) {
+            foreach ($this->entry_title as $field_id) {
                 $output = $entry_val[$entry->id][$this->entry_title[$i]];
                 array_push($entry_row, $output);
 
+                echo "<pre>";
+                print_r($output);
+                echo "</pre>";
                 $i++;
             }
+
+            echo "<pre>";
+            print_r($entry_val);
+            echo "</pre>";
+
+            
 
             array_push($this->entry_content, $entry_row);
         }

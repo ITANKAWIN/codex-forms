@@ -33,6 +33,7 @@ class Codex_Show_Forms {
             <table class="ui inverted olive table" id="show_form">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Form name</th>
                         <th>Short code</th>
                         <th>Date</th>
@@ -42,6 +43,7 @@ class Codex_Show_Forms {
                     <?php
                     foreach ($this->forms as $key) {
                         echo "<tr class='option-show-form'>";
+                        echo "<td>{$key->id}</td>";
                         echo "
                             <td width='50%'>
                                 <h5 class='ui header'>

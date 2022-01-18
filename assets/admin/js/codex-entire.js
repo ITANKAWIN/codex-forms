@@ -121,8 +121,14 @@
             "<thead><tr><th>Field Name</th><th>Value</th></tr></thead>";
 
           res.data.forEach(function (val) {
+            var name = val["name"];
+
+            if (val["name"] === "") {
+              name = val["field_id"];
+            }
+
             content += "<tr>";
-            content += "<td>" + val["field_id"] + "</td>";
+            content += "<td>" + name + "</td>";
             content += "<td>" + val["value"] + "</td>";
             content += "</tr>";
           });
@@ -139,7 +145,10 @@
     },
 
     entry_edit: function (entry_id) {
+      var form_id = $("#form_id").val();
+
       var data = {
+        form_id: form_id,
         entry_id: entry_id,
         action: "load_entry_value",
       };
@@ -156,8 +165,14 @@
             "<thead><tr><th>Field Name</th><th>Value</th></tr></thead>";
 
           res.data.forEach(function (val) {
+            var name = val["name"];
+
+            if (val["name"] === "") {
+              name = val["field_id"];
+            }
+
             content += "<tr>";
-            content += "<td>" + val["field_id"] + "</td>";
+            content += "<td>" + name + "</td>";
             content +=
               "<td><input type='text' name='" +
               val["field_id"] +

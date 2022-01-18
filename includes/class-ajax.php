@@ -217,12 +217,18 @@ class Codex_AJAX {
 
         $form_config = json_decode(stripslashes($form->config));
 
-        $test = [];
+        $meta_val = [];
 
+        $i = 0;
+
+        // foreach name field to entry meta value
         foreach ($entrys as $key => $value) {
-            array_push($test, $form_config->fields->$value->field_id->id);
+            $meta_val[$i] = $entrys[$key];
+            $meta_val[$i]->name = $form_config->fields->{$value->field_id}->name;
+            $i++;
         }
-        wp_send_json_success($test);
+
+        wp_send_json_success($meta_val);
     }
 
     function save_edit_entry() {
