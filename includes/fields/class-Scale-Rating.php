@@ -97,7 +97,7 @@ class Field_Scale_Rating {
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
-                            <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                            <input type='text' class='config-form-name' name='fields[{$config['id']}][name]' value='{$config['name']}'>
                         </div>
                     </div>
                 </div>  

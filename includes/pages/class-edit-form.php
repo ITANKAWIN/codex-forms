@@ -107,11 +107,11 @@ class Codex_Edit_form {
                 <button class="ui orange button new-form" id="save_form"><i class="plus icon"></i> Save</button>
             </div>
             <div class="item">
-                <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->id ?>" target="_blank"><i class="eye icon"></i> Preview</a>
+                <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->id ?>" target="_blank"  data-tooltip="Click here to perview form" data-position="bottom center"><i class="eye icon"></i> Preview</a>
             </div>
             <div class="item">
-                <button class="circular ui icon button blue" id="sidebarCollapse">
-                    <i class="plus circle icon"></i>
+                <button class="circular ui icon button blue" id="sidebarCollapse" data-tooltip="Click here to hide sidebar" data-position="bottom right">
+                    <i class="angle right icon"></i>
                 </button>
             </div>
         </div>

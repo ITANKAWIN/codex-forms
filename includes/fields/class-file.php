@@ -97,7 +97,7 @@ class Field_File {
                     </div>  
                     <div class='column'>
                         <div class='ui fluid input'>
-                            <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                            <input type='text' class='config-form-name' name='fields[{$config['id']}][name]' value='{$config['name']}'>
                         </div>
                     </div>
                 </div>
