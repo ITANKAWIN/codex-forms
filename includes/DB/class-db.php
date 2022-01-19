@@ -2,7 +2,7 @@
 
 class Codex_form_DB {
 
-    static public function add_form($data) {
+    static public function new_form($data) {
 
         global $wpdb;
 

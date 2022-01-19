@@ -41,22 +41,23 @@ class Codex_Show_Forms {
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($this->forms as $key) {
+    foreach ($this->forms as $form) {
                         echo "<tr class='option-show-form'>";
-                        echo "<td>{$key->id}</td>";
+                        echo "<td>{$form->id}</td>";
                         echo "
                             <td width='50%'>
                                 <h5 class='ui header'>
-                                    {$key->name}
-                                    <a class='menu-button' href='" . home_url() . '/?codex_form_preview=' . $key->id . "' target='_blank'>View</a> 
-                                    <a class='menu-button' href='" . admin_url('admin.php?page=codex-forms&view=edit&form_id=' . $key->id) . "'>Edit</a> 
-                                    <a class='menu-button delete-form ' data-id='" . $key->id . "'>Delete</a>
+                                    {$form->name}
+                                    <a class='menu-button' href='" . home_url() . '/?codex_form_preview=' . $form->id . "' target='_blank'>View</a> 
+                                    <a class='menu-button' href='" . admin_url('admin.php?page=codex-forms&view=edit&form_id=' . $form->id) . "'>Edit</a> 
+                                    <a class='menu-button duplicate-form' data-id='" . $form->id . "'>Duplicate</a> 
+                                    <a class='menu-button delete-form ' data-id='" . $form->id . "'>Delete</a>
                                 </h5>
                                 </div>
                             </td>
                         ";
-                        echo "<td><a class='ui button short-code-copy' data-tooltip='Click here copy to clipboard' data-position='top left'>[codex_form_preview id={$key->id}]</a></td>";
-                        echo "<td>{$key->date}</td>";
+                        echo "<td><a class='ui button short-code-copy' data-tooltip='Click here copy to clipboard' data-position='top left'>[codex_form_preview id={$form->id}]</a></td>";
+                        echo "<td>{$form->date}</td>";
                         echo "</tr>";
                     }
                     ?>

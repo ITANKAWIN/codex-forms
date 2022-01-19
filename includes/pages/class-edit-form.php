@@ -25,13 +25,13 @@ class Codex_Edit_form {
         $this->form = Codex_form_DB::get_form_by_id($this->form_id);
 
         if (empty($this->form)) {
-            return;
+            exit;
         }
 
         $this->form_config = json_decode(stripslashes($this->form->config), true);
 
         echo "<pre>";
-        print_r($this->form_config);
+        print_r($this->form);
         echo "</pre>";
     }
 

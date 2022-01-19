@@ -9,6 +9,8 @@ class Codex_AJAX {
 
         add_action('wp_ajax_new_form', array($this, 'new_form'));
 
+        add_action('wp_ajax_duplicate_form', array($this, 'duplicate_form'));
+
         add_action('wp_ajax_delete_form', array($this, 'delete_form'));
 
         add_action('wp_ajax_save_form', array($this, 'save_form'));
@@ -46,7 +48,39 @@ class Codex_AJAX {
             'config'    => wp_json_encode($data),
         );
 
-        $form_id = Codex_form_DB::add_form($form);
+        $form_id = Codex_form_DB::new_form($form);
+
+        $arg = array(
+            "ID" => $form_id,
+            'redirect' => add_query_arg(
+                array(
+                    'view'    => 'edit',
+                    'form_id' => $form_id,
+                ),
+                admin_url('admin.php?page=codex-forms')
+            ),
+        );
+
+        wp_send_json_success($arg);
+    }
+
+    function duplicate_form() {
+
+        $id = sanitize_text_field($_POST['id']);
+        if (empty($id)) {
+            return false;
+        }
+
+        $data = Codex_form_DB::get_form_by_id($id);
+
+        // Merge args and create the form.
+        $form = array(
+            'name'      => $data->name . '-copy',
+            'type'      => 'form',
+            'config'    => $data->config,
+        );
+
+        $form_id = Codex_form_DB::new_form($form);
 
         $arg = array(
             "ID" => $form_id,
