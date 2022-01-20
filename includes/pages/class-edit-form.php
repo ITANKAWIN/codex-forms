@@ -17,6 +17,8 @@ class Codex_Edit_form {
 
         add_action('codex_edit_form', array($this, 'content'));
 
+        add_action('codex_edit_form', array($this, 'modal_setting'));
+
         do_action('codex_edit_form');
     }
 
@@ -92,22 +94,23 @@ class Codex_Edit_form {
 ?>
 
         <div class="ui stackable menu massive ">
-            <div href="#" class="item">
+            <div class="item">
                 <img class="logo" src="<?= CODEX_URL ?>assets/image/codex-plugin_logo.png">
             </div>
             <div class="item header">
                 Codex-Forms
             </div>
             <div class="item">
-                <div class="ui input">
-                    <input type="text" id="form_name" name="form_name" value="<?= !empty($this->form) ? $this->form->name : '' ?>" placeholder="Form name">
-                </div>
-            </div>
-            <div class="right item">
-                <button class="ui orange button new-form" id="save_form"><i class="plus icon"></i> Save</button>
+                <?= !empty($this->form) ? $this->form->name : '' ?>
             </div>
             <div class="item">
+                <button class="ui orange button setting-form"><i class="plus icon"></i> Setting</button>
+            </div>
+            <div class="right item">
                 <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->id ?>" target="_blank" data-tooltip="Click here to perview form" data-position="bottom center"><i class="eye icon"></i> Preview</a>
+            </div>
+            <div class="item">
+                <button class="ui orange button save_form"><i class="plus icon"></i> Save</button>
             </div>
             <div class="item">
                 <button class="circular ui icon button blue" id="sidebarCollapse" data-tooltip="Click here to hide sidebar" data-position="bottom right">
@@ -191,8 +194,66 @@ class Codex_Edit_form {
             </div>
         </form>
 
-<?php
+    <?php
 
+    }
+
+    function modal_setting() {
+    ?>
+        <div class="ui tiny modal modal-setting">
+            <i class="close icon"></i>
+            <div class="header">
+            </div>
+            <div class="content">
+                <table class="ui large celled table">
+                    <tr>
+                        <td>Form Name</td>
+                        <td>
+                            <div class="ui input">
+                                <input type="text" id="form_name" value="<?= !empty($this->form) ? $this->form->name : '' ?>" placeholder="Form name">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Message for success submit</td>
+                        <td>
+                            <div class="ui form">
+                                <div class="field">
+                                    <textarea rows="2"></textarea>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Redirect for success submit</td>
+                        <td>
+                            <div class="ui input">
+                                <input type="url" placeholder="http://localhost/....">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Template</td>
+                        <td>
+                            <select class="ui dropdown">
+                                <option value="Normal">Normal</option>
+                                <option value="Register">Register</option>
+                                <option value="Login">Login</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="actions">
+                <div class="ui approve button save_form">
+                    Save
+                </div>
+                <div class="ui black deny right button">
+                    Close
+                </div>
+            </div>
+        </div>
+<?php
     }
 }
 

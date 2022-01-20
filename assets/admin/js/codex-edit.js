@@ -63,7 +63,9 @@
         }
       });
 
-      $("#save_form").click(function () {
+      // Save Form setting and field
+      $(".save_form").on("click", function (e) {
+        e.preventDefault();
         app.save_form();
       });
 
@@ -98,6 +100,11 @@
       // set element to dropdown and checkbox
       $(".ui.dropdown").dropdown();
       $(".ui.checkbox").checkbox();
+
+      // show modal setting
+      $(".setting-form").on("click", function () {
+        $(".modal-setting").modal("show");
+      });
     },
 
     // Function for Drag & Drop & Sort item field
@@ -344,7 +351,7 @@
       var formName = $("#form_name");
       var formID = $("#form_id");
 
-      $("#save_form").html(
+      $(".save_form").html(
         "<strong class='saving'>Saving<span>.</span><span>.</span><span>.</span></strong>"
       );
 
@@ -359,9 +366,9 @@
 
       $.post(codex_admin.ajax_url, data, function (res) {
         if (res.success) {
-          $("#save_form").html("<strong>Saved</strong>");
+          $(".save_form").html("<strong>Saved</strong>");
         } else {
-          $("#save_form").html("<strong>Save is not successful</strong>");
+          $(".save_form").html("<strong>Save is not successful</strong>");
         }
       }).fail(function (xhr, textStatus, e) {
         console.log(xhr.responseText);

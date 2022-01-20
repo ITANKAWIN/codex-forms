@@ -64,6 +64,8 @@ class Codex_Entire_forms {
             </div>
             <?php $this->display(); ?>
         <?php
+        } else {
+            echo '<h3 class="ui center aligned header">Select form to see entry.</h3>';
         }
     }
 
