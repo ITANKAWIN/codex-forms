@@ -32,9 +32,9 @@ class Codex_Edit_form {
 
         $this->form_config = json_decode(stripslashes($this->form->config), true);
 
-        echo "<pre>";
-        print_r($this->form);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($this->form);
+        // echo "</pre>";
     }
 
     function load_field() {
@@ -104,7 +104,7 @@ class Codex_Edit_form {
                 <?= !empty($this->form) ? $this->form->name : '' ?>
             </div>
             <div class="item">
-                <button class="ui orange button setting-form"><i class="plus icon"></i> Setting</button>
+                <button class="ui yellow button setting-form"><i class="plus icon"></i> Setting</button>
             </div>
             <div class="right item">
                 <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->id ?>" target="_blank" data-tooltip="Click here to perview form" data-position="bottom center"><i class="eye icon"></i> Preview</a>
@@ -113,7 +113,7 @@ class Codex_Edit_form {
                 <button class="ui orange button save_form"><i class="plus icon"></i> Save</button>
             </div>
             <div class="item">
-                <button class="circular ui icon button blue" id="sidebarCollapse" data-tooltip="Click here to hide sidebar" data-position="bottom right">
+                <button class="circular ui icon button blue" id="sidebarCollapse" data-tooltip="Click here to hide/open sidebar" data-position="bottom right">
                     <i class="angle right icon"></i>
                 </button>
             </div>
@@ -142,7 +142,7 @@ class Codex_Edit_form {
                 <nav id="sidebar">
                     <div class="ui grid">
                         <div class="column">
-                            <div class="ui menu two item top yellow  inverted">
+                            <div class="ui menu two item top blue  inverted">
                                 <a class="active yellow item" data-tab="fields"><i class="icon sign"></i>Fields</a>
                                 <a class="yellow item" data-tab="config"><i class="icon sign"></i>Config</a>
                             </div>

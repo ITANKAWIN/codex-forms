@@ -136,7 +136,7 @@
 
 /* Tool Bar Field & Config */
 .config-fields {
-  background-color: #ffbd6b38;
+  background-color: #D8E6FC;
   margin-top: -12px;
   padding: 0px 10px 10px 10px;
 }
@@ -172,6 +172,7 @@ a.remove {
 }
 .ui.vertical.menu.size {
   width: 100%;
+  background-color: #D8E6FC;
 }
 .ui.vertical.menu .item.size{
   padding: 10px 10px 0px 0px;
