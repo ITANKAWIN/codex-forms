@@ -22,7 +22,9 @@ class Main_action {
 
         require_once(CODEX_PATH . '/includes/pages/class-preview-form.php');
 
-        require_once(CODEX_PATH . '/includes/pages/class-export-form.php');
+        require_once(CODEX_PATH . '/includes/pages/class-export-import-form.php');
+
+        require_once(CODEX_PATH . '/includes/pages/class-export-entry.php');
     }
 
     function admin_menu() {

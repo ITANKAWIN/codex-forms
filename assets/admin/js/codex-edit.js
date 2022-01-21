@@ -105,6 +105,7 @@
       $(".setting-form").on("click", function () {
         $(".modal-setting").modal("show");
       });
+
     },
 
     // Function for Drag & Drop & Sort item field
