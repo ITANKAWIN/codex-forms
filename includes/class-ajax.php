@@ -50,7 +50,7 @@ class Codex_AJAX {
 
         // select template default
         if (isset($_POST['template'])) {
-            $data = do_action("codex_template_{$_POST['template']}");
+            $data = apply_filters("codex_template_{$_POST['template']}", '');
         }
 
         // Merge args and create the form.
@@ -63,7 +63,7 @@ class Codex_AJAX {
         $form_id = Codex_form_DB::new_form($form);
 
         $arg = array(
-            "ID" => $form_id,
+            "ID" => $data,
             'redirect' => add_query_arg(
                 array(
                     'view'    => 'edit',
