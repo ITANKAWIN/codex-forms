@@ -1,8 +1,11 @@
 <?php
-class Class_Export_Forms {
+class Class_Export_Entry {
 
     // The ID number of the form to be exported.
     private $form_id;
+
+    // Name form to name file
+    private $name;
 
     // collect column head to be drawn out to show correctly
     private $entry_title = array();
@@ -12,10 +15,10 @@ class Class_Export_Forms {
 
     function __construct() {
         // I use the download feature on the frontend so I use the init action hook.
-        add_action('admin_init', array($this, 'print_excel'));
+        add_action('admin_init', array($this, 'export_excel'));
     }
 
-    function print_excel() {
+    function export_excel() {
 
         // # check the URL in order to perform the downloading
         if (!isset($_GET['excel'])) {
@@ -24,33 +27,33 @@ class Class_Export_Forms {
 
         $this->form_id = $_GET['excel'];
 
-        // # set the destination file
-        $fileLocation = 'output.xlsx';
-
         $this->generate_data_header();
 
         $this->generate_data_content();
 
+        // set file name
+        $file_name = $this->name . '.xlsx';
+
         // # call the class and generate the excel file from the $data
         $writer = new XLSXWriter();
         $writer->writeSheet($this->entry_content);
-        $writer->writeToFile($fileLocation);
+        $writer->writeToFile($file_name);
 
         // # prompt download popup
         header('Content-Description: File Transfer');
         header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        header("Content-Disposition: attachment; filename=" . basename($fileLocation));
+        header("Content-Disposition: attachment; filename=" . basename($file_name));
         header("Content-Transfer-Encoding: binary");
         header("Expires: 0");
         header("Pragma: public");
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-        header('Content-Length: ' . filesize($fileLocation));
+        header('Content-Length: ' . filesize($file_name));
 
         ob_clean();
         flush();
 
-        readfile($fileLocation);
-        unlink($fileLocation);
+        readfile($file_name);
+        unlink($file_name);
         exit;
     }
 
@@ -59,6 +62,9 @@ class Class_Export_Forms {
         $header = array();
 
         $form = Codex_form_DB::get_form_by_id($this->form_id);
+
+        // set file name
+        $this->name = $form->name;
 
         $form_config = json_decode(stripslashes($form->config));
 
@@ -126,11 +132,11 @@ class Class_Export_Forms {
             print_r($entry_val);
             echo "</pre>";
 
-            
+
 
             array_push($this->entry_content, $entry_row);
         }
     }
 }
 
-new Class_Export_Forms();
+new Class_Export_Entry();

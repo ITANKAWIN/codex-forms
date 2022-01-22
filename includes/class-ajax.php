@@ -34,18 +34,22 @@ class Codex_AJAX {
             return false;
         }
 
-        // default config form
-        $data = array(
-            'panels'    => 12,
-            'panel'     => [],
-            'fields'    => []
-        );
+        if (isset($_POST['data'])) {
+            $data = $_POST['data'];
+        } else {
+            // default config form
+            $data = array(
+                'panels'    => 12,
+                'panel'     => [],
+                'fields'    => []
+            );
+        }
 
         // Merge args and create the form.
         $form = array(
             'name'      => $form_title,
             'type'      => 'form',
-            'config'    => wp_json_encode($data),
+            'config'    => json_encode($data, JSON_UNESCAPED_UNICODE),
         );
 
         $form_id = Codex_form_DB::new_form($form);

@@ -26,7 +26,8 @@ class Codex_Show_Forms {
                 <button class="ui orange button new-form"><i class="plus icon"></i> New Form</button>
             </div>
             <div class="right item">
-                <button class="ui blue button"><i class="upload icon"></i> Import</button>
+                <button class="ui blue button btn_import_form"><i class="upload icon"></i> Import</button>
+                <input type="file" id="import_form" accept="application/JSON" style="display: none">
             </div>
         </div>
         <div class="ui container">
@@ -41,7 +42,7 @@ class Codex_Show_Forms {
                 </thead>
                 <tbody>
                     <?php
-    foreach ($this->forms as $form) {
+                    foreach ($this->forms as $form) {
                         echo "<tr class='option-show-form'>";
                         echo "<td>{$form->id}</td>";
                         echo "

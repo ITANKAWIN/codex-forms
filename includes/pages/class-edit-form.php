@@ -30,7 +30,7 @@ class Codex_Edit_form {
             exit;
         }
 
-        $this->form_config = json_decode(stripslashes($this->form->config), true);
+        $this->form_config = json_decode(stripslashes($this->form->config), true, JSON_UNESCAPED_UNICODE);
 
         // echo "<pre>";
         // print_r($this->form);
@@ -110,7 +110,7 @@ class Codex_Edit_form {
                 <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->id ?>" target="_blank" data-tooltip="Click here to perview form" data-position="bottom center"><i class="eye icon"></i> Preview</a>
             </div>
             <div class="item">
-                <button class="ui orange button save_form"><i class="plus icon"></i> Save</button>
+                <button class="ui orange button save_form"><i class="save icon"></i> Save</button>
             </div>
             <div class="item">
                 <button class="circular ui icon button blue" id="sidebarCollapse" data-tooltip="Click here to hide/open sidebar" data-position="bottom right">
@@ -240,6 +240,12 @@ class Codex_Edit_form {
                                 <option value="Register">Register</option>
                                 <option value="Login">Login</option>
                             </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Export</td>
+                        <td>
+                            <a class="ui blue button" href="?export_json=<?= $this->form->id ?>"><i class="download icon"></i>Export</a>
                         </td>
                     </tr>
                 </table>

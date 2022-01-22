@@ -57,6 +57,23 @@
           app.Duplicate_Form(id);
         }
       });
+
+      // import json file form template to new form
+      $(".btn_import_form").on("click", function () {
+        $("#import_form").click();
+      });
+
+      $("#import_form").on("change", function () {
+        var GetFile = new FileReader();
+        file = this.files[0];
+        let name = file.name;
+        name = name.substring(0, name.length - 5);
+        GetFile.readAsText(file);
+        GetFile.onload = function () {
+          let data = JSON.parse(GetFile.result);
+          app.Import_Form(name, data);
+        };
+      });
     },
 
     Create_Form: function (id) {
@@ -105,13 +122,29 @@
         action: "duplicate_form",
       };
 
-      console.log(data);
-
       $.post(codex_admin.ajax_url, data, function (res) {
         if (res.success) {
           window.location.href = res.data.redirect;
         } else {
           $(".notify-alert").html("Something wrong");
+        }
+      }).fail(function (xhr, textStatus, e) {
+        console.log(xhr.responseText);
+      });
+    },
+
+    Import_Form: function (name, data) {
+      var data = {
+        title: name,
+        data: data,
+        action: "new_form",
+      };
+
+      $.post(codex_admin.ajax_url, data, function (res) {
+        if (res.success) {
+          window.location.href = res.data.redirect;
+        } else {
+          alert("Something went wrong");
         }
       }).fail(function (xhr, textStatus, e) {
         console.log(xhr.responseText);
