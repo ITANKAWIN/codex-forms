@@ -225,7 +225,7 @@
       }
 
       row.slideUp(200, function () {
-        $(el).remove();
+        $(this).remove();
         app.buildLayout();
       });
     },
