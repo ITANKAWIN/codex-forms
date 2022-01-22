@@ -39,10 +39,18 @@ class Codex_AJAX {
         } else {
             // default config form
             $data = array(
+                'fields'    => [],
                 'panels'    => 12,
                 'panel'     => [],
-                'fields'    => []
+                'setting'   => [
+                    'template'  => 'blank',
+                ],
             );
+        }
+
+        // select template default
+        if (isset($_POST['template'])) {
+            $data = do_action("codex_template_{$_POST['template']}");
         }
 
         // Merge args and create the form.
@@ -130,7 +138,11 @@ class Codex_AJAX {
 
         $form_title = sanitize_text_field($_POST['title']);
 
+        $form_setting = json_decode(stripslashes($_POST['setting']));
+
         $form_data = json_decode(stripslashes($_POST['data']));
+
+        $form_data = array_merge($form_data, $form_setting);
 
         $data      = [
             'fields' => [],

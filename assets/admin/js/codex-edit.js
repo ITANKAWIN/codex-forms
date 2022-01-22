@@ -15,6 +15,7 @@
 
       //Event mouse click delete row panel
       $(".layout-panel").on("click", ".delete-row", function (e) {
+        e.preventDefault()
         app.deleteRow_panel($(this));
       });
 
@@ -105,7 +106,6 @@
       $(".setting-form").on("click", function () {
         $(".modal-setting").modal("show");
       });
-
     },
 
     // Function for Drag & Drop & Sort item field
@@ -221,11 +221,11 @@
 
           $('[data-field-id="' + field_id + '"]').remove();
         });
+
       }
 
       row.slideUp(200, function () {
         $(el).remove();
-
         app.buildLayout();
       });
     },
@@ -359,11 +359,10 @@
       var data = {
         title: formName.val(),
         id: formID.val(),
+        setting: JSON.stringify($("#setting_form").serializeArray()),
         data: JSON.stringify($("#panel").serializeArray()),
         action: "save_form",
       };
-
-      console.log($("#panel").serializeArray());
 
       $.post(codex_admin.ajax_url, data, function (res) {
         if (res.success) {

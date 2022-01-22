@@ -5,16 +5,6 @@
     },
 
     ready: function () {
-      // Event show button menu
-      $(".new-form").on("click", function () {
-        $(".ui.modal").modal("show");
-        $(".message").addClass("hidden");
-      });
-
-      $(".special.cards .image").dimmer({
-        on: "hover",
-      });
-
       $(".message .close").on("click", function () {
         $(this).closest(".message").transition("fade");
       });
@@ -35,9 +25,28 @@
       // Generate to DataTable
       $("#show_form").DataTable();
 
+      // Event show button menu
+      $(".new-form").on("click", function (e) {
+        e.preventDefault();
+        $(".modal_template").modal("show");
+      });
+
+      // click select template
+      $(".form-template").on("click", function (e) {
+        e.preventDefault();
+        var template = $(this).data("template-name");
+
+        $(".modal_create_form").modal("show");
+        $(".create-form").attr("data-template", template);
+      });
+
       // Create new form
-      $(".create-form").on("click", function () {
-        app.Create_Form();
+      $(".create-form").on("click", function (e) {
+        e.preventDefault();
+        var title = $("#form_name").val();
+        var template = $(this).data("template");
+
+        app.Create_Form(title, template);
       });
 
       // Delete Form
@@ -58,11 +67,12 @@
         }
       });
 
-      // import json file form template to new form
+      // click button import file
       $(".btn_import_form").on("click", function () {
         $("#import_form").click();
       });
 
+      // import json file form template to new form
       $("#import_form").on("change", function () {
         var GetFile = new FileReader();
         file = this.files[0];
@@ -76,14 +86,10 @@
       });
     },
 
-    Create_Form: function (id) {
-      var alert = $(this).parent().prev();
-      var formName = $("#form_name");
-      var loading = $(this).parent();
-
-      loading.addClass("loading");
+    Create_Form: function (title, template) {
       var data = {
-        title: formName.val(),
+        title: title,
+        template: template,
         action: "new_form",
       };
 
@@ -91,8 +97,7 @@
         if (res.success) {
           window.location.href = res.data.redirect;
         } else {
-          alert.removeClass("hidden");
-          loading.removeClass("loading");
+          alert("Something went wrong");
         }
       }).fail(function (xhr, textStatus, e) {
         console.log(xhr.responseText);
@@ -109,7 +114,7 @@
         if (res.success) {
           window.location.href = res.data.redirect;
         } else {
-          $(".notify-alert").html("Something wrong");
+          alert("Something went wrong");
         }
       }).fail(function (xhr, textStatus, e) {
         console.log(xhr.responseText);
@@ -126,7 +131,7 @@
         if (res.success) {
           window.location.href = res.data.redirect;
         } else {
-          $(".notify-alert").html("Something wrong");
+          alert("Something went wrong");
         }
       }).fail(function (xhr, textStatus, e) {
         console.log(xhr.responseText);

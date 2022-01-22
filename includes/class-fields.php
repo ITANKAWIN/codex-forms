@@ -5,7 +5,7 @@ class Codex_Fields {
     public function __construct() {
         $this->init();
     }
-    public static function init() {
+    public function init() {
         $field_types = self::field_types();
 
 
@@ -18,7 +18,6 @@ class Codex_Fields {
             }
         }
 
-        
     }
 
     public static function groups() {

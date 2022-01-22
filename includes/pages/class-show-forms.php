@@ -10,6 +10,10 @@ class Codex_Show_Forms {
 
         add_action('codex_show_forms', array($this, 'view'));
 
+        add_action('codex_show_forms', array($this, 'modal_template'));
+
+        add_action('codex_show_forms', array($this, 'modal_create_form'));
+
         do_action('codex_show_forms');
     }
 
@@ -43,110 +47,86 @@ class Codex_Show_Forms {
                 <tbody>
                     <?php
                     foreach ($this->forms as $form) {
-                        echo "<tr class='option-show-form'>";
-                        echo "<td>{$form->id}</td>";
-                        echo "
-                            <td width='50%'>
-                                <h5 class='ui header'>
-                                    {$form->name}
-                                    <a class='menu-button' href='" . home_url() . '/?codex_form_preview=' . $form->id . "' target='_blank'>View</a> 
-                                    <a class='menu-button' href='" . admin_url('admin.php?page=codex-forms&view=edit&form_id=' . $form->id) . "'>Edit</a> 
-                                    <a class='menu-button duplicate-form' data-id='" . $form->id . "'>Duplicate</a> 
-                                    <a class='menu-button delete-form ' data-id='" . $form->id . "'>Delete</a>
+                    ?>
+                        <tr class="option-show-form">
+                            <td><?= $form->id ?></td>
+                            <td width="50%">
+                                <h5 class="ui header">
+                                    <?= $form->name ?>
+                                    <a class="menu-button" href="<?= home_url() ?>/?codex_form_preview=" <?= $form->id ?> target="_blank">View</a>
+                                    <a class="menu-button" href="<?= admin_url('admin.php?page=codex-forms&view=edit&form_id=' . $form->id) ?>">Edit</a>
+                                    <a class="menu-button duplicate-form" data-id="<?= $form->id ?>">Duplicate</a>
+                                    <a class="menu-button delete-form" data-id="<?= $form->id ?>">Delete</a>
                                 </h5>
-                                </div>
                             </td>
-                        ";
-                        echo "<td><a class='ui button short-code-copy' data-tooltip='Click here copy to clipboard' data-position='top left'>[codex_form_preview id={$form->id}]</a></td>";
-                        echo "<td>{$form->date}</td>";
-                        echo "</tr>";
+                            <td><a class="ui button short-code-copy" data-tooltip="Click here copy to clipboard" data-position="top left">[codex_form_preview id=<?= $form->id ?>]</a></td>
+                            <td><?= $form->date ?></td>
+                        </tr>
+                    <?php
                     }
                     ?>
                 </tbody>
             </table>
         </div>
 
+    <?php
+
+    }
+
+    function modal_template() {
+    ?>
         <!-- Modal -->
-        <div class="ui modal small">
+        <div class="ui small modal modal_template">
             <i class="close icon"></i>
             <div class="header">
                 Form Template
             </div>
             <div class="content">
-                <div class="ui special cards">
-                    <div class="card">
-                        <div class="blurring dimmable image">
-                            <div class="ui dimmer">
-                                <div class="content">
-                                    <div class="center">
-                                        <div class="ui negative message transition hidden">
-                                            <i class="close icon"></i>
-                                            <div class="header">
-                                                Something went wrong
-                                            </div>
-                                            <p>input the form name
-                                            </p>
-                                        </div>
-                                        <div class="ui left icon input">
-                                            <input type="text" placeholder="Search..." id="form_name">
-                                            <i class="wpforms icon"></i>
-                                            <button class="ui button primary create-form">Create</button>
-                                        </div>
-                                    </div>
+                <div class="ui link cards">
+                    <?php
+                    $templates = Codex_Templates::templates();
+                    foreach ($templates as $name => $template) {
+                    ?>
+                        <div class="card form-template" data-template-name="<?= $template['name'] ?>">
+                            <div class="content">
+                                <a class="header"><?= $template['name'] ?></a>
+                                <div class="meta">
+                                    <span class="date"><?= $template['description'] ?></span>
                                 </div>
                             </div>
-                            <img src="<?= CODEX_URL ?>assets/image/template/blank.png">
                         </div>
-                        <div class="content">
-                            <a class="header">Blank Form</a>
-                            <div class="meta">
-                                <span class="date">Created in Sep 2014</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="blurring dimmable image">
-                            <div class="ui dimmer">
-                                <div class="content">
-                                    <div class="center">
-                                        <div class="ui negative message transition hidden">
-                                            <i class="close icon"></i>
-                                            <div class="header">
-                                                Something went wrong
-                                            </div>
-                                            <p>input the form name
-                                            </p>
-                                        </div>
-                                        <div class="ui left icon input">
-                                            <input type="text" placeholder="Search..." id="form_name">
-                                            <i class="wpforms icon"></i>
-                                            <button class="ui button primary create-form">Create</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="<?= CODEX_URL ?>assets/image/template/register.png">
-                        </div>
-                        <div class="content">
-                            <a class="header">Register Form</a>
-                            <div class="meta">
-                                <span class="date">Created in Aug 2014</span>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
+    <?php
+    }
 
+    function modal_create_form() {
+    ?>
+        <div class="ui mini modal modal_create_form">
+            <i class="close icon"></i>
+            <div class="header">Form name</div>
+            <div class="content">
+                <div class="ui fluid input">
+                    <input type="text" placeholder="Enter name form..." id="form_name">
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui negative button">
+                    No
+                </div>
+                <div class="ui positive right labeled icon button create-form">
+                    Create
+                    <i class="checkmark icon"></i>
+                </div>
+            </div>
+        </div>
 <?php
-
     }
 }
-
-
-
-
-
 
 
 new Codex_Show_Forms();

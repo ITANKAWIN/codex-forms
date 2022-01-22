@@ -26,6 +26,7 @@ require_once(CODEX_PATH . '/includes/setting.php');
 require_once(CODEX_PATH . '/includes/main-action.php');
 require_once(CODEX_PATH . '/includes/class-install.php');
 require_once(CODEX_PATH . '/includes/class-ajax.php');
+require_once(CODEX_PATH . '/includes/class-templates.php');
 require_once(CODEX_PATH . '/includes/class-fields.php');
 
 // # check the class is already loaded or not. If it is not loaded yet, we will load it.

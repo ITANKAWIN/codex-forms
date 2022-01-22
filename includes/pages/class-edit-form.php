@@ -200,55 +200,58 @@ class Codex_Edit_form {
 
     function modal_setting() {
     ?>
+
         <div class="ui tiny modal modal-setting">
             <i class="close icon"></i>
             <div class="header">
             </div>
             <div class="content">
-                <table class="ui large celled table">
-                    <tr>
-                        <td>Form Name</td>
-                        <td>
-                            <div class="ui input">
-                                <input type="text" id="form_name" value="<?= !empty($this->form) ? $this->form->name : '' ?>" placeholder="Form name">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Message for success submit</td>
-                        <td>
-                            <div class="ui form">
-                                <div class="field">
-                                    <textarea rows="2"></textarea>
+                <form method="POST" id="setting_form">
+                    <table class="ui large celled table">
+                        <tr>
+                            <td>Form Name</td>
+                            <td>
+                                <div class="ui input">
+                                    <input type="text" id="form_name" value="<?= !empty($this->form) ? $this->form->name : '' ?>" placeholder="Form name">
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Redirect for success submit</td>
-                        <td>
-                            <div class="ui input">
-                                <input type="url" placeholder="http://localhost/....">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Template</td>
-                        <td>
-                            <select class="ui dropdown">
-                                <option value="Normal">Normal</option>
-                                <option value="Register">Register</option>
-                                <option value="Login">Login</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Export</td>
-                        <td>
-                            <a class="ui blue button" href="?export_json=<?= $this->form->id ?>"><i class="download icon"></i>Export</a>
-                        </td>
-                    </tr>
-                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Message for success submit</td>
+                            <td>
+                                <div class="ui form">
+                                    <div class="field">
+                                        <textarea rows="2" name="setting[succ_msg]"></textarea>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Redirect for success submit</td>
+                            <td>
+                                <div class="ui input">
+                                    <input type="url" name="setting[redirect]" placeholder="http://localhost/....">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Template</td>
+                            <td>
+                                <select class="ui dropdown" name="setting[template]">
+                                    <option value="Normal">Normal</option>
+                                    <option value="Register">Register</option>
+                                    <option value="Login">Login</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Export</td>
+                            <td>
+                                <a class="ui blue button" href="?export_json=<?= $this->form->id ?>"><i class="download icon"></i>Export</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
             <div class="actions">
                 <div class="ui approve button save_form">
@@ -259,6 +262,8 @@ class Codex_Edit_form {
                 </div>
             </div>
         </div>
+
+
 <?php
     }
 }

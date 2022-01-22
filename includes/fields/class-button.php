@@ -93,7 +93,7 @@ class Field_button {
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
-                            <input type='text' name='fields[{$config['id']}][text]' value='{$config['text']}' readonly>
+                            <input type='text' name='fields[{$config['id']}][text]' value='{$config['text']}'>
                         </div>
                     </div>
                 </div>
