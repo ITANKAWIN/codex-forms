@@ -60,7 +60,7 @@ class Field_Radio {
         }
 
         foreach ($config['options'] as $option) {
-            $preview .= "<div class='ui'><input type='radio' name='field[{$config['id']}]' id='{$config['id']}' value='{$option}' disabled>";
+            $preview .= "<div class='ui'><input type='radio' name='field_id[{$config['id']}]' id='{$config['id']}' value='{$option}' disabled>";
             $preview .= "<label value='{$option}' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label></div>";
         }
 

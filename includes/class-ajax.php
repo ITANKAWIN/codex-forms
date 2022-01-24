@@ -247,7 +247,7 @@ class Codex_AJAX {
             }
         }
 
-        wp_send_json_success();
+        wp_send_json_success($data);
     }
 
     function load_entry() {

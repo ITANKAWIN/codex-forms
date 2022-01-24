@@ -39,6 +39,7 @@ jQuery(function ($) {
         data: form_data,
         success: function (res) {
           console.log(res);
+          alert("Submit Success");
         },
         error: function () {
           alert("something went wrong");
