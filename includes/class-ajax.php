@@ -15,7 +15,7 @@ class Codex_AJAX {
 
         add_action('wp_ajax_save_form', array($this, 'save_form'));
 
-        add_action('wp_ajax_entry_value', array($this, 'form_entry'));
+        add_action('wp_ajax_entry_value', array($this, 'form_submit'));
 
         // load all entry id from id form
         add_action('wp_ajax_load_entry', array($this, 'load_entry'));
@@ -189,9 +189,13 @@ class Codex_AJAX {
         wp_send_json_success();
     }
 
-    function form_entry() {
+    function form_submit() {
 
-        $form_data = json_decode(stripslashes($_POST['entry_value']));
+        if (empty($_POST['data'])) {
+            return wp_send_json_error();
+        }
+
+        $form_data = json_decode(stripslashes($_POST['data']));
 
         $data      = [];
 
@@ -226,9 +230,18 @@ class Codex_AJAX {
             }
         }
 
+        if (!empty($_FILES['file'])) {
+            $arr_img_ext = array('image/png', 'image/jpeg', 'image/jpg', 'image/gif');
+            if (in_array($_FILES['file']['type'], $arr_img_ext)) {
+                $upload = wp_upload_bits($_FILES["file"]["name"], null, file_get_contents($_FILES["file"]["tmp_name"]));
+                $url_upload = $upload['url'];
+            }
+
+            $data = array_merge_recursive($data, array('field_id' => array($_POST['file_id'] => $url_upload)));
+        }
+
         if (!empty($data['form_id'])) {
             $entry_id = Codex_form_DB::entry($data['form_id']);
-
             foreach ($data['field_id'] as $field => $value) {
                 Codex_form_DB::entry_value($entry_id, $field, $value);
             }

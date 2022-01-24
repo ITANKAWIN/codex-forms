@@ -17,20 +17,32 @@ jQuery(function ($) {
       });
     },
 
-    formEntry: function (form_data) {
-      var data = {
-        entry_value: form_data,
-        action: "entry_value",
-      };
+    formEntry: function (data) {
+      var input_file = $(".layout-panel").find("input[type=file]");
 
-      console.log(data.entry_value);
-      $.post(codex_admin.ajax_url, data, function (res) {
-        if (res.success) {
-        } else {
+      var file_upload = "";
+      if (input_file.length > 0) {
+        file_upload = input_file[0].files[0];
+      }
+
+      form_data = new FormData();
+      form_data.append("data", data);
+      form_data.append("file", file_upload);
+      form_data.append("file_id", input_file.attr("id"));
+      form_data.append("action", "entry_value");
+
+      $.ajax({
+        url: codex_admin.ajax_url,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        data: form_data,
+        success: function (res) {
           console.log(res);
-        }
-      }).fail(function (xhr, textStatus, e) {
-        console.log(xhr.responseText);
+        },
+        error: function () {
+          alert("something went wrong");
+        },
       });
     },
   };

@@ -53,7 +53,7 @@ class Codex_Show_Forms {
                             <td width="50%">
                                 <h5 class="ui header">
                                     <?= $form->name ?>
-                                    <a class="menu-button" href="<?= home_url() ?>/?codex_form_preview=" <?= $form->id ?> target="_blank">View</a>
+                                    <a class="menu-button" href="<?= home_url() ?>/?codex_form_preview=<?= $form->id ?>" target="_blank">View</a>
                                     <a class="menu-button" href="<?= admin_url('admin.php?page=codex-forms&view=edit&form_id=' . $form->id) ?>">Edit</a>
                                     <a class="menu-button duplicate-form" data-id="<?= $form->id ?>">Duplicate</a>
                                     <a class="menu-button delete-form" data-id="<?= $form->id ?>">Delete</a>

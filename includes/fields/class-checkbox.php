@@ -57,8 +57,8 @@ class Field_Checkbox {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
         foreach ($config['options'] as $option) {
-            $preview .= "<div class='ui'><input type='checkbox' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
-            $preview .= "<label value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label></div>";
+            $preview .= "<div class='ui'><input type='checkbox' name='field[{$config['id']}]' id='{$config['id']}' value='{$option}' disabled>";
+            $preview .= "<label value='{$option}' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label></div>";
         }
         $preview .= "</div>";
         $preview .= "</div>";
