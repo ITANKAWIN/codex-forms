@@ -15,6 +15,12 @@ jQuery(function ($) {
 
         app.formEntry(form_data);
       });
+
+      // load star rating
+      $(".codex-rating").rating("setting", "onRate", function (value) {
+        var id = $(this).data("id");
+        $('input[name="field_id[' + id + ']"]').val(value);
+      });
     },
 
     formEntry: function (data) {
@@ -39,7 +45,11 @@ jQuery(function ($) {
         data: form_data,
         success: function (res) {
           console.log(res);
-          alert("Submit Success");
+          if (res.data) {
+            alert("Submit Success");
+          } else {
+            alert("something went wrong");
+          }
         },
         error: function () {
           alert("something went wrong");

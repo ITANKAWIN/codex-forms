@@ -192,7 +192,7 @@ class Codex_AJAX {
     function form_submit() {
 
         if (empty($_POST['data'])) {
-            return wp_send_json_error();
+            wp_send_json_error();
         }
 
         $form_data = json_decode(stripslashes($_POST['data']));

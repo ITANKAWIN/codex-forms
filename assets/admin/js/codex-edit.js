@@ -15,7 +15,7 @@
 
       //Event mouse click delete row panel
       $(".layout-panel").on("click", ".delete-row", function (e) {
-        e.preventDefault()
+        e.preventDefault();
         app.deleteRow_panel($(this));
       });
 
@@ -106,6 +106,9 @@
       $(".setting-form").on("click", function () {
         $(".modal-setting").modal("show");
       });
+
+      // load rating star
+      $(".codex-rating").rating("setting", "clearable", true);
     },
 
     // Function for Drag & Drop & Sort item field
@@ -221,7 +224,6 @@
 
           $('[data-field-id="' + field_id + '"]').remove();
         });
-
       }
 
       row.slideUp(200, function () {
