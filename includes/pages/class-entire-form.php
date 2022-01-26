@@ -53,7 +53,7 @@ class Codex_Entire_forms {
                         <option>Export</option>
                     </select>
                     <button class="Medium ui primary basic button">Apply</button>
-                    <a href="?excel=<?= $this->form_id ?>" class="ui teal button"><i class="download icon"></i>Export All</a>
+                    <a href="?excel=<?= $this->form_id ?>" class="ui teal button" data-tooltip="Click here to export all form" data-position="bottom center"><i class="download icon"></i>Export All</a>
                 </div>
                 <div class="column">
                     <label for="min">From:</label>
