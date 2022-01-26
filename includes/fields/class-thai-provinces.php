@@ -28,7 +28,6 @@ class Field_Provinces {
             'label' => 'Provinces',
             'option_default' => 1,
             'next_option_id' => "78",
-            #provinces
             'options' => array(
                 1 => 'กรุงเทพมหานคร',
                 2 => 'จังหวัดกระบี่',

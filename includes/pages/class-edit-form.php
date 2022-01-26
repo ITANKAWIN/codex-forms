@@ -32,9 +32,9 @@ class Codex_Edit_form {
 
         $this->form_config = json_decode(stripslashes($this->form->config), true, JSON_UNESCAPED_UNICODE);
 
-        print("<pre>");
-        print_r($this->form->config);
-        print("</pre>");
+        // print("<pre>");
+        // print_r($this->form->config);
+        // print("</pre>");
     }
 
     function load_field() {

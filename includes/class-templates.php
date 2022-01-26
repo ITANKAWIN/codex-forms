@@ -20,17 +20,17 @@ class Codex_Templates {
         $templates = array(
             'blank'     => array(
                 'name'          => 'Blank',
-                'description'   => 'ซักอย่าง'
+                'description'   => 'The blank form allows you to create any type of form using our drag & drop builder.'
             ),
 
             'register'  => array(
                 'name'          => 'Register',
-                'description'   => 'สมัครสมาชิก'
+                'description'   => 'Register a WordPress User'
             ),
 
             'login'  => array(
                 'name'          => 'Login',
-                'description'   => 'เข้าสู่ระบบ'
+                'description'   => 'Signup a WordPress User'
             )
         );
 
