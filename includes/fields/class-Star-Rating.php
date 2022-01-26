@@ -40,15 +40,13 @@ class Field_Star_Rating {
 
     public function preview($config = []) {
         $preview = "";
-        $preview .= "<div class='ui big labels'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-            $preview .= "<label class='ui basic label align' id='{$config['id']}'>{$config['label']}</label>";
+            $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<div>
-                    <input class='rating' max='5' oninput='this.style.setProperty('--value', this.value)' step='0.5' style='--value:2.5' type='range' value='2.5'
-                    name='field[{$config['id']}]' id='{$config['id']}' value='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
-                    </div>";
+        $preview .= "<div class='ui star rating codex-rating' data-rating='{$config['default_of_star']}' data-max-rating='{$config['number_of_star']}' data-id='{$config['id']}'></div>";
+        $preview .= "<input type='hidden' name='field_id[{$config['id']}]' value='{$config['default_of_star']}'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -100,6 +98,26 @@ class Field_Star_Rating {
                     <div class='column'>
                         <div class='ui fluid input'>
                             <input type='text' class='config-form-name' name='fields[{$config['id']}][name]' value='{$config['name']}'>
+                        </div>
+                    </div> 
+                </div> 
+                <div class='row'>
+                    <div class='column'>
+                        <label>Number of Star</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='number' class='config-form-name' name='fields[{$config['id']}][number_of_star]' value='" . (empty($config['number_of_star']) ? '5' : $config['number_of_star']) . "'>
+                        </div>
+                    </div> 
+                </div> 
+                <div class='row'>
+                    <div class='column'>
+                        <label>Default of Star</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='number' class='config-form-name' name='fields[{$config['id']}][default_of_star]' value='" . (empty($config['default_of_star']) ? '5' : $config['default_of_star']) . "'>
                         </div>
                     </div> 
                 </div> 

@@ -145,7 +145,7 @@ class Field_Checkbox {
             </div>
             <hr>
 
-            <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
+            <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['next_option_id']}'>
             <div class='ui grid'>
                 <div class='four wide column'>
                     <div class='column'>

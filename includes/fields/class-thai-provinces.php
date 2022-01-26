@@ -25,10 +25,9 @@ class Field_Provinces {
         $default_config = array(
             'id' => $_POST['field_id'],
             'type' => $this->field_type,
-            'label' => 'Thai-provinces',
-            'placeholder' => 'thai-provinces',
+            'label' => 'Provinces',
             'option_default' => 1,
-            #provinces
+            'next_option_id' => "78",
             'options' => array(
                 1 => 'กรุงเทพมหานคร',
                 2 => 'จังหวัดกระบี่',
@@ -107,8 +106,7 @@ class Field_Provinces {
                 75 => 'จังหวัดอุตรดิตถ์',
                 76 => 'จังหวัดอุทัยธานี',
                 77 => 'จังหวัดอุบลราชธานี'
-            ),
-            'next_option_id' => 78,
+            )
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
@@ -135,7 +133,7 @@ class Field_Provinces {
 
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<select name='field_id[{$config['id']}]' id='{$config['id']}' class='ui dropdown fluid' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<select name='field_id[{$config['id']}]' id='{$config['id']}' class='ui dropdown fluid' disabled>";
         foreach ($config['options'] as $option) {
             $preview .= "<option value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</option>";
         }
@@ -146,6 +144,7 @@ class Field_Provinces {
     }
 
     public function config($config = []) {
+
         $config_field = "
         <div class='wrapper-instance-pane properties-config config_field_{$config['id']}' data-field-id='{$config['id']}' style='display: none;'>
             <div class='ui two column grid'>
@@ -197,7 +196,7 @@ class Field_Provinces {
             </div>
             <hr>
 
-            <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['id']['next_option_id']}'>
+            <input type='hidden' name='fields[{$config['id']}][next_option_id]' value='{$config['next_option_id']}'>
             <div class='ui grid'>
                 <div class='four wide column'>
                     <div class='column'>
@@ -205,8 +204,8 @@ class Field_Provinces {
                     </div>
                     <div class='four wide column'>
                         ";
-            foreach ($config['options'] as $option => $v) {
-                $config_field .= "
+        foreach ($config['options'] as $option => $v) {
+            $config_field .= "
                         <div class='ui fluid input'>
                             <div class='index-control'><input type='radio' name='fields[{$config['id']}][option_default]' " . ($config['option_default'] == $v ? 'checked' : '') . " value='{$v}'></div>
                             <input type='text' class='form-control' name='fields[{$config['id']}][options][{$option}]' value='{$v}'>
@@ -217,8 +216,8 @@ class Field_Provinces {
                                 <i class='icon minus circle red'></i>
                             </a>
                         </div>";
-            }
-            $config_field .= "
+        }
+        $config_field .= "
                     </div>
                 </div>
             </div>
