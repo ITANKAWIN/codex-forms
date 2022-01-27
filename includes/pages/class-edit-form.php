@@ -161,7 +161,7 @@ class Codex_Edit_form {
                                             foreach ($field_types as $field) {
                                                 if ($field['group'] == $group) {
                                                     echo "<div class='field-item' data-field-type='{$field['type']}'>";
-                                                    echo "<i class='{$field['icon']}'></i>" . $field['type'];
+                                                    echo "<i class='{$field['icon']}'></i>" . $field['name'];
                                                     echo "</div>";
                                                 }
                                             }

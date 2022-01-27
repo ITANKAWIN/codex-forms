@@ -16,10 +16,16 @@ jQuery(function ($) {
         app.formEntry(form_data);
       });
 
-      // load star rating
+      // Field  star rating
       $(".codex-rating").rating("setting", "onRate", function (value) {
         var id = $(this).data("id");
         $('input[name="field_id[' + id + ']"]').val(value);
+      });
+
+      // Field Scale Range
+      $(".codex-range").on("change", function () {
+        var id = $(this).data("id");
+        $("#" + id).html($(this).val());
       });
     },
 

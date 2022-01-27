@@ -43,25 +43,15 @@
 
 .field-row .fieldselect {
   width: 100%;
-
   max-width: 100%;
-
   height: 38px;
-
   display: flex;
-
   flex-direction: column;
-
   outline: 0;
-
   border-radius: 6px;
-
   padding: 6px 9px;
-
   font-size: 15px;
-
   margin: 0;
-
   line-height: 1;
 }
 
@@ -73,59 +63,31 @@
   border: 1px solid rgb(188, 224, 253);
 }
 
-.fieldradio {
-  width: 97%;
-
-  height: 25px;
-
+.codex-range {
+  width: 90%;
   cursor: pointer;
-
   outline: 0;
-
   box-shadow: none;
-
   border-radius: 6px;
-
   padding: 6px 9px;
-
-  border-color: rgba(40, 47, 54, 0.2);
-
-  color: rgba(40, 47, 54, 0.85);
-
+  color: rgba(3, 62, 121, 0.85);
   font-size: 14px;
-
   margin: 0;
-
-  background-color: rgb(255, 255, 255);
-
   line-height: 1;
 }
 
 .fieldcheckbox {
   width: 97%;
-
   height: 25px;
-
   cursor: pointer;
-
   outline: 0;
-
   box-shadow: none;
-
   border-radius: 6px;
-
   padding: 6px 9px;
-
   border-color: rgba(40, 47, 54, 0.2);
-
   color: rgba(40, 47, 54, 0.85);
-
   font-size: 14px;
-
   margin: 0;
-
-  background-color: rgb(255, 255, 255);
-
   line-height: 1;
 }
 
@@ -155,23 +117,14 @@
 
 .field-row .fielddivider {
   width: 100%;
-
   size: 3;
-
   background: #fff;
-
   border: 1px solid #ccc;
-
   border-radius: 4px;
-
   color: #888;
-
   cursor: pointer;
-
   margin-bottom: 20px;
-
   padding: 15px 20px;
-
   position: relative;
 }
 
@@ -228,9 +181,7 @@
 
 .split-column {
   position: absolute;
-
-  top: -20px;
-
+  top: -30px;
   cursor: pointer;
 }
 
@@ -238,33 +189,21 @@
 
 .join-column {
   position: absolute;
-
-  top: -20px;
-
+  top: -30px;
   cursor: pointer;
-
-  left: -13px;
+  left: -8px;
 }
 
 .column-merge {
   background: rgba(0, 0, 0, 0.1);
-
   cursor: col-resize;
-
   height: 100%;
-
   margin: 0;
-
   position: absolute;
-
   width: 8px;
-
   border-radius: 2px;
-
   top: 0;
-
   left: -12px;
-
   z-index: 98;
 }
 
@@ -272,9 +211,7 @@
 
 .delete-row {
   position: absolute;
-
-  top: -20px;
-
+  top: -30px;
   cursor: pointer;
 }
 
@@ -294,11 +231,8 @@
 
 .saving span {
   animation-name: blink;
-
   animation-duration: 1.4s;
-
   animation-iteration-count: infinite;
-
   animation-fill-mode: both;
 }
 

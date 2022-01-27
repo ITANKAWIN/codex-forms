@@ -23,7 +23,7 @@ class Field_Scale_Rating {
         $default_config = array(
             'id' => $_POST['field_id'],
             'type' => $this->field_type,
-            'label' => 'Scale-Rating',
+            'label' => 'Scale Rating',
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
@@ -39,14 +39,13 @@ class Field_Scale_Rating {
 
     public function preview($config = []) {
         $preview = "";
-        $preview .= "<div class='ui big labels'>";
+        $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-            $preview .= "<label class='ui basic label align' id='{$config['id']}'>{$config['label']}</label>";
+            $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<div>
-                    <input type='radio' name='field_id[{$config['id']}]' id='{$config['id']}' class='fieldradio' value='Option1' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>
-                    <label for='Option1'>One</label></div>";
+        $preview .= "<input type='range' class='codex-range' name='field_id[{$config['id']}]' data-id='{$config['id']}' min='{$config['min']}' max='{$config['max']}' step='{$config['step']}' value='{$config['default']}' disabled>";
+        $preview .= "<p id='{$config['id']}'>{$config['default']}</p>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -74,10 +73,10 @@ class Field_Scale_Rating {
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
                         ";
         $field_types = Codex_Fields::field_types();
-            foreach ($field_types as $field) {
-                $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
-            }
-            $config_field .= "
+        foreach ($field_types as $field) {
+            $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
+        }
+        $config_field .= "
                         </select>
                     </div>
                 </div>
@@ -100,7 +99,47 @@ class Field_Scale_Rating {
                             <input type='text' class='config-form-name' name='fields[{$config['id']}][name]' value='{$config['name']}'>
                         </div>
                     </div>
-                </div>  
+                </div>
+                <div class='row'>
+                    <div class='column'>
+                        <label>Min</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='text' class='config-form-name' name='fields[{$config['id']}][min]' value='{$config['min']}'>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='column'>
+                        <label>Max</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='text' class='config-form-name' name='fields[{$config['id']}][max]' value='{$config['max']}'>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='column'>
+                        <label>Step</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='text' class='config-form-name' name='fields[{$config['id']}][step]' value='{$config['step']}'>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='column'>
+                        <label>Default</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <input type='text' class='config-form-name' name='fields[{$config['id']}][default]' value='{$config['default']}'>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         ";
