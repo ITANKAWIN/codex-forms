@@ -27,10 +27,10 @@ class Codex_Show_Forms {
                 Codex-Forms
             </div>
             <div class="item">
-                <button class="ui orange button new-form"><i class="plus icon"></i> New Form</button>
+                <button class="ui orange button new-form" data-tooltip="Click here to new form" data-position="bottom center"><i class="plus icon"></i> New Form</button>
             </div>
             <div class="right item">
-                <button class="ui blue button btn_import_form"><i class="upload icon"></i> Import</button>
+                <button class="ui blue button btn_import_form" data-tooltip="Click here to import form" data-position="bottom right"><i class="upload icon"></i> Import</button>
                 <input type="file" id="import_form" accept="application/JSON" style="display: none">
             </div>
         </div>

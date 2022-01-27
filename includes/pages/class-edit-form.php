@@ -104,13 +104,13 @@ class Codex_Edit_form {
                 <?= !empty($this->form) ? $this->form->name : '' ?>
             </div>
             <div class="item">
-                <button class="ui yellow button setting-form"><i class="plus icon"></i> Setting</button>
+                <button class="ui yellow button setting-form" data-tooltip="Click here to setting form" data-position="bottom center"><i class="plus icon"></i> Setting</button>
             </div>
             <div class="right item">
                 <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->id ?>" target="_blank" data-tooltip="Click here to perview form" data-position="bottom center"><i class="eye icon"></i> Preview</a>
             </div>
             <div class="item">
-                <button class="ui orange button save_form"><i class="save icon"></i> Save</button>
+                <button class="ui orange button save_form" data-tooltip="Click here to save form" data-position="bottom center"><i class="save icon"></i> Save</button>
             </div>
             <div class="item">
                 <button class="circular ui icon button blue" id="sidebarCollapse" data-tooltip="Click here to hide/open sidebar" data-position="bottom right">
