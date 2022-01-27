@@ -82,10 +82,7 @@ class Admin_Script {
     }
 
     function load_wp_media_files() {
-        // Enqueue WordPress media scripts
         wp_enqueue_media();
-        // Enqueue custom script that will interact with wp.media
-        wp_enqueue_script('codex-admin-media', CODEX_URL . 'assets/admin/js/codex-select-media.js', __FILE__, array('jquery'), '1.0.0', true);
     }
 }
 new Admin_Script();

@@ -26,7 +26,7 @@
 
       //Event mouseleave hide button delete, join, split
       $(".layout-panel").on("mouseleave", ".layout-row", function (e) {
-        $(".column-tools").remove();
+        $(".tools-column").remove();
       });
 
       //Event mouse click spilt row to column
@@ -109,6 +109,43 @@
 
       // load rating star
       $(".codex-rating").rating("setting", "clearable", true);
+
+      // field image select media
+      $(".select_media").on("click", function (e) {
+        e.preventDefault();
+
+        var mediaUploader,
+          id = $(this).data("id");
+
+        if (mediaUploader) {
+          mediaUploader.open();
+          return;
+        }
+
+        // Extend the wp.media object
+        mediaUploader = wp.media.frames.file_frame = wp.media({
+          title: "Choose Image",
+          button: {
+            text: "Choose Image",
+          },
+          multiple: false,
+        });
+
+        // When a file is selected, grab the URL and set it as the text field's value
+        mediaUploader.on("select", function () {
+          attachment = mediaUploader.state().get("selection").first().toJSON();
+          
+          // change preview image
+          $("#" + id).attr("src", attachment.url);
+
+          $("input[name='fields[" + id + "][image]']").val(attachment.url);
+        });
+        // Open the uploader dialog
+        mediaUploader.open();
+      });
+
+      // GPS google map
+      
     },
 
     // Function for Drag & Drop & Sort item field
@@ -240,7 +277,7 @@
         .children()
         .first()
         .append(
-          '<div class="delete-row column-tools"><i class="dashicons dashicons-remove"></i></div>'
+          '<div class="delete-row tools-column"><i class="dashicons dashicons-remove"></i></div>'
         );
 
       setrow
@@ -248,7 +285,7 @@
         .children()
         .not(":first")
         .prepend(
-          '<div class="join-column column-tools"><i class="dashicons dashicons-leftright"></i></div>'
+          '<div class="join-column tools-column"><i class="dashicons dashicons-leftright"></i></div>'
         );
 
       setrow
@@ -259,7 +296,7 @@
           var width = column.width() / 2 - 5;
           if (!column.parent().hasClass("col-1")) {
             column.prepend(
-              '<div class="split-column column-tools"><i class="dashicons dashicons-image-flip-horizontal"></i></div>'
+              '<div class="split-column tools-column"><i class="dashicons dashicons-image-flip-horizontal"></i></div>'
             );
             column.find(".split-column").css("left", width);
           }
@@ -285,7 +322,7 @@
 
       $(el).remove();
 
-      $(".column-tools").remove();
+      $(".tools-column").remove();
 
       app.jQueryui();
       app.buildLayout();
@@ -315,7 +352,7 @@
 
       app.buildLayout();
 
-      $(".column-tools").remove();
+      $(".tools-column").remove();
     },
 
     // Function for show tools field

@@ -177,43 +177,18 @@
   transition: 0.5s border-color ease-in-out;
 }
 
-/* Split Column */
-
-.split-column {
-  position: absolute;
-  top: -30px;
-  cursor: pointer;
-}
-
 /* Join Column */
 
 .join-column {
-  position: absolute;
-  top: -30px;
-  cursor: pointer;
-  left: -8px;
-}
-
-.column-merge {
-  background: rgba(0, 0, 0, 0.1);
-  cursor: col-resize;
-  height: 100%;
-  margin: 0;
-  position: absolute;
-  width: 8px;
-  border-radius: 2px;
-  top: 0;
   left: -12px;
-  z-index: 98;
 }
 
-/* Delete row */
-
-.delete-row {
+.tools-column {
   position: absolute;
-  top: -30px;
+  top: -20px;
   cursor: pointer;
 }
+
 
 @keyframes blink {
   0% {
@@ -243,4 +218,3 @@
 .saving span:nth-child(3) {
   animation-delay: 0.4s;
 }
-

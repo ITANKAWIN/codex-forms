@@ -22,20 +22,25 @@ class Field_Image {
         if (!isset($_POST['id']) || empty($_POST['id'])) {
             die(esc_html__('No form ID found'));
         }
+
         //default config for field
         $default_config = array(
-            'id' => $_POST['field_id'],
-            'type' => $this->field_type,
-            'label' => 'Image',
+            'id'        => $_POST['field_id'],
+            'type'      => $this->field_type,
+            'label'     => '',
+            'image'     => 'http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/image.png',
+            'size'      => 'medium',
+            'border'    => ''
         );
+
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
         wp_send_json_success(
             array(
-                'form_id' => (int) $_POST['id'],
-                'preview' => $this->preview($default_config),
-                'config'  => $this->config($default_config),
-                'position' => $position,
+                'form_id'   => (int) $_POST['id'],
+                'preview'   => $this->preview($default_config),
+                'config'    => $this->config($default_config),
+                'position'  => $position,
             )
         );
     }
@@ -46,9 +51,9 @@ class Field_Image {
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
+            $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<img name='field_id[{$config['id']}]' id='{$config['id']}' class='disabled medium ui image' src='http://localhost/wordpress/wp-content/plugins/codex-forms/assets/image/fields/image.png' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<img id='{$config['id']}' class='ui image centered {$config['size_set']} {$config['border']}' src='{$config['image']}'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -109,15 +114,73 @@ class Field_Image {
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
-                            <input type='file' class='form-control' name='fields[{$config['id']}][label]' value='{$config['label']}'>
+                            <input type='hidden' name='fields[{$config['id']}][image]' value='{$config['image']}'>
+                            <button class='ui button select_media' data-id='{$config['id']}'><i class='upload icon'></i></button>
                         </div>
                     </div>
-                </div> 
+                </div>
+                <div class='row'>
+                    <div class='column'>
+                        <label>Border</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <select class='ui fluid dropdown' name='fields[{$config['id']}][border]'>
+                        ";
+        foreach ($this->border() as $border) {
+            $config_field .= "<option value='{$border}' " . ($border == $config['border'] ? 'selected' : '') . ">{$border}</option>";
+        }
+        $config_field .= "
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='column'>
+                        <label>Size</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui fluid input'>
+                            <select class='ui fluid dropdown' name='fields[{$config['id']}][size_set]'>
+                        ";
+        foreach ($this->size() as $size) {
+            $config_field .= "<option value='{$size}' " . ($size == $config['size_set'] ? 'selected' : '') . ">{$size}</option>";
+        }
+        $config_field .= "
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         ";
 
         return $config_field;
+    }
+
+    function border() {
+        $border = array(
+            'Normal' => 'normal',
+            'Rounded' => 'rounded',
+            'Circular' => 'circular',
+        );
+
+        return $border;
+    }
+
+    function size() {
+        $size = array(
+            'mini' => 'mini',
+            'tiny' => 'tiny',
+            'small' => 'small',
+            'medium' => 'medium',
+            'large' => 'large',
+            'big' => 'big',
+            'huge' => 'huge',
+            'massive' => 'massive'
+        );
+
+        return $size;
     }
 }
 

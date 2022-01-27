@@ -16,19 +16,21 @@ class Field_Pin_GPS {
     }
     
     public function get_field() {
+
         // Check for form ID.
         if (!isset($_POST['id']) || empty($_POST['id'])) {
             die(esc_html__('No form ID found'));
         }
+
         //default config for field
         $default_config = array(
             'id' => $_POST['field_id'],
             'type' => $this->field_type,
             'label' => 'Pin GPS',
-            'placeholder' => 'Pin GPS',
-            'value' => '',
         );
+
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
+        
         // Prepare to return compiled results.
         wp_send_json_success(
             array(
