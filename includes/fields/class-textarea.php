@@ -26,11 +26,12 @@ class Field_Textarea {
 
         //default config for field
         $default_config = array(
-            'id' => $_POST['field_id'],
-            'type' => $this->field_type,
-            'label' => 'Textarea',
-            'placeholder' => 'textarea',
-            'value' => '',
+            'id'            => $_POST['field_id'],
+            'type'          => $this->field_type,
+            'label'         => 'Textarea',
+            'placeholder'   => 'textarea',
+            'value'         => '',
+            'require'       => 'on',
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
 
@@ -51,9 +52,9 @@ class Field_Textarea {
         $preview .= "<div class='ui form huge'>";
         $preview .= "<div class='field " . ($config['require'] == 'on' ? 'required' : '') . "'>";
         if (isset($config['label'])) {
-            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
+            $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<textarea name='field_id[{$config['id']}]' id='{$config['id']}' rows='3' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'></textarea>";
+        $preview .= "<textarea name='field_id[{$config['id']}]' id='{$config['id']}' rows='3' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . "></textarea>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -83,7 +84,7 @@ class Field_Textarea {
                     ";
         $field_types = Codex_Fields::field_types();
             foreach ($field_types as $field) {
-                $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
+            $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['name']}</option>";
             }
             $config_field .= "
                         </select>
@@ -121,7 +122,7 @@ class Field_Textarea {
                 </div>
                 <div class='row'>
                     <div class='column'>
-                        <label'>Value</label>
+                        <label'>Default Value</label>
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
@@ -136,7 +137,7 @@ class Field_Textarea {
                     <div class='column'>
                         <div class='inline field'>
                             <div class='ui toggle checkbox'>
-                                <input type='checkbox' name='fields[{$config['id']}][require]' tabindex='0' class='hidden' " . ($config['require'] == 'on' ? 'checked' : '') . ">
+                                <input type='checkbox' name='fields[{$config['id']}][require]' " . ($config['require'] == 'on' ? 'checked' : '') . ">
                                 <label></label>
                             </div>
                         </div>

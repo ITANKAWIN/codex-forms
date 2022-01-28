@@ -26,8 +26,7 @@ class Field_Select {
         $default_config = array(
             'id' => $_POST['field_id'],
             'type' => $this->field_type,
-            'label' => 'Select',
-            'placeholder' => 'select',
+            'label' => 'Select Options',
             'option_default' => '',
             'options' => array(
                 1 => 'First',
@@ -62,7 +61,7 @@ class Field_Select {
             $preview .= "<label>{$config['label']}</label>";
         }
 
-        $preview .= "<select name='field_id[{$config['id']}]' id='{$config['id']}' class='ui dropdown fluid' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<select name='field_id[{$config['id']}]' id='{$config['id']}' class='ui dropdown fluid' disabled>";
         
         foreach ($config['options'] as $option) {
             $preview .= "<option value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</option>";

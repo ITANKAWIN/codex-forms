@@ -21,11 +21,12 @@ class Field_Date {
         }
         //default config for field
         $default_config = array(
-            'id' => $_POST['field_id'],
-            'type' => $this->field_type,
-            'label' => 'Enter the Date:',
-            'placeholder' => 'dd-mm-yyyy',
-            'value' => '',
+            'id'            => $_POST['field_id'],
+            'type'          => $this->field_type,
+            'label'         => 'Enter the Date:',
+            'placeholder'   => 'dd-mm-yyyy',
+            'value'         => '',
+            'require'       => 'on',
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
@@ -42,11 +43,11 @@ class Field_Date {
     public function preview($config = []) {
         $preview = "";
         $preview .= "<div class='ui form big'>";
-        $preview .= "<div class='field'>";
+        $preview .= "<div class='field " . ($config['require'] == 'on' ? 'required' : '') . "'>";
         if (isset($config['label'])) {
-            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
+            $preview .= "<label >{$config['label']}</label>";
         }
-        $preview .= "<input type='date' name='field_id[{$config['id']}]' id='{$config['id']}'  disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<input type='date' name='field_id[{$config['id']}]' id='{$config['id']}'  disabled " . ($config['require'] == 'on' ? 'required' : '') . ">";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -118,6 +119,19 @@ class Field_Date {
                     <div class='column'>
                         <div class='ui fluid input'>
                             <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='column'>
+                        <label'>Required</label>
+                    </div>
+                    <div class='column'>
+                        <div class='inline field'>
+                            <div class='ui toggle checkbox'>
+                                <input type='checkbox' name='fields[{$config['id']}][require]' " . ($config['require'] == 'on' ? 'checked' : '') . " >
+                                <label></label>
+                            </div>
                         </div>
                     </div>
                 </div>

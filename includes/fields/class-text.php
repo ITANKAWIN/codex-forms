@@ -23,11 +23,12 @@ class Field_Text {
         }
         //default config for field
         $default_config = array(
-            'id' => $_POST['field_id'],
-            'type' => $this->field_type,
-            'label' => 'Input text',
-            'placeholder' => 'input text',
-            'value' => '',
+            'id'            => $_POST['field_id'],
+            'type'          => $this->field_type,
+            'label'         => 'Input text',
+            'placeholder'   => 'input text',
+            'value'         => '',
+            'require'       => 'on',
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
@@ -44,7 +45,7 @@ class Field_Text {
     public function preview($config = []) {
         $preview = "";
         $preview .= "<div class='ui form big'>";
-        $preview .= "<div class='field" . ($config['require'] == 'on' ? 'required' : '') . "'>";
+        $preview .= "<div class='field " . ($config['require'] == 'on' ? 'required' : '') . "'>";
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
@@ -77,7 +78,7 @@ class Field_Text {
                         ";
         $field_types = Codex_Fields::field_types();
         foreach ($field_types as $field) {
-            $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
+            $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['name']}</option>";
         }
         $config_field .= "
                         </select>
@@ -115,7 +116,7 @@ class Field_Text {
                 </div>
                 <div class='row'>
                     <div class='column'>
-                        <label'>Value</label>
+                        <label'>Default Value</label>
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
@@ -128,11 +129,9 @@ class Field_Text {
                         <label'>Required</label>
                     </div>
                     <div class='column'>
-                        <div class='inline field'>
-                            <div class='ui toggle checkbox'>
-                                <input type='checkbox' name='fields[{$config['id']}][require]' tabindex='0' class='hidden' " . ($config['require'] == 'on' ? 'checked' : '') . ">
-                                <label></label>
-                            </div>
+                        <div class='ui toggle checkbox'>
+                            <input type='checkbox' name='fields[{$config['id']}][require]' " . ($config['require'] == 'on' ? 'checked' : '') . ">
+                            <label></label>
                         </div>
                     </div>
                 </div>

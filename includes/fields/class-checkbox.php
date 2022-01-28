@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) {
 class Field_Checkbox {
 
     private $field_type = 'checkbox';
-    
+
     public function __construct() {
         $this->init();
     }
@@ -25,15 +25,15 @@ class Field_Checkbox {
 
         //default config for field
         $default_config = array(
-            'id' => $_POST['field_id'],
-            'type' => $this->field_type,
-            'label' => 'CheckBoxes',
-            #'orientation' => '',
-            'options' => array(
+            'id'                => $_POST['field_id'],
+            'type'              => $this->field_type,
+            'label'             => 'CheckBox List',
+            'orientation'       => 'Vertical',
+            'options'           => array(
                 1 => 'Option 1',
                 2 => 'Option 2'
             ),
-            'next_option_id' => 3,
+            'next_option_id'    => 3,
         );
 
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
@@ -49,40 +49,45 @@ class Field_Checkbox {
     }
 
     public function preview($config = []) { #vertical(แนวตั้ง)
-
         $preview = "";
         $preview .= "<div class='ui form big'>";
-        $preview .= "<div class='grouped fields'>";
-        if (isset($config['label'])) {
-            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
+
+        if ($config['orientation'] == 'Vertical') {
+            $preview .= "<div class='grouped fields'>";
+            if (isset($config['label'])) {
+                $preview .= "<label>{$config['label']}</label>";
+            }
+
+            foreach ($config['options'] as $option) {
+                $preview .= "<div class='ui-checkbox'>";
+                $preview .= "<input type='checkbox' name='field_id[{$config['id']}]' id='{$config['id']}' value='{$option}' disabled>";
+                $preview .= "<label value='{$option}' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label>";
+                $preview .= "</div>";
+            }
+
+            $preview .= "</div>";
+        } else {
+            $preview .= "<div class='inline fields'>";
+            if (isset($config['label'])) {
+                $preview .= "<label>{$config['label']}</label>";
+            }
+
+            foreach ($config['options'] as $option) {
+                $preview .= "<div class='ui-checkbox'>";
+                $preview .= "<input type='checkbox' name='field_id[{$config['id']}]' id='{$config['id']}' value='{$option}' disabled>";
+                $preview .= "<label value='{$option}' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label>";
+                $preview .= "</div>";
+            }
+
+            $preview .= "</div>";
         }
-        foreach ($config['options'] as $option) {
-            $preview .= "<div class='ui'><input type='checkbox' name='field_id[{$config['id']}]' id='{$config['id']}' value='{$option}' disabled>";
-            $preview .= "<label value='{$option}' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label></div>";
-        }
+
         $preview .= "</div>";
-        $preview .= "</div>";
+
         return $preview;
     }
 
-    // public function preview($config = []) { #horizontal(แนวนอน)
-
-    //     $preview = "";
-    //     $preview .= "<div class='ui form big'>";
-    //     $preview .= "<div class='inline fields'>";
-    //     if (isset($config['label'])) {
-    //         $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
-    //     }
-    //     foreach ($config['options'] as $option) {
-    //         $preview .= "<div class='ui checkbox'><input type='checkbox' name='field[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
-    //         $preview .= "<label value='$option' " . ($option === $config['option_default'] ? 'selected' : '') . ">{$option}</label></div>";
-    //     }
-    //     $preview .= "</div>";
-    //     $preview .= "</div>";
-    //     return $preview;
-    // }
-
-    public function config($config = []) { 
+    public function config($config = []) {
         $config_field = "
         <div class='wrapper-instance-pane properties-config config_field_{$config['id']}' data-field-id='{$config['id']}' style='display: none;'>
             <div class='ui two column grid'>
@@ -104,10 +109,10 @@ class Field_Checkbox {
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
                         ";
         $field_types = Codex_Fields::field_types();
-            foreach ($field_types as $field) {
-                $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
-            }
-            $config_field .= "
+        foreach ($field_types as $field) {
+            $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
+        }
+        $config_field .= "
                         </select>
                     </div>
                 </div>
@@ -137,8 +142,8 @@ class Field_Checkbox {
                     </div>
                     <div class='column'>
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][orientation]'>
-                        <option value='left' " . ('left' == $config['orientation'] ? 'selected' : '') . ">Vertical</option>
-                        <option value='middle' " . ('middle' == $config['orientation'] ? 'selected' : '') . ">Horizontal</option>
+                        <option value='Vertical' " . ('Vertical' == $config['orientation'] ? 'selected' : '') . ">Vertical</option>
+                        <option value='Horizontal' " . ('Horizontal' == $config['orientation'] ? 'selected' : '') . ">Horizontal</option>
                         </select>
                     </div>
                 </div>
@@ -153,8 +158,8 @@ class Field_Checkbox {
                     </div>
                     <div class='four wide column'>
                         ";
-            foreach ($config['options'] as $option => $v) {
-                $config_field .= "
+        foreach ($config['options'] as $option => $v) {
+            $config_field .= "
                         <div class='ui fluid input'>
                             <div class='index-control'><input type='radio' name='fields[{$config['id']}][option_default]' " . ($config['option_default'] == $v ? 'checked' : '') . " value='{$v}'></div>
                             <input type='text' class='form-control' name='fields[{$config['id']}][options][{$option}]' value='{$v}'>
@@ -165,8 +170,8 @@ class Field_Checkbox {
                                 <i class='icon minus circle red'></i>
                             </a>
                         </div>";
-            }
-            $config_field .= "
+        }
+        $config_field .= "
                     </div>
                 </div>
             </div>
