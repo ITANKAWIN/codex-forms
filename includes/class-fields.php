@@ -126,7 +126,7 @@ class Codex_Fields {
                 "icon"          => "icon map marker alternate"
             ),
             'Pin-GPS' => array(
-                "name"          => "GPS",
+                "name"          => "Google Maps",
                 "group"         => "Special",
                 "type"          => "Pin-GPS",
                 "description"   => "input string or integer one line",

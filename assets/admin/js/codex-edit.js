@@ -134,7 +134,7 @@
         // When a file is selected, grab the URL and set it as the text field's value
         mediaUploader.on("select", function () {
           attachment = mediaUploader.state().get("selection").first().toJSON();
-          
+
           // change preview image
           $("#" + id).attr("src", attachment.url);
 
@@ -143,9 +143,6 @@
         // Open the uploader dialog
         mediaUploader.open();
       });
-
-      // GPS google map
-      
     },
 
     // Function for Drag & Drop & Sort item field
@@ -508,8 +505,6 @@
         }
       }
     },
-
-    fieldSelectOptionSortable: function (selector) {},
   };
 
   app.init();
