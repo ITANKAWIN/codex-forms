@@ -392,7 +392,7 @@
         "<strong class='saving'>Saving<span>.</span><span>.</span><span>.</span></strong>"
       );
 
-      console.log($("#panel").serializeArray());
+      console.log($("#setting_form").serializeArray());
 
       var data = {
         title: formName.val(),

@@ -32,9 +32,9 @@ class Codex_Edit_form {
 
         $this->form_config = json_decode(stripslashes($this->form->config), true, JSON_UNESCAPED_UNICODE);
 
-        // print("<pre>");
-        // print_r($this->form->config);
-        // print("</pre>");
+        print("<pre>");
+        print_r($this->form_config['setting']);
+        print("</pre>");
     }
 
     function load_field() {
@@ -130,7 +130,7 @@ class Codex_Edit_form {
 
                         ?>
                         <div class="add-row">
-                            <div class="panel-add" id="add-row">
+                            <div class="panel-add" id="add-row" data-tooltip='Click here to add new row'>
                                 <i class="dashicons dashicons-plus-alt"></i>
                                 <b>Add row</b>
                             </div>
@@ -221,7 +221,7 @@ class Codex_Edit_form {
                             <td>
                                 <div class="ui form">
                                     <div class="field">
-                                        <textarea rows="2" name="setting[succ_msg]"></textarea>
+                                        <textarea rows="2" name="setting[succ_msg]"><?= $this->form_config['setting']['succ_msg'] ?></textarea>
                                     </div>
                                 </div>
                             </td>
@@ -230,7 +230,7 @@ class Codex_Edit_form {
                             <td>Redirect for success submit</td>
                             <td>
                                 <div class="ui input">
-                                    <input type="url" name="setting[redirect]" placeholder="http://localhost/....">
+                                    <input type="url" name="setting[redirect]" placeholder="http://localhost/...." value="<?= $this->form_config['setting']['redirect'] ?>">
                                 </div>
                             </td>
                         </tr>
@@ -238,9 +238,9 @@ class Codex_Edit_form {
                             <td>Template</td>
                             <td>
                                 <select class="ui dropdown" name="setting[template]">
-                                    <option value="Normal">Normal</option>
-                                    <option value="Register">Register</option>
-                                    <option value="Login">Login</option>
+                                    <option value="blank">Blank</option>
+                                    <option value="register">Register</option>
+                                    <option value="login">Login</option>
                                 </select>
                             </td>
                         </tr>
