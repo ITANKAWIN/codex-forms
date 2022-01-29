@@ -44,6 +44,7 @@ class Codex_Templates {
             'panel'     => [],
             'setting'   => [
                 'template'  => 'blank',
+                'succ_msg'  => 'Thankyou for submit form.'
             ],
         );
 
@@ -95,7 +96,7 @@ class Codex_Templates {
             ),
             'setting' =>
             array(
-                'succ_msg' => '',
+                'succ_msg' => 'Thankyou for submit form.',
                 'redirect' => '',
                 'template' => 'Normal',
             ),

@@ -245,9 +245,13 @@ class Codex_AJAX {
             foreach ($data['field_id'] as $field => $value) {
                 Codex_form_DB::entry_value($entry_id, $field, $value);
             }
+
+            // load form setting
+            $form = Codex_form_DB::get_form_by_id($data['form_id']);
+            $form_setting = json_decode(stripslashes($form->config), true, JSON_UNESCAPED_UNICODE);
         }
 
-        wp_send_json_success($data);
+        wp_send_json_success($form_setting['setting']);
     }
 
     function load_entry() {
@@ -287,7 +291,10 @@ class Codex_AJAX {
         // foreach name field to entry meta value
         foreach ($entrys as $key => $value) {
             $meta_val[$i] = $entrys[$key];
+
+            // field name
             $meta_val[$i]->name = $form_config->fields->{$value->field_id}->name;
+            $meta_val[$i]->type = $form_config->fields->{$value->field_id}->type;
             $i++;
         }
 

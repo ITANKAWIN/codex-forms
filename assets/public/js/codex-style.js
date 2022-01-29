@@ -37,6 +37,10 @@ jQuery(function ($) {
         file_upload = input_file[0].files[0];
       }
 
+      var checkbox = $("input:checkbox").map(function () {
+        return { name: this.name, value: this.checked ? this.value : "false" };
+      });
+
       form_data = new FormData();
       form_data.append("data", data);
       form_data.append("file", file_upload);
@@ -51,8 +55,13 @@ jQuery(function ($) {
         data: form_data,
         success: function (res) {
           console.log(res);
-          if (res.data) {
-            alert("Submit Success");
+          if (res.success) {
+            alert(res.data.succ_msg);
+            if (res.data.redirect === "") {
+              location.reload();
+            } else {
+              window.location = res.data.redirect;
+            }
           } else {
             alert("something went wrong");
           }

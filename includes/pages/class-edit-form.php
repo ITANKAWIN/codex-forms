@@ -33,7 +33,7 @@ class Codex_Edit_form {
         $this->form_config = json_decode(stripslashes($this->form->config), true, JSON_UNESCAPED_UNICODE);
 
         print("<pre>");
-        print_r($this->form_config['setting']);
+        print_r($this->form_config);
         print("</pre>");
     }
 

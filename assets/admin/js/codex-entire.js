@@ -128,7 +128,7 @@
             }
 
             content += "<tr>";
-            content += "<td>" + name + "</td>";
+            content += "<td>" + name + " (" + val["type"] + ")</td>";
             content += "<td>" + val["value"] + "</td>";
             content += "</tr>";
           });
