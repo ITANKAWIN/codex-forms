@@ -15,8 +15,9 @@ class Codex_Show_Preview {
         $this->is_preview_page();
     }
 
-    function preview($atts = array()) {
+    public function preview($atts = array()) {
         ob_start();
+        $this->preview_style();
         $this->view($atts['id']);
         return ob_get_clean();
     }
@@ -42,15 +43,9 @@ class Codex_Show_Preview {
 
             add_filter('get_the_excerpt', array($this, 'the_content'), 999);
 
-            // add_filter('template_include', array($this, 'template_include'));
+            add_filter('template_include', array($this, 'template_include'));
 
-            // add_filter('post_thumbnail_html', '__return_empty_string');
-
-            add_action('wp_enqueue_scripts', array($this, 'preview_style'));
-        }
-
-        if (isset($_GET['preview_id'])) {
-            add_action('wp_enqueue_scripts', array($this, 'preview_style'));
+            add_filter('post_thumbnail_html', '__return_empty_string');
         }
     }
 
@@ -83,30 +78,26 @@ class Codex_Show_Preview {
     }
 
     public function preview_style() {
-        if (isset($_GET['codex_form_preview']) &&  !empty($_GET['codex_form_preview']) || isset($_GET['preview_id'])) {
 
-            wp_enqueue_script('jquery-ui-core');
+        wp_enqueue_script('jquery-ui-core');
 
-            wp_enqueue_style('codex-preview', CODEX_URL . 'assets/public/css/codex-style.css', __FILE__, codex_css_ver);
+        wp_enqueue_style('codex-preview', CODEX_URL . 'assets/public/css/codex-style.css', __FILE__, codex_css_ver);
 
-            wp_enqueue_script('codex-preview', CODEX_URL . 'assets/public/js/codex-style.js', __FILE__, codex_js_ver);
+        wp_enqueue_script('codex-preview', CODEX_URL . 'assets/public/js/codex-style.js', __FILE__, codex_js_ver);
 
-            wp_enqueue_style('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.css', __FILE__);
+        wp_enqueue_style('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.css', __FILE__);
 
-            wp_enqueue_script('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.js', __FILE__);
+        wp_enqueue_script('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.js', __FILE__);
 
-            $strings = array(
-                'ajax_url' => admin_url('admin-ajax.php'),
-            );
+        $strings = array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+        );
 
-            wp_localize_script(
-                'codex-preview',
-                'codex_admin',
-                $strings
-            );
-        } else {
-            return;
-        }
+        wp_localize_script(
+            'codex-preview',
+            'codex_admin',
+            $strings
+        );
     }
 
     public static function view($id) {
@@ -114,9 +105,8 @@ class Codex_Show_Preview {
         // Fetch form details for the entry.
         $form_data = Codex_form_DB::get_form_by_id($id, 'wp_codex_forms');
         $form_content = json_decode(stripslashes($form_data->config), true);
-
         echo "<form method='POST' enctype='multipart/form-data' id='{$form_data->id}' class='codex_forms_form'>";
-        echo "<div class='layout-panel'>";
+        echo "<div class='layout-panel' data-template='{$form_content['setting']['template']}'>";
         echo "<input type='hidden' name='form_id' value='{$form_data->id}'>";
         if (!empty($form_content['panels'])) {
             $row = 0;

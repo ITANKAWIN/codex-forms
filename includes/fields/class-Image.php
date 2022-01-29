@@ -53,7 +53,7 @@ class Field_Image {
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<img id='{$config['id']}' class='ui image centered {$config['size_set']} {$config['border']}' src='{$config['image']}'>";
+        $preview .= "<img id='{$config['id']}' class='ui image centered {$config['size']} {$config['border']}' src='{$config['image']}'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -141,10 +141,10 @@ class Field_Image {
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
-                            <select class='ui fluid dropdown' name='fields[{$config['id']}][size_set]'>
+                            <select class='ui fluid dropdown' name='fields[{$config['id']}][size]'>
                         ";
         foreach ($this->size() as $size) {
-            $config_field .= "<option value='{$size}' " . ($size == $config['size_set'] ? 'selected' : '') . ">{$size}</option>";
+            $config_field .= "<option value='{$size}' " . ($size == $config['size'] ? 'selected' : '') . ">{$size}</option>";
         }
         $config_field .= "
                             </select>
