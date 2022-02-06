@@ -107,6 +107,7 @@ class Codex_Show_Preview {
         $form_content = json_decode(stripslashes($form_data->config), true);
         echo "<form method='POST' enctype='multipart/form-data' id='{$form_data->id}' class='codex_forms_form'>";
         echo "<div class='layout-panel' data-template='{$form_content['setting']['template']}'>";
+        echo "<div class='msg_errors'></div>";
         echo "<input type='hidden' name='form_id' value='{$form_data->id}'>";
         if (!empty($form_content['panels'])) {
             $row = 0;

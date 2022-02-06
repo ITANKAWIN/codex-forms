@@ -32,9 +32,9 @@ class Codex_Edit_form {
 
         $this->form_config = json_decode(stripslashes($this->form->config), true, JSON_UNESCAPED_UNICODE);
 
-        // print("<pre>");
-        // print_r($this->form_config);
-        // print("</pre>");
+        print("<pre>");
+        print_r($this->form_config);
+        print("</pre>");
     }
 
     function load_field() {
@@ -235,12 +235,30 @@ class Codex_Edit_form {
                             </td>
                         </tr>
                         <tr>
+                            <td>Message for Error submit</td>
+                            <td>
+                                <div class="ui form">
+                                    <div class="field">
+                                        <textarea rows="2" name="setting[err_msg]"><?= $this->form_config['setting']['err_msg'] ?></textarea>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Redirect for Error submit</td>
+                            <td>
+                                <div class="ui input">
+                                    <input type="url" name="setting[err_redirect]" placeholder="http://localhost/...." value="<?= $this->form_config['setting']['err_redirect'] ?>">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Template</td>
                             <td>
-                                <select class="ui dropdown" name="setting[template]">
-                                    <option value="blank">Blank</option>
-                                    <option value="register">Register</option>
-                                    <option value="login">Login</option>
+                                <select class="ui dropdown" name="setting[template]" disabled>
+                                    <option value="blank" <?= ($this->form_config['setting']['template'] == 'blank' ? 'selected' : '') ?>>Blank</option>
+                                    <option value="register" <?= ($this->form_config['setting']['template'] == 'register' ? 'selected' : '') ?>>Register</option>
+                                    <option value="login" <?= ($this->form_config['setting']['template'] == 'login' ? 'selected' : '') ?>>Login</option>
                                 </select>
                             </td>
                         </tr>

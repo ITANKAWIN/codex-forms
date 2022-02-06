@@ -15,7 +15,14 @@ class Codex_AJAX {
 
         add_action('wp_ajax_save_form', array($this, 'save_form'));
 
-        add_action('wp_ajax_entry_value', array($this, 'form_submit'));
+        // Submit template blank form
+        add_action('wp_ajax_submit_form', array($this, 'submit_form'));
+
+        // Submit template login form
+        add_action('wp_ajax_submit_form_login', array($this, 'submit_form_login'));
+
+        // Submit template register form
+        add_action('wp_ajax_submit_form', array($this, 'submit_form_register'));
 
         // load all entry id from id form
         add_action('wp_ajax_load_entry', array($this, 'load_entry'));
@@ -189,7 +196,7 @@ class Codex_AJAX {
         wp_send_json_success();
     }
 
-    function form_submit() {
+    function submit_form() {
 
         if (empty($_POST['data'])) {
             wp_send_json_error();
@@ -197,6 +204,102 @@ class Codex_AJAX {
 
         $form_data = json_decode(stripslashes($_POST['data']));
 
+        $data      = $this->form_to_array($form_data);
+
+
+        if (!empty($_FILES['file'])) {
+            $arr_img_ext = array('image/png', 'image/jpeg', 'image/jpg', 'image/gif');
+            if (in_array($_FILES['file']['type'], $arr_img_ext)) {
+                $upload = wp_upload_bits($_FILES["file"]["name"], null, file_get_contents($_FILES["file"]["tmp_name"]));
+                $url_upload = $upload['url'];
+            }
+
+            $data = array_merge_recursive($data, array('field_id' => array($_POST['file_id'] => $url_upload)));
+        }
+
+        if (!empty($data['form_id'])) {
+            $entry_id = Codex_form_DB::entry($data['form_id']);
+            foreach ($data['field_id'] as $field => $value) {
+                Codex_form_DB::entry_value($entry_id, $field, $value);
+            }
+
+            // load form setting
+            $form = Codex_form_DB::get_form_by_id($data['form_id']);
+            $form_setting = json_decode(stripslashes($form->config), true, JSON_UNESCAPED_UNICODE);
+        }
+
+        wp_send_json_success($form_setting['setting']);
+    }
+
+    function submit_form_login() {
+
+        if (empty($_POST['data'])) {
+            wp_send_json_error();
+        }
+
+        $form_data = json_decode(stripslashes($_POST['data']));
+
+        $data = $this->form_to_array($form_data);
+
+        // load form setting
+        $form = Codex_form_DB::get_form_by_id($data['form_id']);
+        $form_setting = json_decode(stripslashes($form->config), true, JSON_UNESCAPED_UNICODE);
+
+        if (!empty($_FILES['file'])) {
+            $arr_img_ext = array('image/png', 'image/jpeg', 'image/jpg', 'image/gif');
+            if (in_array($_FILES['file']['type'], $arr_img_ext)) {
+                $upload = wp_upload_bits($_FILES["file"]["name"], null, file_get_contents($_FILES["file"]["tmp_name"]));
+                $url_upload = $upload['url'];
+            }
+
+            $data = array_merge_recursive($data, array('field_id' => array($_POST['file_id'] => $url_upload)));
+        }
+
+        if (!empty($data['form_id'])) {
+            $entry_id = Codex_form_DB::entry($data['form_id']);
+            foreach ($data['field_id'] as $field => $value) {
+                Codex_form_DB::entry_value($entry_id, $field, $value);
+            }
+        }
+
+        wp_send_json_success($data);
+    }
+
+    function submit_form_register() {
+
+        if (empty($_POST['data'])) {
+            wp_send_json_error();
+        }
+
+        $form_data = json_decode(stripslashes($_POST['data']));
+
+        $data = $this->form_to_array($form_data);
+
+        if (!empty($_FILES['file'])) {
+            $arr_img_ext = array('image/png', 'image/jpeg', 'image/jpg', 'image/gif');
+            if (in_array($_FILES['file']['type'], $arr_img_ext)) {
+                $upload = wp_upload_bits($_FILES["file"]["name"], null, file_get_contents($_FILES["file"]["tmp_name"]));
+                $url_upload = $upload['url'];
+            }
+
+            $data = array_merge_recursive($data, array('field_id' => array($_POST['file_id'] => $url_upload)));
+        }
+
+        if (!empty($data['form_id'])) {
+            $entry_id = Codex_form_DB::entry($data['form_id']);
+            foreach ($data['field_id'] as $field => $value) {
+                Codex_form_DB::entry_value($entry_id, $field, $value);
+            }
+
+            // load form setting
+            $form = Codex_form_DB::get_form_by_id($data['form_id']);
+            $form_setting = json_decode(stripslashes($form->config), true, JSON_UNESCAPED_UNICODE);
+        }
+
+        wp_send_json_success($form_setting['setting']);
+    }
+
+    function form_to_array($form_data) {
         $data      = [];
 
         if (!is_null($form_data) && $form_data) {
@@ -230,28 +333,7 @@ class Codex_AJAX {
             }
         }
 
-        if (!empty($_FILES['file'])) {
-            $arr_img_ext = array('image/png', 'image/jpeg', 'image/jpg', 'image/gif');
-            if (in_array($_FILES['file']['type'], $arr_img_ext)) {
-                $upload = wp_upload_bits($_FILES["file"]["name"], null, file_get_contents($_FILES["file"]["tmp_name"]));
-                $url_upload = $upload['url'];
-            }
-
-            $data = array_merge_recursive($data, array('field_id' => array($_POST['file_id'] => $url_upload)));
-        }
-
-        if (!empty($data['form_id'])) {
-            $entry_id = Codex_form_DB::entry($data['form_id']);
-            foreach ($data['field_id'] as $field => $value) {
-                Codex_form_DB::entry_value($entry_id, $field, $value);
-            }
-
-            // load form setting
-            $form = Codex_form_DB::get_form_by_id($data['form_id']);
-            $form_setting = json_decode(stripslashes($form->config), true, JSON_UNESCAPED_UNICODE);
-        }
-
-        wp_send_json_success($form_setting['setting']);
+        return $data;
     }
 
     function load_entry() {

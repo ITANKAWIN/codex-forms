@@ -77,7 +77,7 @@ class Field_button {
                         <label>Type</label>
                     </div>
                     <div class='column'>
-                        <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
+                        <select class='ui dropdown' name='fields[{$config['id']}][type]'>
                         ";
         $field_types = Codex_Fields::field_types();
         foreach ($field_types as $field) {

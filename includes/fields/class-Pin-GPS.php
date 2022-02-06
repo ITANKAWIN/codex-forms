@@ -48,7 +48,7 @@ class Field_Pin_GPS {
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
         $preview .= "<div class='codex-google-map'>{$config['map']}</div>";
         $preview .= "</div>";

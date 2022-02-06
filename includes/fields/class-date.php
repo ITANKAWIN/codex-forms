@@ -45,7 +45,7 @@ class Field_Date {
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field " . ($config['require'] == 'on' ? 'required' : '') . "'>";
         if (isset($config['label'])) {
-            $preview .= "<label >{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
         $preview .= "<input type='date' name='field_id[{$config['id']}]' id='{$config['id']}'  disabled " . ($config['require'] == 'on' ? 'required' : '') . ">";
         $preview .= "</div>";

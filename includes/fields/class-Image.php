@@ -51,7 +51,7 @@ class Field_Image {
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
         $preview .= "<img id='{$config['id']}' class='ui image centered {$config['size']} {$config['border']}' src='{$config['image']}'>";
         $preview .= "</div>";

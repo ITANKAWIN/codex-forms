@@ -42,7 +42,7 @@ class Field_Scale_Rating {
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
         $preview .= "<input type='range' class='codex-range' name='field_id[{$config['id']}]' data-id='{$config['id']}' min='{$config['min']}' max='{$config['max']}' step='{$config['step']}' value='{$config['default']}' disabled>";
         $preview .= "<p id='{$config['id']}'>{$config['default']}</p>";

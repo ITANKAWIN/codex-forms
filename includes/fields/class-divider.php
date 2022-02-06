@@ -30,9 +30,6 @@ class Field_Divider {
         $default_config = array(
             'id' => $_POST['field_id'],
             'type' => $this->field_type,
-            'label' => '',
-            'placeholder' => 'divider',
-            'value' => ''
         );
 
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
@@ -52,11 +49,6 @@ class Field_Divider {
         $preview = "";
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field hg'>";
-
-        if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
-        }
-
         $preview .= "<hr name='field_id[{$config['id']}]' id='{$config['id']}' clss='fielddivider' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";

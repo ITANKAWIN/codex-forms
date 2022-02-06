@@ -58,7 +58,7 @@ class Field_Radio {
         if ($config['orientation'] == 'Vertical') {
             $preview .= "<div class='grouped fields'>";
             if (isset($config['label'])) {
-                $preview .= "<label>{$config['label']}</label>";
+                $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
             }
 
             foreach ($config['options'] as $option) {
@@ -72,7 +72,7 @@ class Field_Radio {
         } else {
             $preview .= "<div class='inline fields'>";
             if (isset($config['label'])) {
-                $preview .= "<label>{$config['label']}</label>";
+                $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
             }
 
             foreach ($config['options'] as $option) {

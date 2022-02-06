@@ -45,7 +45,16 @@ jQuery(function ($) {
       form_data.append("data", data);
       form_data.append("file", file_upload);
       form_data.append("file_id", input_file.attr("id"));
-      form_data.append("action", "entry_value");
+
+      console.log($(".layout-panel").data("template"));
+
+      if ($(".layout-panel").data("template") == "login") {
+        form_data.append("action", "submit_form_login");
+      } else if ($(".layout-panel").data("template") == "register") {
+        form_data.append("action", "submit_form_register");
+      } else {
+        form_data.append("action", "submit_form");
+      }
 
       $.ajax({
         url: codex_admin.ajax_url,
@@ -56,12 +65,12 @@ jQuery(function ($) {
         success: function (res) {
           console.log(res);
           if (res.success) {
-            alert(res.data.succ_msg);
-            if (res.data.redirect === "") {
-              location.reload();
-            } else {
-              window.location = res.data.redirect;
-            }
+            // alert(res.data.succ_msg);
+            // if (res.data.redirect === "") {
+            //   location.reload();
+            // } else {
+            //   window.location = res.data.redirect;
+            // }
           } else {
             alert("something went wrong");
           }

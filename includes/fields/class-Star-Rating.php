@@ -43,7 +43,7 @@ class Field_Star_Rating {
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field'>";
         if (isset($config['label'])) {
-            $preview .= "<label>{$config['label']}</label>";
+            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
         $preview .= "<div class='ui star rating codex-rating' data-rating='{$config['default_of_star']}' data-max-rating='{$config['number_of_star']}' data-id='{$config['id']}'></div>";
         $preview .= "<input type='hidden' name='field_id[{$config['id']}]' value='{$config['default_of_star']}'>";

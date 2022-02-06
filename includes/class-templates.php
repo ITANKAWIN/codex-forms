@@ -43,8 +43,11 @@ class Codex_Templates {
             'panels'    => 12,
             'panel'     => [],
             'setting'   => [
+                'succ_msg'  => 'Thankyou for submit form.',
+                'redirect' => '',
+                'err_msg'  => 'Something Went wrong!!',
+                'err_redirect' => '',
                 'template'  => 'blank',
-                'succ_msg'  => 'Thankyou for submit form.'
             ],
         );
 
@@ -98,7 +101,9 @@ class Codex_Templates {
             array(
                 'succ_msg' => 'Thankyou for submit form.',
                 'redirect' => '',
-                'template' => 'Normal',
+                'err_msg'  => 'Something Went wrong!!',
+                'err_redirect' => '',
+                'template' => 'login',
             ),
         );
 

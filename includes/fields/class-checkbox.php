@@ -55,7 +55,7 @@ class Field_Checkbox {
         if ($config['orientation'] == 'Vertical') {
             $preview .= "<div class='grouped fields'>";
             if (isset($config['label'])) {
-                $preview .= "<label>{$config['label']}</label>";
+                $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
             }
 
             foreach ($config['options'] as $option) {
@@ -69,7 +69,7 @@ class Field_Checkbox {
         } else {
             $preview .= "<div class='inline fields'>";
             if (isset($config['label'])) {
-                $preview .= "<label>{$config['label']}</label>";
+                $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
             }
 
             foreach ($config['options'] as $option) {
