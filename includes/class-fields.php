@@ -12,12 +12,23 @@ class Codex_Fields {
         if (!empty($field_types)) {
             foreach ($field_types as $field) {
 
-                if (file_exists(CODEX_PATH . '/includes/fields/class-' . $field['type'] . '.php')) {
-                    require_once(CODEX_PATH . '/includes/fields/class-' . $field['type'] . '.php');
+                if (file_exists(CODEX_PATH . '/includes/fields/Standard/class-' . $field['type'] . '.php')) {
+                    require_once(CODEX_PATH . '/includes/fields/Standard/class-' . $field['type'] . '.php');
                 }
             }
         }
 
+        $field_types = self::field_types_user();
+
+
+        if (!empty($field_types)) {
+            foreach ($field_types as $field) {
+
+                if (file_exists(CODEX_PATH . '/includes/fields/User/class-' . $field['type'] . '.php')) {
+                    require_once(CODEX_PATH . '/includes/fields/User/class-' . $field['type'] . '.php');
+                }
+            }
+        }
     }
 
     public static function groups() {
@@ -26,6 +37,14 @@ class Codex_Fields {
             'Select',
             'File',
             'Special',
+        );
+
+        return $groups;
+    }
+
+    public static function groups_user() {
+        $groups = array(
+            'Basic',
         );
 
         return $groups;
@@ -156,6 +175,90 @@ class Codex_Fields {
         );
 
         return $fields;
+    }
+
+    public static function field_types_user() {
+        $field = array(
+            'Email_User' => array(
+                "name"          => "Email",
+                "group"         => "Basic",
+                "type"          => "email_user",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Con_Email_User' => array(
+                "name"          => "Confirm Email",
+                "group"         => "Basic",
+                "type"          => "con_email_user",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Password_User' => array(
+                "name"          => "Password",
+                "group"         => "Basic",
+                "type"          => "password_user",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Con_Password_User' => array(
+                "name"          => "Confirm Password",
+                "group"         => "Basic",
+                "type"          => "con_password_user",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Username' => array(
+                "name"          => "Username",
+                "group"         => "Basic",
+                "type"          => "username",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Nickname' => array(
+                "name"          => "Nickname",
+                "group"         => "Basic",
+                "type"          => "nickname",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'First_Name' => array(
+                "name"          => "First Name",
+                "group"         => "Basic",
+                "type"          => "first_name",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Last_Name' => array(
+                "name"          => "Last Name",
+                "group"         => "Basic",
+                "type"          => "last_name",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Website' => array(
+                "name"          => "Website",
+                "group"         => "Basic",
+                "type"          => "website",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Display_Name' => array(
+                "name"          => "Display Name",
+                "group"         => "Basic",
+                "type"          => "display_name",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'User_Bio' => array(
+                "name"          => "User Bio",
+                "group"         => "Basic",
+                "type"          => "user_bio",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+        );
+
+        return $field;
     }
 }
 

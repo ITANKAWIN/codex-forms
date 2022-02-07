@@ -1,7 +1,8 @@
 .layout-column {
   background-color: rgb(187 187 187 / 9%);
-  margin: 0px 3px 23px;
-  min-height: 50px;
+  margin-top: 10px;
+  min-height: 100px;
+  padding: 10px;
   position: relative;
 }
 
@@ -144,6 +145,12 @@
   width: 100%;
 }
 
+.field_over {
+  background: #a2e1e7;
+  height: 5px;
+  border-radius: 5px;
+}
+
 /* Delete Field */
 
 .delete-field {
@@ -193,7 +200,6 @@
   top: -20px;
   cursor: pointer;
 }
-
 
 @keyframes blink {
   0% {

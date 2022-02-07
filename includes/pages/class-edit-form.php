@@ -4,6 +4,7 @@ class Codex_Edit_form {
     private $form_id;
     private $form;
     private $form_config;
+    private $template;
 
     function __construct() {
 
@@ -32,6 +33,7 @@ class Codex_Edit_form {
 
         $this->form_config = json_decode(stripslashes($this->form->config), true, JSON_UNESCAPED_UNICODE);
 
+        $this->template = $this->form_config['setting']['template'];
         print("<pre>");
         print_r($this->form_config);
         print("</pre>");
@@ -151,8 +153,13 @@ class Codex_Edit_form {
                                     <div class="ui vertical menu size">
                                         <?php
 
-                                        $groups = Codex_Fields::groups();
-                                        $field_types = Codex_Fields::field_types();
+                                        if ($this->template == "blank") {
+                                            $groups = Codex_Fields::groups();
+                                            $field_types = Codex_Fields::field_types();
+                                        } else if ($this->template == "login" || $this->template == "register") {
+                                            $groups = Codex_Fields::groups_user();
+                                            $field_types = Codex_Fields::field_types_user();
+                                        }
 
                                         foreach ($groups as $group) {
                                             echo "<div class='ui header size'>{$group}</div>";
@@ -255,10 +262,10 @@ class Codex_Edit_form {
                         <tr>
                             <td>Template</td>
                             <td>
-                                <select class="ui dropdown" name="setting[template]" disabled>
-                                    <option value="blank" <?= ($this->form_config['setting']['template'] == 'blank' ? 'selected' : '') ?>>Blank</option>
-                                    <option value="register" <?= ($this->form_config['setting']['template'] == 'register' ? 'selected' : '') ?>>Register</option>
-                                    <option value="login" <?= ($this->form_config['setting']['template'] == 'login' ? 'selected' : '') ?>>Login</option>
+                                <select class="ui dropdown" name="setting[template]">
+                                    <option value="blank" <?= ($this->form_config['setting']['template'] == 'blank' ? 'selected' : 'disabled') ?>>Blank</option>
+                                    <option value="register" <?= ($this->form_config['setting']['template'] == 'register' ? 'selected' : 'disabled') ?>>Register</option>
+                                    <option value="login" <?= ($this->form_config['setting']['template'] == 'login' ? 'selected' : 'disabled') ?>>Login</option>
                                 </select>
                             </td>
                         </tr>

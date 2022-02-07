@@ -55,6 +55,20 @@ class Codex_Templates {
     }
 
     function Template_Register() {
+        $data = array(
+            'fields'    => [],
+            'panels'    => 12,
+            'panel'     => [],
+            'setting'   => [
+                'succ_msg'  => 'Thankyou for submit form.',
+                'redirect' => '',
+                'err_msg'  => 'Something Went wrong!!',
+                'err_redirect' => '',
+                'template'  => 'register',
+            ],
+        );
+
+        return $data;
     }
 
     function Template_Login() {

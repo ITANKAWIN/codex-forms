@@ -198,8 +198,8 @@
       $(".field-item").draggable({
         connectToSortable: ".layout-column",
         cursor: "grabbing",
-        opacity: 0.75,
-        revert: "invalid",
+        // revert: "invalid",
+        placeholder: true,
 
         start: function (e, ui) {
           ui.helper
@@ -221,7 +221,7 @@
             .attr("data-field-type", type);
         },
 
-        cancel: false,
+        // cancel: false,
         containment: "document",
       });
     },
