@@ -1,6 +1,6 @@
 .layout-column {
-  background-color: rgb(187 187 187 / 9%);
-  margin-top: 10px;
+  background-color: #dadadb54;
+  margin-bottom: 10px;
   min-height: 100px;
   padding: 10px;
   position: relative;
@@ -229,3 +229,4 @@
 .saving span:nth-child(3) {
   animation-delay: 0.4s;
 }
+

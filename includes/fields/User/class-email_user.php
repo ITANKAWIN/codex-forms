@@ -49,7 +49,7 @@ class Field_Email_User {
         if (isset($config['label'])) {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<input type='email' name='email' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
+        $preview .= "<input type='email' name='email' id='{$config['id']}' class='email_user' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

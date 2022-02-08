@@ -46,13 +46,14 @@ jQuery(function ($) {
       form_data.append("file", file_upload);
       form_data.append("file_id", input_file.attr("id"));
 
-      console.log($(".layout-panel").data("template"));
-
       if ($(".layout-panel").data("template") == "login") {
+        // if template login
         form_data.append("action", "submit_form_login");
       } else if ($(".layout-panel").data("template") == "register") {
+        // if template register
         form_data.append("action", "submit_form_register");
       } else {
+        // if template blank
         form_data.append("action", "submit_form");
       }
 
@@ -65,14 +66,32 @@ jQuery(function ($) {
         success: function (res) {
           console.log(res);
           if (res.success) {
-            // alert(res.data.succ_msg);
-            // if (res.data.redirect === "") {
-            //   location.reload();
-            // } else {
-            //   window.location = res.data.redirect;
-            // }
+            alert(res.data.succ_msg);
+            if (res.data.redirect === "") {
+              location.reload();
+            } else {
+              window.location = res.data.redirect;
+            }
           } else {
-            alert("something went wrong");
+            if (res.data.error_msg.length > 0) {
+              $(".ui.red.message").remove();
+              var err_msg = "";
+              for (msg in res.data.error_msg) {
+                err_msg +=
+                  '<div class="item">' + res.data.error_msg[msg] + "</div>";
+              }
+
+              $(".layout-panel").prepend(
+                '<div class="ui red message">' + err_msg + "</div>"
+              );
+            } else {
+              alert(res.data.err_msg);
+              if (res.data.err_redirect === "") {
+                // location.reload();
+              } else {
+                window.location = res.data.err_redirect;
+              }
+            }
           }
         },
         error: function () {

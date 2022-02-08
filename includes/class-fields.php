@@ -186,13 +186,6 @@ class Codex_Fields {
                 "description"   => "input string or integer one line",
                 "icon"          => "icon image outline"
             ),
-            'Con_Email_User' => array(
-                "name"          => "Confirm Email",
-                "group"         => "Basic",
-                "type"          => "con_email_user",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
-            ),
             'Password_User' => array(
                 "name"          => "Password",
                 "group"         => "Basic",
@@ -253,6 +246,13 @@ class Codex_Fields {
                 "name"          => "User Bio",
                 "group"         => "Basic",
                 "type"          => "user_bio",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Submit' => array(
+                "name"          => "Submit",
+                "group"         => "Basic",
+                "type"          => "submit",
                 "description"   => "input string or integer one line",
                 "icon"          => "icon image outline"
             ),
