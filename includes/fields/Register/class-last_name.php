@@ -2,9 +2,9 @@
 if (!defined('ABSPATH')) {
     die();
 }
-class Field_Username {
+class Field_Last_Name {
 
-    private $field_type = 'username';
+    private $field_type = 'last_name';
 
     public function __construct() {
         $this->init();
@@ -25,8 +25,8 @@ class Field_Username {
         $default_config = array(
             'id'            => $_POST['field_id'],
             'type'          => $this->field_type,
-            'label'         => 'Username',
-            'placeholder'   => 'username',
+            'label'         => 'Last Name',
+            'placeholder'   => 'last name',
             'value'         => '',
             'require'       => 'on',
         );
@@ -49,7 +49,7 @@ class Field_Username {
         if (isset($config['label'])) {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<input type='text' name='username' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
+        $preview .= "<input type='text' name='last_name' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -76,7 +76,7 @@ class Field_Username {
                     <div class='column'>
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
                         ";
-        $field_types = Codex_Fields::field_types_user();
+        $field_types = Codex_Fields::field_types_register();
         foreach ($field_types as $field) {
             $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['name']}</option>";
         }
@@ -131,4 +131,4 @@ class Field_Username {
         return $config_field;
     }
 }
-new Field_Username();
+new Field_Last_Name();

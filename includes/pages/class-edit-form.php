@@ -156,9 +156,12 @@ class Codex_Edit_form {
                                         if ($this->template == "blank") {
                                             $groups = Codex_Fields::groups();
                                             $field_types = Codex_Fields::field_types();
-                                        } else if ($this->template == "login" || $this->template == "register") {
-                                            $groups = Codex_Fields::groups_user();
-                                            $field_types = Codex_Fields::field_types_user();
+                                        } else if ($this->template == "register") {
+                                            $groups = Codex_Fields::groups_register();
+                                            $field_types = Codex_Fields::field_types_register();
+                                        } else if ($this->template == "login") {
+                                            $groups = Codex_Fields::groups_login();
+                                            $field_types = Codex_Fields::field_types_login();
                                         }
 
                                         foreach ($groups as $group) {

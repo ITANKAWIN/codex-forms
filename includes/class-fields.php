@@ -18,14 +18,28 @@ class Codex_Fields {
             }
         }
 
-        $field_types = self::field_types_user();
+        // Load class field template register
+        $field_types = self::field_types_register();
 
 
         if (!empty($field_types)) {
             foreach ($field_types as $field) {
 
-                if (file_exists(CODEX_PATH . '/includes/fields/User/class-' . $field['type'] . '.php')) {
-                    require_once(CODEX_PATH . '/includes/fields/User/class-' . $field['type'] . '.php');
+                if (file_exists(CODEX_PATH . '/includes/fields/Register/class-' . $field['type'] . '.php')) {
+                    require_once(CODEX_PATH . '/includes/fields/Register/class-' . $field['type'] . '.php');
+                }
+            }
+        }
+
+        // Load class field template login
+        $field_types = self::field_types_login();
+
+
+        if (!empty($field_types)) {
+            foreach ($field_types as $field) {
+
+                if (file_exists(CODEX_PATH . '/includes/fields/Login/class-' . $field['type'] . '.php')) {
+                    require_once(CODEX_PATH . '/includes/fields/Login/class-' . $field['type'] . '.php');
                 }
             }
         }
@@ -42,7 +56,15 @@ class Codex_Fields {
         return $groups;
     }
 
-    public static function groups_user() {
+    public static function groups_register() {
+        $groups = array(
+            'Basic',
+        );
+
+        return $groups;
+    }
+
+    public static function groups_login() {
         $groups = array(
             'Basic',
         );
@@ -177,7 +199,7 @@ class Codex_Fields {
         return $fields;
     }
 
-    public static function field_types_user() {
+    public static function field_types_register() {
         $field = array(
             'Email_User' => array(
                 "name"          => "Email",
@@ -253,6 +275,41 @@ class Codex_Fields {
                 "name"          => "Submit",
                 "group"         => "Basic",
                 "type"          => "submit",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+        );
+
+        return $field;
+    }
+
+    public static function field_types_login() {
+        $field = array(
+            'Username_login' => array(
+                "name"          => "Username",
+                "group"         => "Basic",
+                "type"          => "username_login",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Email_login' => array(
+                "name"          => "Email",
+                "group"         => "Basic",
+                "type"          => "email_login",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Password_login' => array(
+                "name"          => "Password",
+                "group"         => "Basic",
+                "type"          => "password_login",
+                "description"   => "input string or integer one line",
+                "icon"          => "icon image outline"
+            ),
+            'Submit_login' => array(
+                "name"          => "Submit",
+                "group"         => "Basic",
+                "type"          => "submit_login",
                 "description"   => "input string or integer one line",
                 "icon"          => "icon image outline"
             ),

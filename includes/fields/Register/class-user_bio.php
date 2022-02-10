@@ -2,9 +2,10 @@
 if (!defined('ABSPATH')) {
     die();
 }
-class Field_Password {
 
-    private $field_type = 'password';
+class Field_User_Bio {
+
+    private $field_type = 'user_bio';
 
     public function __construct() {
         $this->init();
@@ -27,13 +28,13 @@ class Field_Password {
         $default_config = array(
             'id'            => $_POST['field_id'],
             'type'          => $this->field_type,
-            'label'         => 'Password',
-            'placeholder'   => '************',
+            'label'         => 'User Bio',
+            'placeholder'   => '',
             'value'         => '',
             'require'       => 'on',
         );
-
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
+
         // Prepare to return compiled results.
         wp_send_json_success(
             array(
@@ -48,19 +49,19 @@ class Field_Password {
     public function preview($config = []) {
 
         $preview = "";
-        $preview .= "<div class='ui form big'>";
+        $preview .= "<div class='ui form huge'>";
         $preview .= "<div class='field " . ($config['require'] == 'on' ? 'required' : '') . "'>";
         if (isset($config['label'])) {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-
-        $preview .= "<input type='password' name='field_id[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
+        $preview .= "<textarea name='user_bio' id='{$config['id']}' rows='3' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . "></textarea>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
     }
 
     public function config($config = []) {
+
         $config_field = "
         <div class='wrapper-instance-pane properties-config config_field_{$config['id']}' data-field-id='{$config['id']}' style='display: none;'>
             <div class='ui two column grid'>
@@ -80,12 +81,12 @@ class Field_Password {
                     </div>
                     <div class='column'>
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
-                        ";
+                    ";
         $field_types = Codex_Fields::field_types();
-            foreach ($field_types as $field) {
+        foreach ($field_types as $field) {
             $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['name']}</option>";
-            }
-            $config_field .= "
+        }
+        $config_field .= "
                         </select>
                     </div>
                 </div>
@@ -99,17 +100,7 @@ class Field_Password {
                         </div>
                     </div>
                 </div>
-                <div class='row'>
-                    <div class='column'>
-                        <label>Name</label>
-                    </div>
-                    <div class='column'>
-                        <div class='ui fluid input'>
-                            <input type='text' class='config-form-name' name='fields[{$config['id']}][name]' value='{$config['name']}'>
-                        </div>
-                    </div>
-                </div>
-                <div class='row'>
+                <div class='row'> 
                     <div class='column'>
                         <label>Placeholder</label>
                     </div>
@@ -125,7 +116,7 @@ class Field_Password {
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
-                            <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                            <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
                         </div>
                     </div>
                 </div>
@@ -145,8 +136,9 @@ class Field_Password {
             </div>
         </div>
         ";
+
         return $config_field;
     }
 }
 
-new Field_Password();
+new Field_User_Bio();

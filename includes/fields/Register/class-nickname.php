@@ -2,9 +2,9 @@
 if (!defined('ABSPATH')) {
     die();
 }
-class Field_Display_Name {
+class Field_Nickname {
 
-    private $field_type = 'display_name';
+    private $field_type = 'nickname';
 
     public function __construct() {
         $this->init();
@@ -25,8 +25,8 @@ class Field_Display_Name {
         $default_config = array(
             'id'            => $_POST['field_id'],
             'type'          => $this->field_type,
-            'label'         => 'Display Name',
-            'placeholder'   => 'display name',
+            'label'         => 'Nick Name',
+            'placeholder'   => 'nick name',
             'value'         => '',
             'require'       => 'on',
         );
@@ -49,7 +49,7 @@ class Field_Display_Name {
         if (isset($config['label'])) {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<input type='text' name='display_name' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
+        $preview .= "<input type='text' name='nickname' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -76,7 +76,7 @@ class Field_Display_Name {
                     <div class='column'>
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
                         ";
-        $field_types = Codex_Fields::field_types_user();
+        $field_types = Codex_Fields::field_types_register();
         foreach ($field_types as $field) {
             $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['name']}</option>";
         }
@@ -131,4 +131,4 @@ class Field_Display_Name {
         return $config_field;
     }
 }
-new Field_Display_Name();
+new Field_Nickname();

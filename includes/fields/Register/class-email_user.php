@@ -76,7 +76,7 @@ class Field_Email_User {
                     <div class='column'>
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
                         ";
-        $field_types = Codex_Fields::field_types_user();
+        $field_types = Codex_Fields::field_types_register();
         foreach ($field_types as $field) {
             $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['name']}</option>";
         }

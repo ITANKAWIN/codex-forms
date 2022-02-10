@@ -2,9 +2,9 @@
 if (!defined('ABSPATH')) {
     die();
 }
-class Field_Nickname {
+class Field_Con_Password_User {
 
-    private $field_type = 'nickname';
+    private $field_type = 'con_password_user';
 
     public function __construct() {
         $this->init();
@@ -25,8 +25,8 @@ class Field_Nickname {
         $default_config = array(
             'id'            => $_POST['field_id'],
             'type'          => $this->field_type,
-            'label'         => 'Nick Name',
-            'placeholder'   => 'nick name',
+            'label'         => 'Confirm Password',
+            'placeholder'   => '************',
             'value'         => '',
             'require'       => 'on',
         );
@@ -49,7 +49,7 @@ class Field_Nickname {
         if (isset($config['label'])) {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<input type='text' name='nickname' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
+        $preview .= "<input type='password' name='con_password' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -76,7 +76,7 @@ class Field_Nickname {
                     <div class='column'>
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
                         ";
-        $field_types = Codex_Fields::field_types_user();
+        $field_types = Codex_Fields::field_types_register();
         foreach ($field_types as $field) {
             $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['name']}</option>";
         }
@@ -131,4 +131,4 @@ class Field_Nickname {
         return $config_field;
     }
 }
-new Field_Nickname();
+new Field_Con_Password_User();

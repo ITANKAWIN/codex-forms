@@ -17,12 +17,18 @@ class Codex_AJAX {
 
         // Submit template blank form
         add_action('wp_ajax_submit_form', array($this, 'submit_form'));
+        // Submit template blank form on the Viewer-Facing Side
+        add_action('wp_ajax_nopriv_submit_form', array($this, 'submit_form'));
 
         // Submit template login form
         add_action('wp_ajax_submit_form_login', array($this, 'submit_form_login'));
+        // login form on the Viewer-Facing Side
+        add_action('wp_ajax_nopriv_submit_form_login', array($this, 'submit_form_login'));
 
         // Submit template register form
         add_action('wp_ajax_submit_form_register', array($this, 'submit_form_register'));
+        // register form on the Viewer-Facing Side
+        add_action('wp_ajax_nopriv_submit_form_register', array($this, 'submit_form_register'));
 
         // load all entry id from id form
         add_action('wp_ajax_load_entry', array($this, 'load_entry'));
@@ -239,30 +245,59 @@ class Codex_AJAX {
 
         $form_data = json_decode(stripslashes($_POST['data']));
 
-        $data = $this->form_to_array($form_data);
-
-        // load form setting
-        $form = Codex_form_DB::get_form_by_id($data['form_id']);
-        $form_setting = json_decode(stripslashes($form->config), true, JSON_UNESCAPED_UNICODE);
-
-        if (!empty($_FILES['file'])) {
-            $arr_img_ext = array('image/png', 'image/jpeg', 'image/jpg', 'image/gif');
-            if (in_array($_FILES['file']['type'], $arr_img_ext)) {
-                $upload = wp_upload_bits($_FILES["file"]["name"], null, file_get_contents($_FILES["file"]["tmp_name"]));
-                $url_upload = $upload['url'];
-            }
-
-            $data = array_merge_recursive($data, array('field_id' => array($_POST['file_id'] => $url_upload)));
-        }
+        $data      = $this->form_to_array($form_data);
 
         if (!empty($data['form_id'])) {
-            $entry_id = Codex_form_DB::entry($data['form_id']);
-            foreach ($data['field_id'] as $field => $value) {
-                Codex_form_DB::entry_value($entry_id, $field, $value);
+            // load form setting
+            $form = Codex_form_DB::get_form_by_id($data['form_id']);
+            $form_setting = json_decode(stripslashes($form->config), true, JSON_UNESCAPED_UNICODE);
+        }
+
+        $error_msg = array();
+
+        if (isset($data["email"])) {
+            // empty email
+            if ($data["email"] != '') {
+                $user = get_user_by('login', $data["email"]);
+
+                if (!$user) {
+                    array_push($error_msg, "Invalid email.");
+                }
+            } else {
+                array_push($error_msg, "Please enter a email.");
             }
         }
 
-        wp_send_json_success($data);
+
+        if (isset($data["username"])) {
+            // empty username
+            if ($data["username"] != '') {
+                $user = get_user_by('email', $data["username"]);
+
+                if (!$user) {
+                    array_push($error_msg, "Invalid email.");
+                }
+            } else {
+                array_push($error_msg, "Please enter a username.");
+            }
+        }
+
+        // passwords do not match
+        // check the user's login with their password
+        if (!wp_check_password($data["password"], $user->user_pass, $user->ID)) {
+            // if the password is incorrect for the specified user
+            array_push($error_msg, "Incorrect password.");
+        }
+
+        if (empty($error_msg)) {
+            wp_clear_auth_cookie();
+            wp_set_current_user($user->ID); // Set the current user detail
+            wp_set_auth_cookie($user->ID); // Set auth details in cookie
+
+            wp_send_json_success($form_setting['setting']);
+        } else {
+            wp_send_json_error($form_setting['setting'] + array('error_msg' => $error_msg));
+        }
     }
 
     function submit_form_register() {
@@ -281,48 +316,37 @@ class Codex_AJAX {
             $form_setting = json_decode(stripslashes($form->config), true, JSON_UNESCAPED_UNICODE);
         }
 
-        $user_first_name    = $data["first_name"];
-        $user_last_name     = $data["last_name"];
-        $user_email         = $data["email"];
-        $user_password      = $data["password"];
-        $user_con_password  = $data["con_password"];
-        $user_website       = $data["website"];
-        $user_display_name  = $data["display_name"];
-        $user_username      = $data["username"];
-        $user_user_bio      = $data["user_bio"];
-        $user_nickname      = $data["nickname"];
-
         $error_msg = array();
 
-        if (username_exists($user_username)) {
+        if (username_exists($data["username"])) {
             array_push($error_msg, "Username already taken.");
         }
 
-        if (!validate_username($user_username)) {
+        if (!validate_username($data["username"])) {
             array_push($error_msg, "Invalid username.");
         }
 
-        if ($user_username == '') {
+        if ($data["username"] == '') {
             // empty username
             array_push($error_msg, "Please enter a username.");
         }
 
-        if (!is_email($user_email)) {
+        if (!is_email($data["email"])) {
             //invalid email
             array_push($error_msg, "Invalid email.");
         }
 
-        if (email_exists($user_email)) {
+        if (email_exists($data["email"])) {
             //Email address already registered
             array_push($error_msg, "Email already registered.");
         }
 
-        if ($user_password == '') {
+        if ($data["password"] == '') {
             // passwords do not match
             array_push($error_msg, "Please enter a password.");
         }
 
-        if ($user_password != $user_con_password) {
+        if ($data["password"] != $data["con_password"]) {
             // passwords do not match
             array_push($error_msg, "Passwords do not match.");
         }
@@ -330,17 +354,17 @@ class Codex_AJAX {
         if (empty($error_msg)) {
             $new_user_id = wp_insert_user(
                 array(
-                    'user_login'        => $user_username,
-                    'user_pass'         => $user_password,
-                    'user_email'        => $user_email,
-                    'first_name'        => $user_first_name,
-                    'last_name'         => $user_last_name,
+                    'user_login'        => $data["username"],
+                    'user_pass'         => $data["password"],
+                    'user_email'        => $data["email"],
+                    'first_name'        => $data["first_name"],
+                    'last_name'         => $data["last_name"],
                     'user_registered'   => date('Y-m-d H:i:s'),
                     'role'              => 'subscriber',
-                    'user_url'          => $user_website,
-                    'nickname'          => $user_nickname,
-                    'display_name'      => $user_display_name,
-                    'description'       => $user_user_bio,
+                    'user_url'          => $data["website"],
+                    'nickname'          => $data["nickname"],
+                    'display_name'      => $data["display_name"],
+                    'description'       => $data["user_bio"],
                 )
             );
 
