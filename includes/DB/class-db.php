@@ -98,7 +98,7 @@ class Codex_form_DB {
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
         return $wpdb->get_results(
             $wpdb->prepare(
-                "SELECT id, name, type, status, date FROM {$wpdb->prefix}codex_forms WHERE `type` = %s AND `status` = %s",
+                "SELECT * FROM {$wpdb->prefix}codex_forms WHERE `type` = %s AND `status` = %s",
                 $type,
                 $status
             )

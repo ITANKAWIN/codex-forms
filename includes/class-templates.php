@@ -149,47 +149,45 @@ class Codex_Templates {
         $data = array(
             'fields' =>
             array(
-                865017 =>
+                937293 =>
                 array(
-                    'id' => '865017',
-                    'type' => 'text',
-                    'label' => 'Username',
-                    'name' => 'username',
-                    'placeholder' => 'Enter username',
+                    'id' => '937293',
+                    'type' => 'submit_login',
+                    'text' => 'Submit',
+                    'align' => 'left',
+                ),
+                855284 =>
+                array(
+                    'id' => '855284',
+                    'type' => 'email_login',
+                    'label' => 'Email',
+                    'placeholder' => 'name@gmail.com',
                     'value' => '',
                     'require' => 'on',
                 ),
-                868719 =>
+                442662 =>
                 array(
-                    'id' => '868719',
-                    'type' => 'password',
+                    'id' => '442662',
+                    'type' => 'password_login',
                     'label' => 'Password',
-                    'name' => 'password',
-                    'placeholder' => 'Enter password',
+                    'placeholder' => '**********',
                     'value' => '',
                     'require' => 'on',
-                ),
-                533540 =>
-                array(
-                    'id' => '533540',
-                    'type' => 'button',
-                    'text' => 'Login',
-                    'align' => 'right',
                 ),
             ),
-            'id' => '24',
-            'panels' => '12|12',
+            'id' => '35',
+            'panels' => '12|12|12',
             'panel' =>
             array(
-                865017 => '1:1',
-                868719 => '1:1',
-                533540 => '2:1',
+                855284 => '1:1',
+                442662 => '2:1',
+                937293 => '3:1',
             ),
             'setting' =>
             array(
                 'succ_msg' => 'Thankyou for submit form.',
                 'redirect' => '',
-                'err_msg'  => 'Something Went wrong!!',
+                'err_msg' => 'Something Went wrong!!',
                 'err_redirect' => '',
                 'template' => 'login',
             ),

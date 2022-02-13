@@ -33,9 +33,14 @@ class Codex_Entire_forms {
             <div class="item">
                 <select class="ui dropdown" id="select-form">
                     <option value="-">-- Select Form --</option>
-                    <?php foreach ($this->forms as $form) {
-                        echo "<option value='{$form->id}' " . ($_GET['form'] == $form->id ? 'selected' : '') . ">{$form->name}</option>";
-                    } ?>
+                    <?php
+                    foreach ($this->forms as $form) {
+                        $form_config = json_decode(stripslashes($form->config), true, JSON_UNESCAPED_UNICODE);
+                        if ($form_config['setting']['template'] == 'blank') {
+                            echo "<option value='{$form->id}' " . ($_GET['form'] == $form->id ? 'selected' : '') . ">{$form->name}</option>";
+                        }
+                    }
+                    ?>
                 </select>
             </div>
         </div>
@@ -49,16 +54,20 @@ class Codex_Entire_forms {
                 <div class="column">
                     <select class="ui dropdown" name="actions" id="">
                         <option>Bulk actions</option>
-                        <option>Move to Trash</option>
+                        <option>Delete</option>
                         <option>Export</option>
                     </select>
                     <button class="Medium ui primary basic button">Apply</button>
                     <a href="?excel=<?= $this->form_id ?>" class="ui teal button" data-tooltip="Click here to export all form" data-position="bottom center"><i class="download icon"></i>Export All</a>
                 </div>
                 <div class="column">
-                    <label for="min">From:</label>
-                    <input type="text" id="min" name="min" placeholder='From date'>
-                    <input type="text" id="max" name="max" placeholder='To date'>
+                    <div class="ui form">
+                        <div class="inline fields">
+                            <label for="min">Date:</label>
+                            <input type="text" id="min" name="min" placeholder='From date'>
+                            <input type="text" id="max" name="max" placeholder='To date'>
+                        </div>
+                    </div>
                 </div>
 
             </div>

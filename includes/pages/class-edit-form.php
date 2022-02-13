@@ -34,9 +34,9 @@ class Codex_Edit_form {
         $this->form_config = json_decode(stripslashes($this->form->config), true, JSON_UNESCAPED_UNICODE);
 
         $this->template = $this->form_config['setting']['template'];
-        print("<pre>");
-        print_r($this->form_config);
-        print("</pre>");
+        // print("<pre>");
+        // print_r($this->form_config);
+        // print("</pre>");
     }
 
     function load_field() {
@@ -99,14 +99,14 @@ class Codex_Edit_form {
             <div class="item">
                 <img class="logo" src="<?= CODEX_URL ?>assets/image/codex-plugin_logo.png">
             </div>
-            <div class="item header">
-                Codex-Forms
-            </div>
             <div class="item">
                 <?= !empty($this->form) ? $this->form->name : '' ?>
             </div>
             <div class="item">
                 <button class="ui yellow button setting-form" data-tooltip="Click here to setting form" data-position="bottom center"><i class="plus icon"></i> Setting</button>
+            </div>
+            <div class="item">
+                <a class="ui button short-code-copy" data-tooltip="Click here copy to clipboard" data-position="bottom center">[codex_form_preview id=<?= $this->form->id ?>]</a>
             </div>
             <div class="right item">
                 <a class="ui olive button" href="<?= home_url() . '/?codex_form_preview=' . $this->form->id ?>" target="_blank" data-tooltip="Click here to perview form" data-position="bottom center"><i class="eye icon"></i> Preview</a>
