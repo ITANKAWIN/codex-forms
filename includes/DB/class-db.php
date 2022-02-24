@@ -163,6 +163,20 @@ class Codex_form_DB {
 
         return $test;
     }
+
+    // save edit entry to db
+    static public function delete_entry($from, $where, $value) {
+
+        global $wpdb;
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
+        return $wpdb->query(
+            $wpdb->prepare(
+                "DELETE FROM `{$wpdb->prefix}$from` 
+                WHERE {$where} in (" . implode(',', $value['id']) . ")",
+            )
+        );
+    }
 }
 
 new Codex_form_DB();

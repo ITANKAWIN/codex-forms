@@ -7,7 +7,20 @@
 
     ready: function () {
       // load data to datatable
-      table = $("#entire_form").DataTable();
+      table = $("#entire_form").DataTable({
+        columnDefs: [
+          {
+            orderable: false,
+            className: "select-checkbox",
+            targets: 0,
+          },
+        ],
+        select: {
+          style: "os",
+          selector: "td:first-child",
+        },
+        order: [[1, "asc"]],
+      });
 
       // select form
       $("#select-form").on("change", function () {
@@ -22,22 +35,46 @@
         return false;
       });
 
-      $("#selectAll").on("click", function () {
-        $(".cf-select").attr("checked", this.checked);
+      $(".check-all").on("click", function () {
+        // Get all rows with search applied
+        var rows = table.rows({ search: "applied" }).nodes();
+        // Check/uncheck checkboxes for all rows in the table
+        $('input[type="checkbox"]', rows).prop("checked", this.checked);
       });
 
-      $(".cf-select").on("change", function () {
-        var select = $(".cf-select:checked");
-        console.log(select);
-        if (select.length) {
-          var list = [];
-
-          for (var i = 0; i < select.length; i++) {
-            list.push(select[i].value);
+      // Handle click on checkbox to set state of "Select all" control
+      $("#entire_form tbody").on(
+        "change",
+        'input[type="checkbox"]',
+        function () {
+          // If checkbox is not checked
+          if (!this.checked) {
+            var el = $(".check-all").get(0);
+            // If "Select all" control is checked and has 'indeterminate' property
+            if (el && el.checked && "indeterminate" in el) {
+              // Set visual state of "Select all" control
+              // as 'indeterminate'
+              el.indeterminate = true;
+            }
           }
-
-          console.log(list);
         }
+      );
+
+      // Handle form submission event
+      $(".action_entire").on("click", function (e) {
+        e.preventDefault();
+        var id = $("#form_id").val();
+        var action = $("#actions").val();
+
+        var selected = table.$('input[type="checkbox"]').serialize();
+
+        if (action === "" || selected === "") {
+          return false;
+        }
+        console.log(selected);
+        console.log(action);
+
+        app.bulk_action(id, action, selected);
       });
 
       // Create date inputs
@@ -203,6 +240,24 @@
         if (res.success) {
         } else {
           console.log(res);
+        }
+      }).fail(function (xhr, textStatus, e) {
+        console.log(xhr.responseText);
+      });
+    },
+
+    bulk_action: function (id, action, select) {
+      var data = {
+        entry_id: id,
+        select: select,
+        action: action + "_entry",
+      };
+      $.post(codex_admin.ajax_url, data, function (res) {
+        if (res.success) {
+          alert("Action success.");
+          location.reload();
+        } else {
+          alert("Selected Can't not action.");
         }
       }).fail(function (xhr, textStatus, e) {
         console.log(xhr.responseText);

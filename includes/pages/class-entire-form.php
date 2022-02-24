@@ -49,15 +49,14 @@ class Codex_Entire_forms {
             $this->form_id = $_GET['form'];
             echo "<input type='hidden' id='form_id' value='{$this->form_id}'>";
         ?>
-
             <div class="ui two column grid">
                 <div class="column">
-                    <select class="ui dropdown" name="actions" id="">
-                        <option>Bulk actions</option>
-                        <option>Delete</option>
-                        <option>Export</option>
+                    <select class="ui dropdown" name="actions" id="actions">
+                        <option value="">Bulk Actions</option>
+                        <option value="delete">Delete Selected</option>
+                        <option value="export">Export Selected</option>
                     </select>
-                    <button class="Medium ui primary basic button">Apply</button>
+                    <button class="Medium ui primary basic button action_entire">Apply</button>
                     <a href="?excel=<?= $this->form_id ?>" class="ui teal button" data-tooltip="Click here to export all form" data-position="bottom center"><i class="download icon"></i>Export All</a>
                 </div>
                 <div class="column">
@@ -80,9 +79,10 @@ class Codex_Entire_forms {
 
     function display() {
         ?>
+
         <table class="ui celled table" id="entire_form">
             <thead>
-                <th><input type='checkbox' id="selectAll"></th>
+                <th><input type='checkbox' class="check-all"></th>
                 <th>ID</th>
                 <th>Submitted</th>
                 <th></th>
@@ -93,6 +93,7 @@ class Codex_Entire_forms {
                 ?>
             </tbody>
         </table>
+
     <?php
     }
 
@@ -104,7 +105,7 @@ class Codex_Entire_forms {
 
         foreach ($entrys as $entry) {
             echo "<tr>";
-            echo "<td><input type='checkbox' class='cf-select' value='{$entry->id}'></td>";
+            echo "<td><input type='checkbox' class='check' name='id' value='{$entry->id}'></td>";
             echo "<td>{$entry->id}</td>";
             $date_submitted = strtotime($entry->date);
             echo "<td>" . date("d F Y, H:i:s", $date_submitted) . "</td>";

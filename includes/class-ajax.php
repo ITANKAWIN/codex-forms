@@ -38,6 +38,12 @@ class Codex_AJAX {
 
         // save edit entry
         add_action('wp_ajax_save_edit_entry', array($this, 'save_edit_entry'));
+
+        // delete entry selected
+        add_action('wp_ajax_delete_entry', array($this, 'delete_entry'));
+
+        // export entry selected
+        add_action('wp_ajax_export_entry', array($this, 'export_entry'));
     }
 
     function new_form() {
@@ -509,6 +515,34 @@ class Codex_AJAX {
         }
 
         wp_send_json_success($test);
+    }
+
+
+    function delete_entry() {
+        $query  = explode('&', $_POST['select']);
+        $params = array();
+
+        foreach ($query as $param) {
+            // prevent notice on explode() if $param has no '='
+            if (strpos($param, '=') === false) $param += '=';
+
+            list($name, $value) = explode('=', $param, 2);
+            $params[urldecode($name)][] = urldecode($value);
+        }
+
+        $data = Codex_form_DB::delete_entry('codex_form_entry', 'id', $params);
+
+        if ($data > 0) {
+            $data = Codex_form_DB::delete_entry('codex_form_entry_meta', 'entry_id', $params);
+            if ($data > 0) {
+                wp_send_json_success();
+            }
+        }
+
+        wp_send_json_error();
+    }
+
+    function export_entry() {
     }
 }
 
