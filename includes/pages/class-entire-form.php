@@ -37,7 +37,7 @@ class Codex_Entire_forms {
                     foreach ($this->forms as $form) {
                         $form_config = json_decode(stripslashes($form->config), true, JSON_UNESCAPED_UNICODE);
                         if ($form_config['setting']['template'] == 'blank') {
-                            echo "<option value='{$form->id}' " . ($_GET['form'] == $form->id ? 'selected' : '') . ">{$form->name}</option>";
+                            echo "<option value='{$form->id}' " . ($_GET['form'] == $form->id ? 'selected' : '') . ">#{$form->id} {$form->name}</option>";
                         }
                     }
                     ?>
@@ -57,7 +57,7 @@ class Codex_Entire_forms {
                         <option value="export">Export Selected</option>
                     </select>
                     <button class="Medium ui primary basic button action_entire">Apply</button>
-                    <a href="?excel=<?= $this->form_id ?>" class="ui teal button" data-tooltip="Click here to export all form" data-position="bottom center"><i class="download icon"></i>Export All</a>
+                    <a href="?export=<?= $this->form_id ?>" class="ui teal button" data-tooltip="Click here to export all form" data-position="bottom center"><i class="download icon"></i>Export All</a>
                 </div>
                 <div class="column">
                     <div class="ui form">
@@ -101,7 +101,7 @@ class Codex_Entire_forms {
 
         $entry_val = array();
 
-        $entrys = Codex_form_DB::get_entry($this->form_id);
+        $entrys = Codex_form_DB::get_entry_by_form_id($this->form_id);
 
         foreach ($entrys as $entry) {
             echo "<tr>";

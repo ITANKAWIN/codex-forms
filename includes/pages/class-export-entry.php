@@ -4,6 +4,9 @@ class Class_Export_Entry {
     // The ID number of the form to be exported.
     private $form_id;
 
+    // ID of selected entry to export
+    private $entry_id;
+
     // Name form to name file
     private $name;
 
@@ -21,11 +24,30 @@ class Class_Export_Entry {
     function export_excel() {
 
         // # check the URL in order to perform the downloading
-        if (!isset($_GET['excel'])) {
+        if (!isset($_GET['export'])) {
             return false;
         }
 
-        $this->form_id = $_GET['excel'];
+        $this->form_id = $_GET['export'];
+
+        if (isset($_GET['id'])) {
+            $query  = explode(
+                '&',
+                $_SERVER['QUERY_STRING']
+            );
+            $params = array();
+
+            foreach ($query as $param) {
+                // prevent notice on explode() if $param has no '='
+                if (strpos($param, '=') === false) $param += '=';
+
+                list($name, $value) = explode('=', $param, 2);
+                $params[urldecode($name)][] = urldecode($value);
+            }
+
+            $this->entry_id = $params['id'];
+        }
+
 
         $this->generate_data_header();
 
@@ -68,7 +90,11 @@ class Class_Export_Entry {
 
         $form_config = json_decode(stripslashes($form->config));
 
-        $entrys = Codex_form_DB::get_entry($this->form_id);
+        if (empty($this->entry_id)) {
+            $entrys = Codex_form_DB::get_entry_by_form_id($this->form_id);
+        } else {
+            $entrys = Codex_form_DB::get_entry_by_id($this->entry_id);
+        }
 
         $last_entry = $entrys[0];
 
@@ -80,8 +106,11 @@ class Class_Export_Entry {
 
         // foreach name field to entry meta value
         foreach ($entry_meta as $key => $value) {
+            $field = $form_config->fields->{$value->field_id};
             $meta_val[$i] = $entry_meta[$key];
-            $meta_val[$i]->name = $form_config->fields->{$value->field_id}->name;
+
+            // if field name is null, show field id and type
+            $meta_val[$i]->name = ($field->name == '' ? $value->field_id . ' (' . $field->type . ')' : $field->name);
             $i++;
         }
 
@@ -101,7 +130,11 @@ class Class_Export_Entry {
 
         $entry_val = array();
 
-        $entrys = Codex_form_DB::get_entry($this->form_id);
+        if (empty($this->entry_id)) {
+            $entrys = Codex_form_DB::get_entry_by_form_id($this->form_id);
+        } else {
+            $entrys = Codex_form_DB::get_entry_by_id($this->entry_id);
+        }
 
         // extract value data
         foreach ($entrys as $entry) {
@@ -122,17 +155,8 @@ class Class_Export_Entry {
                 $output = $entry_val[$entry->id][$this->entry_title[$i]];
                 array_push($entry_row, $output);
 
-                echo "<pre>";
-                print_r($output);
-                echo "</pre>";
                 $i++;
             }
-
-            echo "<pre>";
-            print_r($entry_val);
-            echo "</pre>";
-
-
 
             array_push($this->entry_content, $entry_row);
         }

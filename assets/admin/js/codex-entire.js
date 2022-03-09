@@ -248,14 +248,18 @@
 
     bulk_action: function (id, action, select) {
       var data = {
-        entry_id: id,
+        form_id: id,
         select: select,
         action: action + "_entry",
       };
       $.post(codex_admin.ajax_url, data, function (res) {
         if (res.success) {
-          alert("Action success.");
-          location.reload();
+          if (res.data.action == "delete") {
+            alert("Delete Selected success.");
+            location.reload();
+          } else if (res.data.url) {
+            window.location = res.data.url;
+          }
         } else {
           alert("Selected Can't not action.");
         }

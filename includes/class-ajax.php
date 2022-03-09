@@ -430,7 +430,7 @@ class Codex_AJAX {
             wp_send_json_error();
         }
 
-        $entrys = Codex_form_DB::get_entry($entry_id);
+        $entrys = Codex_form_DB::get_entry_by_form_id($entry_id);
 
         wp_send_json_success($entrys);
     }
@@ -530,12 +530,12 @@ class Codex_AJAX {
             $params[urldecode($name)][] = urldecode($value);
         }
 
-        $data = Codex_form_DB::delete_entry('codex_form_entry', 'id', $params);
+        $data = Codex_form_DB::delete_entry('codex_form_entry', 'id', $params['id']);
 
         if ($data > 0) {
             $data = Codex_form_DB::delete_entry('codex_form_entry_meta', 'entry_id', $params);
             if ($data > 0) {
-                wp_send_json_success();
+                wp_send_json_success(array('action' => 'delete'));
             }
         }
 
@@ -543,6 +543,7 @@ class Codex_AJAX {
     }
 
     function export_entry() {
+        wp_send_json_success(array('url' => '?export=' . $_POST['form_id'] . '&' . $_POST['select']));
     }
 }
 
