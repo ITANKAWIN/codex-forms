@@ -49,7 +49,7 @@ class Field_Divider {
         $preview = "";
         $preview .= "<div class='ui form big'>";
         $preview .= "<div class='field hg'>";
-        $preview .= "<hr name='field_id[{$config['id']}]' id='{$config['id']}' clss='fielddivider' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<hr name='field_id[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

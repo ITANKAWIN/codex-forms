@@ -26,6 +26,14 @@
   background-color: #5a5a5a;
 }
 
+.duplicate-form:hover {
+  background-color: #1a62b4;
+}
+
+.delete-form:hover {
+  background-color: #911f1f;
+}
+
 /* Column */
 .col-1 {
   width: 8.33%;

@@ -29,10 +29,13 @@ class Admin_Script {
     function javascript_api() {
         $strings = array(
             'ajax_url' => admin_url('admin-ajax.php'),
+            'element_addRow' => "<div class='layout-row'><div class='col-12'><div class='layout-column'></div></div></div>",
             'config_field' => "<div class='config-field'><i class='icon edit'></i></div>",
             'delete_field' => "<div class='delete-field'><i class='icon trash'></i></div>",
             'confirm_remove_option' => "Are you sure want to delete option this?",
-            'confirm_remove_option_alert' => "This item must contain at least one option."
+            'confirm_remove_option_alert' => "This item must contain at least one option.",
+            'field_login' => Codex_Fields::field_types_login(),
+            'field_register' => Codex_Fields::field_types_register(),
         );
 
         wp_localize_script(
@@ -83,6 +86,7 @@ class Admin_Script {
 
     function load_wp_media_files() {
         wp_enqueue_media();
+        
     }
 }
 new Admin_Script();

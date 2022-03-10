@@ -34,13 +34,12 @@
 
 /* Sidebar */
 #sidebar {
-  align-self: flex-start;
   transition: all 0.3s;
   top: 130px;
   position: sticky;
-  overflow-y: scroll;
-  padding-right: 15px;
-  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 170px);
   width: 20%;
 }
 
@@ -75,7 +74,7 @@
 
 /* on field config open */
 .field-row.ui.segment.config-open {
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-color: rgb(65, 153, 253);
   transition: 0.5s border-color ease-in-out;
 }
@@ -86,10 +85,7 @@
 }
 
 .tool-bar {
-  /*flex: 25%;*/
   background-color: #ffbd6b38;
-  /* column-count: 2;
-  padding: 30px 10px 10px 10px; */
   margin-top: -15px;
 }
 
@@ -103,42 +99,36 @@
   height: 50px;
   padding: 10px 20px;
   text-align: center;
-  font-family: sans-serif;
 }
 
 .field-item {
   background-color: #ffffff;
-  padding: 15px 0px 15px 0px;
+  padding: 15px;
   display: inline-block;
   text-align: center;
-  font-family: sans-serif;
   border-radius: 5px;
-  font-size: 13px;
-  border-width: 1px;
-  border-style: solid;
+  border: 2px solid transparent;
+  border-color: #284597;
   width: 100%;
-  margin: 5px;
-}
-
-.field-item:hover {
-  background-color: #ffffff;
-  padding: 15px 0px 15px 0px;
-  display: inline-block;
-  text-decoration: none;
-  font-weight: normal;
-  font-size: 13px !important;
-  color: rgb(40, 47, 54, 0.85);
-  text-align: center;
-  border-radius: 5px;
   margin: 5px;
   cursor: pointer;
 }
 
+.field-item:hover {
+  color: #ffffff;
+  background-color: #284597;
+  transition: all 0.3s;
+}
+
 /* Tool Bar Field & Config */
 .config-fields {
-  background-color: #D8E6FC;
+  background-color: #ffffff;
   margin-top: -12px;
-  padding: 0px 10px 10px 10px;
+  padding: 10px;
+  font-size: medium;
+  border: 1px solid;
+  border-radius: 4px;
+  border-color: #3b5dbd;
 }
 
 /* icon add and remove Option Field Select*/
@@ -167,18 +157,17 @@ a.remove {
 .column {
   display: flex;
   flex-direction: column;
-  /* flex-basis: 100%; */
   flex: 1;
 }
 .ui.vertical.menu.size {
   width: 100%;
-  background-color: #D8E6FC;
 }
-.ui.vertical.menu .item.size{
+
+.ui.vertical.menu .item.size {
   padding: 10px 10px 0px 0px;
   column-count: 2;
 }
-.ui.header.size{
+.ui.header.size {
   color: #424242;
   font-size: 14px;
   padding: 10px 10px 0;

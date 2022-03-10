@@ -34,9 +34,6 @@ class Codex_Edit_form {
         $this->form_config = json_decode(stripslashes($this->form->config), true, JSON_UNESCAPED_UNICODE);
 
         $this->template = $this->form_config['setting']['template'];
-        // print("<pre>");
-        // print_r($this->form_config);
-        // print("</pre>");
     }
 
     function load_field() {
@@ -144,11 +141,11 @@ class Codex_Edit_form {
                 <nav id="sidebar">
                     <div class="ui grid">
                         <div class="column">
-                            <div class="ui menu two item top blue  inverted">
+                            <div class="ui menu two item top blue inverted">
                                 <a class="active yellow item" data-tab="fields"><i class="icon sign"></i>Fields</a>
                                 <a class="yellow item" data-tab="config"><i class="icon sign"></i>Config</a>
                             </div>
-                            <div class="ui tab active " data-tab="fields">
+                            <div class="ui tab active" data-tab="fields">
                                 <div class="tool-bar" id="tool-bar">
                                     <div class="ui vertical menu size">
                                         <?php

@@ -8,6 +8,12 @@
       // call function drag&drop&sort field
       app.jQueryui();
 
+      // check template field one time use
+      app.field_ots();
+
+      // load on action
+      app.load_on_action();
+
       // Event mouse click add row panel
       $("#add-row").click(function () {
         app.addRow_panel();
@@ -61,6 +67,8 @@
           var id = $(this).parent().data("field-id");
 
           $("[data-field-id='" + id + "']").remove();
+
+          app.field_ots();
         }
       });
 
@@ -98,17 +106,10 @@
         app.fieldSelectOptionRemove(e, $(this));
       });
 
-      // set element to dropdown and checkbox
-      $(".ui.dropdown").dropdown();
-      $(".ui.checkbox").checkbox();
-
       // show modal setting
       $(".setting-form").on("click", function () {
         $(".modal-setting").modal("show");
       });
-
-      // load rating star
-      $(".codex-rating").rating("setting", "clearable", true);
 
       // field image select media
       $(".select_media").on("click", function (e) {
@@ -151,10 +152,13 @@
         connectWith: ".layout-column",
         items: ".field-row",
         cursor: "move",
+        placeholder: "field-highlight",
 
+        // dropped event
         stop: function (e, ui) {
           ui.item.removeAttr("style");
           app.buildLayout();
+          app.field_ots();
         },
 
         receive: function (event, ui) {
@@ -182,7 +186,11 @@
                 ui_field.html(res.data.preview);
                 ui_field.append(res.data.position);
                 $(".config-fields").append(res.data.config);
+
+                // field in panel success
                 app.buildLayout();
+                app.field_ots();
+                app.load_on_action();
               } else {
                 console.log(res);
               }
@@ -191,6 +199,8 @@
             });
           } else {
             app.buildLayout();
+            app.field_ots();
+            app.load_on_action();
           }
         },
       });
@@ -226,17 +236,47 @@
       });
     },
 
+    // Disable or Enable field one time use
+    field_ots: function () {
+      var template = $('select[name*="setting[template]"]').val();
+
+      if (template == "login") {
+        template = codex_admin.field_login;
+      } else if (template == "register") {
+        template = codex_admin.field_register;
+      } else {
+        return;
+      }
+
+      // foreach field type
+      $.each(template, function (name, field) {
+        var field_in_panel = $(".layout-column").find(
+          '*[data-field-type="' + field.type + '"]'
+        );
+
+        var field_type = $(".item").find(
+          '*[data-field-type="' + field.type + '"]'
+        );
+
+        if (field_in_panel.length > 0) {
+          field_type.draggable("disable");
+        } else {
+          field_type.draggable("enable");
+        }
+      });
+    },
+
+    load_on_action: function () {
+      // load rating star
+      $(".codex-rating").rating("setting", "clearable", true);
+
+      // set element to dropdown and checkbox
+      $(".ui.dropdown").dropdown();
+      $(".ui.checkbox").checkbox();
+    },
+
     addRow_panel: function () {
-      $(".layout-panel").append(
-        `
-        <div class="layout-row">
-          <div class="col-12">
-              <div class='layout-column'>
-              </div>
-          </div>
-        </div>
-        `
-      );
+      $(".layout-panel").append(codex_admin.element_addRow);
 
       app.buildLayout();
       app.jQueryui();
@@ -263,6 +303,7 @@
       row.slideUp(200, function () {
         $(this).remove();
         app.buildLayout();
+        app.field_ots();
       });
     },
 
@@ -336,11 +377,8 @@
       left[1] = parseFloat(left[1]) + parseFloat(right[1]);
 
       column
-
         .find(".layout-column")
-
         .contents()
-
         .appendTo(prev.find(".layout-column"));
 
       prev.attr("class", left.join("-"));
@@ -352,7 +390,7 @@
       $(".tools-column").remove();
     },
 
-    // Function for show tools field
+    // Function for show tools field config & delete
     showTool_field: function (el) {
       $(el).append(codex_admin.config_field);
       $(el).append(codex_admin.delete_field);

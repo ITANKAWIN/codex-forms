@@ -52,7 +52,7 @@ class Field_Submit {
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
-        $preview .= "<button type='submit' name='field_id[{$config['id']}]' id='{$config['id']}' class='ui primary large basic button' disabled>" . (!empty($config['text']) ? $config['text'] : '') . "</button>";
+        $preview .= "<button type='submit' name='field_id[{$config['id']}]' id='{$config['id']}' class='ui primary large button' disabled>" . (!empty($config['text']) ? $config['text'] : '') . "</button>";
         $preview .= "</div>";
         $preview .= "</form>";
         return $preview;
