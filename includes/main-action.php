@@ -11,11 +11,15 @@ class Main_action {
             }
 
             if ($_GET['page'] == 'codex-forms' && $_GET['view'] = 'edit') {
-                add_action('codex_admin_page', array($this, 'page_edit_forms'));
+                add_action('codex_admin_page', array($this, 'class_edit_forms'));
             }
 
             if ($_GET['page'] == 'entire-codex-forms') {
                 add_action('codex_admin_page', array($this, 'class_entire_forms'));
+            }
+
+            if ($_GET['page'] == 'about-codex-forms') {
+                add_action('codex_admin_page', array($this, 'class_about_forms'));
             }
 
         }
@@ -46,6 +50,15 @@ class Main_action {
             'entire-codex-forms',
             array($this, 'codex_admin_page'),
         );
+
+        add_submenu_page(
+            'codex-forms',
+            __('About me', 'CODEX-FORMS'),
+            __('About me', 'CODEX-FORMS'),
+            'manage_options',
+            'about-codex-forms',
+            array($this, 'codex_admin_page'),
+        );
     }
 
     function codex_admin_page() {
@@ -56,12 +69,16 @@ class Main_action {
         require_once(CODEX_PATH . '/includes/pages/class-show-forms.php');
     }
 
-    function page_edit_forms() {
+    function class_edit_forms() {
         require_once(CODEX_PATH . '/includes/pages/class-edit-form.php');
     }
 
     function class_entire_forms() {
         require_once(CODEX_PATH . '/includes/pages/class-entire-form.php');
+    }
+
+    function class_about_forms() {
+        require_once(CODEX_PATH . '/includes/pages/class-about.php');
     }
 }
 new Main_action();
