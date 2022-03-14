@@ -31,9 +31,9 @@ require_once(CODEX_PATH . '/includes/class-fields.php');
 
 // # check the class is already loaded or not. If it is not loaded yet, we will load it.
 if (!class_exists('Codex_form_DB')) {
-    require_once(CODEX_PATH . '/includes/db/class-db.php');
+    require_once(CODEX_PATH . 'includes/DB/class-db.php');
 }
 
 if (!class_exists('XLSXWriter')) {
-    include_once(CODEX_PATH . '/includes/XLSXWriter/xlsxwriter.class.php');
+    include_once(CODEX_PATH . 'includes/XLSXWriter/xlsxwriter.class.php');
 }

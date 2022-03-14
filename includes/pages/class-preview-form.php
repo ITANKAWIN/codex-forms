@@ -6,7 +6,7 @@ class Codex_Show_Preview {
     public function __construct() {
 
         if (!class_exists('Codex_form_DB')) {
-            require_once(CODEX_PATH . 'includes/db/class-db.php');
+            require_once(CODEX_PATH . 'includes/DB/class-db.php');
         }
 
         add_shortcode('codex_form_preview', array($this, 'preview'));
@@ -26,6 +26,7 @@ class Codex_Show_Preview {
 
         // Only proceed for the form preview page.
         if (!empty($_GET['codex_form_preview'])) { // phpcs:ignore
+
             $form_id = \absint($_GET['codex_form_preview']); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 
@@ -37,13 +38,18 @@ class Codex_Show_Preview {
                 return false;
             }
 
+
             add_filter('the_title', array($this, 'the_title'), 100, 1);
 
             add_filter('the_content', array($this, 'the_content'), 999);
 
             add_filter('get_the_excerpt', array($this, 'the_content'), 999);
 
-            add_filter('template_include', array($this, 'template_include'));
+            // add_filter('template_include', array($this, 'template_include'));
+
+            // add_filter('home_template_hierarchy', array($this, 'template_include'));
+
+            // add_filter('frontpage_template_hierarchy', array($this, 'template_include'));
 
             add_filter('post_thumbnail_html', '__return_empty_string');
         }
@@ -51,11 +57,7 @@ class Codex_Show_Preview {
 
     public function the_title($title) {
 
-        if (
-            in_the_loop()
-        ) {
-            $title = $this->form_data->name;
-        }
+        $title = $this->form_data->name;
 
         return $title;
     }
@@ -73,8 +75,8 @@ class Codex_Show_Preview {
         return $content;
     }
 
-    public function template_include() {
-        return locate_template(array('page.php', 'single.php', 'index.php'));
+    public function template_include($templates) {
+        return array('page.php', 'single.php', 'index.php');
     }
 
     public function preview_style() {
