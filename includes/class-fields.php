@@ -79,119 +79,119 @@ class Codex_Fields {
                 "name"          => "Text",
                 "group"         => "Basic",
                 "type"          => "text",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create a single line of text input boxes.",
                 "icon"          => "icon font"
             ),
             'select' => array(
                 "name"          => "Select",
                 "group"         => "Select",
                 "type"          => "select",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create a drop-down list box. There will be a down arrow to click on multiple drop down items.",
                 "icon"          => "icon caret square down outline"
             ),
             'password' => array(
                 "name"          => "Password",
                 "group"         => "Basic",
                 "type"          => "password",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create a password box, the typed item will be hidden in a black circle.",
                 "icon"          => "icon font"
             ),
             'number' => array(
                 "name"          => "Number",
                 "group"         => "Basic",
                 "type"          => "number",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create a number field.",
                 "icon"          => "icon hashtag"
             ),
             'email' => array(
                 "name"          => "Email",
                 "group"         => "Basic",
                 "type"          => "email",
-                "description"   => "input string or integer one line",
+                "description"   => "Use to create an email field.",
                 "icon"          => "icon envelope outline"
             ),
             'date' => array(
                 "name"          => "Date",
                 "group"         => "Select",
                 "type"          => "date",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create a date field.",
                 "icon"          => "icon calendar alternate outline"
             ),
             'radio' => array(
                 "name"          => "Radio",
                 "group"         => "Select",
                 "type"          => "radio",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create one of the options.",
                 "icon"          => "icon dot circle outline"
             ),
             'checkbox' => array(
                 "name"          => "Checkbox",
                 "group"         => "Select",
                 "type"          => "checkbox",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create the options more than one option, or not select at all.",
                 "icon"          => "icon check square outline"
             ),
             'button' => array(
                 "name"          => "Button",
                 "group"         => "Basic",
                 "type"          => "button",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create buttons",
                 "icon"          => "icon square outline"
             ),
             'file' => array(
                 "name"          => "File",
                 "group"         => "File",
                 "type"          => "file",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to add attachments with various extensions.",
                 "icon"          => "icon upload"
             ),
             'textarea' => array(
                 "name"          => "TextArea",
                 "group"         => "Basic",
                 "type"          => "textarea",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create a  long of text multi-line., mostly used for comment data, addresses.",
                 "icon"          => "icon paragraph"
             ),
             'divider' => array(
                 "name"          => "Divider",
                 "group"         => "Special",
                 "type"          => "divider",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create separators.",
                 "icon"          => "icon arrows alternate horizontal"
             ),
             'thai-provinces' => array(
                 "name"          => "Thai Provinces",
                 "group"         => "Special",
                 "type"          => "thai-provinces",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create a drop-down list box. Select all provinces in Thailand.",
                 "icon"          => "icon map marker alternate"
             ),
             'Pin-GPS' => array(
                 "name"          => "Google Maps",
                 "group"         => "Special",
                 "type"          => "Pin-GPS",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to select a location on the Google Map.",
                 "icon"          => "icon map marker alternate"
             ),
             'Star-Rating' => array(
                 "name"          => "Star Rating",
                 "group"         => "Special",
                 "type"          => "Star-Rating",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create a star rating option.",
                 "icon"          => "icon star outline"
             ),
             'Scale-Rating' => array(
                 "name"          => "Scale Rating",
                 "group"         => "Special",
                 "type"          => "Scale-Rating",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create a scale rating option.",
                 "icon"          => "icon ellipsis horizontal"
             ),
             'Image' => array(
                 "name"          => "Image",
                 "group"         => "Special",
                 "type"          => "Image",
-                "description"   => "input string or integer one line",
+                "description"   => "Used to create a image type field.",
                 "icon"          => "icon image outline"
             ),
         );
