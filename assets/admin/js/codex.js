@@ -19,7 +19,13 @@
 
       $(".short-code-copy").on("click", function (e) {
         var text = $(this).text();
-        navigator.clipboard.writeText(text);
+        
+        var sampleTextarea = document.createElement("textarea");
+        document.body.appendChild(sampleTextarea);
+        sampleTextarea.value = text;
+        sampleTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(sampleTextarea);
       });
 
       // Generate to DataTable
