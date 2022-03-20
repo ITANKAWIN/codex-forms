@@ -71,8 +71,6 @@
         if (action === "" || selected === "") {
           return false;
         }
-        console.log(selected);
-        console.log(action);
 
         app.bulk_action(id, action, selected);
       });
@@ -84,6 +82,12 @@
       $(".view-entry").on("click", function () {
         var id = $(this).data("entry-id");
         app.entry_view(id);
+      });
+
+      // View each entry value
+      $(".delete-entry").on("click", function () {
+        var id = $(this).data("entry-id");
+        app.delete_entry(id);
       });
 
       $(".modal-view .actions .entry-edit").on("click", function () {
@@ -109,10 +113,10 @@
     search_by_date: function () {
       var minDate, maxDate;
       minDate = new DateTime($("#min"), {
-        format: "MMMM Do YYYY",
+        format: "YYYY-MM-DD",
       });
       maxDate = new DateTime($("#max"), {
-        format: "MMMM Do YYYY",
+        format: "YYYY-MM-DD",
       });
 
       // Custom filtering function which will search data in column four between two values
@@ -152,7 +156,7 @@
           $(".modal-view").modal("show");
 
           // show id entry
-          $(".modal-view .header").html("Entry ID:" + entry_id);
+          $(".modal-view .header").html("Entry ID: " + entry_id);
 
           var content =
             "<thead><tr><th>Field Name</th><th>Value</th></tr></thead>";
@@ -181,6 +185,27 @@
       });
     },
 
+    delete_entry: function (entry_id) {
+      var form_id = $("#form_id").val();
+
+      var data = {
+        form_id: form_id,
+        select: "id=" +entry_id,
+        action: "delete_entry",
+      };
+
+      $.post(codex_admin.ajax_url, data, function (res) {
+        if (res.success) {
+          if (res.data.action == "delete") {
+            alert("Delete Selected success.");
+            location.reload();
+          }
+        } else {
+          alert("Selected Can't not action.");
+        }
+      });
+    },
+
     entry_edit: function (entry_id) {
       var form_id = $("#form_id").val();
 
@@ -196,7 +221,7 @@
           $(".modal-edit").modal("show");
 
           // show id entry
-          $(".modal-edit .header").html("Entry ID:" + entry_id);
+          $(".modal-edit .header").html("Entry ID: " + entry_id);
 
           var content =
             "<thead><tr><th>Field Name</th><th>Value</th></tr></thead>";
@@ -235,11 +260,13 @@
         action: "save_edit_entry",
       };
 
-      console.log(data.entry_value);
       $.post(codex_admin.ajax_url, data, function (res) {
         if (res.success) {
+          alert("Save value success");
+          // show modal detail value
+          $(".modal-view").modal("show");
         } else {
-          console.log(res);
+          alert("Save value not success");
         }
       }).fail(function (xhr, textStatus, e) {
         console.log(xhr.responseText);
@@ -252,6 +279,7 @@
         select: select,
         action: action + "_entry",
       };
+
       $.post(codex_admin.ajax_url, data, function (res) {
         if (res.success) {
           if (res.data.action == "delete") {

@@ -111,7 +111,7 @@ class Codex_Entire_forms {
             echo "<td>" . date("d F Y, H:i:s", $date_submitted) . "</td>";
             echo "<td >";
             echo "<button class='ui green button view-entry' data-entry-id='{$entry->id}'><i class='eye icon'></i>view</button>";
-            echo "<button class='ui red button'><i class='trash icon'></i>trash</button>";
+            echo "<button class='ui red button delete-entry' data-entry-id='{$entry->id}'><i class='trash icon'></i>trash</button>";
             echo "</td>";
             echo "</tr>";
         }

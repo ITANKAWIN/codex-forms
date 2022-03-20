@@ -9,18 +9,12 @@ jQuery(function ($) {
 
       $(".ui.dropdown").dropdown();
 
-      $(".codex_forms_form").on(
-        "submit",
-        "form.codex_forms_form",
-        function (e) {
-          e.preventDefault();
-          var form_data = JSON.stringify(
-            $(".codex_forms_form").serializeArray()
-          );
+      $(".codex_forms_form").on("submit", function (e) {
+        e.preventDefault();
+        var form_data = JSON.stringify($(".codex_forms_form").serializeArray());
 
-          app.formEntry(form_data);
-        }
-      );
+        app.formEntry(form_data);
+      });
 
       // Field  star rating
       $(".codex-rating").rating("setting", "onRate", function (value) {

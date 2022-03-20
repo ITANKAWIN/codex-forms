@@ -184,10 +184,10 @@ class Codex_form_DB {
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
         return $wpdb->query(
             $wpdb->prepare(
-                "DELETE FROM `{$wpdb->prefix}$from` 
-                WHERE {$where} in (" . implode(',', $value['id']) . ")",
+                "DELETE FROM `{$wpdb->prefix}$from` WHERE {$where} in (" . implode(',', $value) . ")",
             )
         );
+
     }
 }
 
