@@ -77,6 +77,7 @@ class Codex_AJAX {
             'name'      => $form_title,
             'type'      => 'form',
             'config'    => json_encode($data, JSON_UNESCAPED_UNICODE),
+            'date'      => wp_date('Y-m-d H:i:s'),
         );
 
         $form_id = Codex_form_DB::new_form($form);
@@ -109,6 +110,7 @@ class Codex_AJAX {
             'name'      => $data->name . '-copy',
             'type'      => 'form',
             'config'    => $data->config,
+            'date'      => wp_date('Y-m-d H:i:s'),
         );
 
         $form_id = Codex_form_DB::new_form($form);

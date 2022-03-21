@@ -37,7 +37,7 @@ class Codex_Forms_DB_Tables {
 				        `type` varchar(55) NOT NULL DEFAULT 'form',
 				        `config` longtext NOT NULL,
                         `status` varchar(20) NOT NULL DEFAULT 'active',
-                        `date` datetime DEFAULT CURRENT_TIMESTAMP,
+                        `date` datetime DEFAULT '0000-00-00 00:00:00',
 				        PRIMARY KEY (`id`)
 				        ) {$this->charset_collate};";
         dbDelta($forms_table);
@@ -48,7 +48,7 @@ class Codex_Forms_DB_Tables {
         $value_table = "CREATE TABLE {$this->wpdb->prefix}codex_form_entry (
                         `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 				        `form_id` int(11) NOT NULL,
-				        `date` datetime DEFAULT CURRENT_TIMESTAMP,
+				        `date` datetime DEFAULT '0000-00-00 00:00:00',
 				        PRIMARY KEY (`id`)
                         ) {$this->charset_collate};";
 

@@ -64,7 +64,6 @@ jQuery(function ($) {
         processData: false,
         data: form_data,
         success: function (res) {
-          console.log(res);
           if (res.success) {
             alert(res.data.succ_msg);
             if (res.data.redirect === "") {

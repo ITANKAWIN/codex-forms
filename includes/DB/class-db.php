@@ -15,7 +15,7 @@ class Codex_form_DB {
 
         global $wpdb;
 
-        $wpdb->insert($wpdb->prefix . 'codex_form_entry', array('form_id' => $id));
+        $wpdb->insert($wpdb->prefix . 'codex_form_entry', array('form_id' => $id, 'date' => wp_date('Y-m-d H:i:s')));
 
         return $wpdb->insert_id;
     }
