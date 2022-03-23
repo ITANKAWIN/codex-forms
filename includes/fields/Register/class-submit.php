@@ -94,7 +94,7 @@ class Field_Submit {
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
-                            <input type='text' name='fields[{$config['id']}][text]' value='{$config['text']}'>
+                            <input type='text' class='config-form-text-button' name='fields[{$config['id']}][text]' value='{$config['text']}'>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ class Field_Submit {
                         <label'>Button Align</label>
                     </div>
                     <div class='column'>
-                        <select class='ui fluid dropdown' name='fields[{$config['id']}][align]'>
+                        <select class='ui fluid dropdown config-form-align-button' name='fields[{$config['id']}][align]'>
                         <option value='left' " . ('left' == $config['align'] ? 'selected' : '') . ">Left</option>
                         <option value='center' " . ('center' == $config['align'] ? 'selected' : '') . ">Center</option>
                         <option value='right' " . ('right' == $config['align'] ? 'selected' : '') . ">Right</option>
