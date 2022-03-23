@@ -29,16 +29,17 @@ class Field_button {
             'id' => $_POST['field_id'],
             'type' => $this->field_type,
             'text' => 'Submit',
+            'align'     => 'left'
         );
 
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
         wp_send_json_success(
             array(
-                'form_id' => (int) $_POST['id'],
-                'preview' => $this->preview($default_config),
-                'config'  => $this->config($default_config),
-                'position' => $position,
+                'form_id'   => (int) $_POST['id'],
+                'preview'   => $this->preview($default_config),
+                'config'    => $this->config($default_config),
+                'position'  => $position,
             )
 
         );
@@ -48,7 +49,7 @@ class Field_button {
 
         $preview = "";
         $preview .= "<form class='ui form huge'>";
-        $preview .= "<div class='field'>";
+        $preview .= "<div class='field' style='text-align: {$config['align']}'>";
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
@@ -104,7 +105,7 @@ class Field_button {
                     <div class='column'>
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][align]'>
                         <option value='left' " . ('left' == $config['align'] ? 'selected' : '') . ">Left</option>
-                        <option value='middle' " . ('middle' == $config['align'] ? 'selected' : '') . ">Middle</option>
+                        <option value='center' " . ('center' == $config['align'] ? 'selected' : '') . ">Center</option>
                         <option value='right' " . ('right' == $config['align'] ? 'selected' : '') . ">Right</option>
                         </select>
                     </div>

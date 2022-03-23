@@ -48,7 +48,7 @@ class Field_Submit_Login {
 
         $preview = "";
         $preview .= "<form class='ui form huge'>";
-        $preview .= "<div class='field'>";
+        $preview .= "<div class='field' style='text-align: {$config['align']}'>";
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }

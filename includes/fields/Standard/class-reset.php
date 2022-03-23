@@ -26,9 +26,10 @@ class Field_reset {
 
         //default config for field
         $default_config = array(
-            'id' => $_POST['field_id'],
-            'type' => $this->field_type,
-            'text' => 'Reset',
+            'id'        => $_POST['field_id'],
+            'type'      => $this->field_type,
+            'text'      => 'Reset',
+            'align'     => 'left'
         );
 
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
@@ -48,7 +49,7 @@ class Field_reset {
 
         $preview = "";
         $preview .= "<form class='ui form huge'>";
-        $preview .= "<div class='field'>";
+        $preview .= "<div class='field' style='text-align: {$config['align']}'>";
         if (isset($config['label'])) {
             $preview .= "<label>{$config['label']}</label>";
         }
@@ -104,7 +105,7 @@ class Field_reset {
                     <div class='column'>
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][align]'>
                         <option value='left' " . ('left' == $config['align'] ? 'selected' : '') . ">Left</option>
-                        <option value='middle' " . ('middle' == $config['align'] ? 'selected' : '') . ">Middle</option>
+                        <option value='center' " . ('center' == $config['align'] ? 'selected' : '') . ">Center</option>
                         <option value='right' " . ('right' == $config['align'] ? 'selected' : '') . ">Right</option>
                         </select>
                     </div>
