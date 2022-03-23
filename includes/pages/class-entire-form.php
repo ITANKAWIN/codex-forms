@@ -8,7 +8,7 @@ class Codex_Entire_forms {
 
     function __construct() {
 
-        $this->forms = Codex_form_DB::get_forms('form', 'active');
+        $this->forms = Codex_form_DB::get_forms();
 
         // add modal show entry value 
         add_action('codex_entire_form', array($this, 'modal_view'));

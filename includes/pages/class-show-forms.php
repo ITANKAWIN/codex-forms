@@ -6,7 +6,7 @@ class Codex_Show_Forms {
 
     function __construct() {
 
-        $this->forms = Codex_form_DB::get_forms('form', 'active');
+        $this->forms = Codex_form_DB::get_forms();
 
         add_action('codex_show_forms', array($this, 'view'));
 
@@ -38,8 +38,8 @@ class Codex_Show_Forms {
             <table class="ui inverted olive table" id="show_form">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Form name</th>
+                        <th>Status</th>
                         <th>Short code</th>
                         <th>Date</th>
                     </tr>
@@ -49,7 +49,6 @@ class Codex_Show_Forms {
                     foreach ($this->forms as $form) {
                     ?>
                         <tr class="option-show-form">
-                            <td><?= $form->id ?></td>
                             <td width="50%">
                                 <h5 class="ui header">
                                     <?= $form->name ?>
@@ -59,6 +58,7 @@ class Codex_Show_Forms {
                                     <a class="menu-button delete-form" data-id="<?= $form->id ?>">Delete</a>
                                 </h5>
                             </td>
+                            <td><?= $form->status ?></td>
                             <td><a class="ui button short-code-copy" data-tooltip="Click here copy to clipboard" data-position="top left">[codex_form_preview id=<?= $form->id ?>]</a></td>
                             <td><?= $form->date ?></td>
                         </tr>

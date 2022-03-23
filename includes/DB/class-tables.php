@@ -34,9 +34,8 @@ class Codex_Forms_DB_Tables {
         $forms_table = "CREATE TABLE {$this->wpdb->prefix}codex_forms (
 				        `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 				        `name` varchar(55) NOT NULL DEFAULT '',
-				        `type` varchar(55) NOT NULL DEFAULT 'form',
 				        `config` longtext NOT NULL,
-                        `status` varchar(20) NOT NULL DEFAULT 'active',
+                        `status` varchar(20) NOT NULL DEFAULT 'Activate',
                         `date` datetime DEFAULT '0000-00-00 00:00:00',
 				        PRIMARY KEY (`id`)
 				        ) {$this->charset_collate};";

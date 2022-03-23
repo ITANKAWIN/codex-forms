@@ -67,40 +67,14 @@ class Codex_form_DB {
         return true;
     }
 
-    static public function get($table) {
+    static public function get_forms() {
 
         global $wpdb;
 
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
         return $wpdb->get_results(
             $wpdb->prepare(
-                "SELECT * FROM $table;",
-            )
-        );
-    }
-
-    static public function get_where($table, $where) {
-
-        global $wpdb;
-
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
-        return $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT * FROM $table WHERE $where;",
-            )
-        );
-    }
-
-    static public function get_forms($type, $status) {
-
-        global $wpdb;
-
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
-        return $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT * FROM {$wpdb->prefix}codex_forms WHERE `type` = %s AND `status` = %s",
-                $type,
-                $status
+                "SELECT * FROM {$wpdb->prefix}codex_forms"
             )
         );
     }

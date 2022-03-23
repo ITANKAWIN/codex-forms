@@ -75,7 +75,6 @@ class Codex_AJAX {
         // Merge args and create the form.
         $form = array(
             'name'      => $form_title,
-            'type'      => 'form',
             'config'    => json_encode($data, JSON_UNESCAPED_UNICODE),
             'date'      => wp_date('Y-m-d H:i:s'),
         );
@@ -108,7 +107,6 @@ class Codex_AJAX {
         // Merge args and create the form.
         $form = array(
             'name'      => $data->name . '-copy',
-            'type'      => 'form',
             'config'    => $data->config,
             'date'      => wp_date('Y-m-d H:i:s'),
         );
@@ -159,6 +157,8 @@ class Codex_AJAX {
 
         $form_title = sanitize_text_field($_POST['title']);
 
+        $form_status = sanitize_text_field($_POST['status']);
+
         $form_setting = json_decode(stripslashes($_POST['setting']));
 
         $form_data = json_decode(stripslashes($_POST['data']));
@@ -201,8 +201,9 @@ class Codex_AJAX {
         }
 
         $form = array(
-            'name' => $form_title,
-            'config' => wp_json_encode($data, JSON_UNESCAPED_UNICODE),
+            'name'      => $form_title,
+            'config'    => wp_json_encode($data, JSON_UNESCAPED_UNICODE),
+            'status'    => $form_status,
         );
 
         Codex_form_DB::update_form($form_id, $form);
