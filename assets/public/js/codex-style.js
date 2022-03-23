@@ -61,6 +61,10 @@ jQuery(function ($) {
         form_data.append("action", "submit_form");
       }
 
+      for (var value of form_data.values()) {
+        console.log(value);
+      }
+
       $.ajax({
         url: codex_admin.ajax_url,
         type: "POST",

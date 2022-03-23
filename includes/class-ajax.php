@@ -228,7 +228,7 @@ class Codex_AJAX {
                 $url_upload = $upload['url'];
             }
 
-            $data = array_merge_recursive($data, array('field_id' => array($_POST['file_id'] => $url_upload)));
+            $data['field_id'][$_POST['file_id']] = $url_upload;
         }
 
         if (!empty($data['form_id'])) {

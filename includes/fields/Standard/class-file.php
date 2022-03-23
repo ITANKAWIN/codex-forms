@@ -21,11 +21,11 @@ class Field_File {
         }
         //default config for field
         $default_config = array(
-            'id' => $_POST['field_id'],
-            'type' => $this->field_type,
-            'label' => 'File Upload',
-            'placeholder' => 'File Upload',
-            'value' => '',
+            'id'            => $_POST['field_id'],
+            'type'          => $this->field_type,
+            'label'         => 'File Upload',
+            'name'          => '',
+            'require'       => 'on',
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.
@@ -42,11 +42,9 @@ class Field_File {
     public function preview($config = []) {
         $preview = "";
         $preview .= "<div class='ui form big'>";
-        $preview .= "<div class='field'>";
-        if (isset($config['label'])) {
-            $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
-        }
-        $preview .= "<input type='file' name='field_id[{$config['id']}]' id='{$config['id']}' accept='image/png, image/jpeg' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "'>";
+        $preview .= "<div class='field " . ($config['require'] == 'on' ? 'required' : '') . "'>";
+        $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
+        $preview .= "<input type='file' name='field_id[{$config['id']}]' id='{$config['id']}' accept='image/png, image/jpeg' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -74,10 +72,10 @@ class Field_File {
                         <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
                         ";
         $field_types = Codex_Fields::field_types();
-            foreach ($field_types as $field) {
-                $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
-            }
-            $config_field .= "
+        foreach ($field_types as $field) {
+            $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['type']}</option>";
+        }
+        $config_field .= "
                         </select>
                     </div>
                 </div>
@@ -87,7 +85,7 @@ class Field_File {
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
-                        <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                        <input type='text' class='config-form-label' name='fields[{$config['id']}][label]' value='{$config['label']}'>
                     </div>
                     </div>
                 </div>
@@ -98,6 +96,17 @@ class Field_File {
                     <div class='column'>
                         <div class='ui fluid input'>
                             <input type='text' class='config-form-name' name='fields[{$config['id']}][name]' value='{$config['name']}'>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='column'>
+                        <label'>Required</label>
+                    </div>
+                    <div class='column'>
+                        <div class='ui toggle checkbox'>
+                            <input type='checkbox' name='fields[{$config['id']}][require]' " . ($config['require'] == 'on' ? 'checked' : '') . ">
+                            <label></label>
                         </div>
                     </div>
                 </div>

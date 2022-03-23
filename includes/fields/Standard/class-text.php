@@ -28,6 +28,7 @@ class Field_Text {
             'label'         => 'Input text',
             'placeholder'   => 'input text',
             'value'         => '',
+            'name'          => '',
             'require'       => 'on',
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";

@@ -92,6 +92,16 @@
         app.fieldconfig_placeholder($(this));
       });
 
+      // realtime chang button text
+      $(".config-form-text-button").keyup(function () {
+        app.fieldconfig_text_button($(this));
+      });
+
+      // realtime chang button align
+      $(".config-form-align-button").on("change", function () {
+        app.fieldconfig_align_button($(this));
+      });
+
       //
       // For config field
       //
@@ -500,6 +510,22 @@
       var id = el.parent().parent().parent().parent().parent().data("field-id");
       var val = el.val();
       $("input[id=" + id + "]").attr("placeholder", val);
+    },
+
+    // Function for realtime change text button
+    fieldconfig_text_button: function (el) {
+      var id = el.parent().parent().parent().parent().parent().data("field-id");
+      var val = el.val();
+      $("button[id=" + id + "]").text(val);
+    },
+
+    // Function for realtime change align button
+    fieldconfig_align_button: function (el) {
+      var id = el.parent().parent().parent().parent().data("field-id");
+      var val = el.children().val();
+      $("button[id=" + id + "]")
+        .parent()
+        .attr("style", "text-align:" + val);
     },
 
     //

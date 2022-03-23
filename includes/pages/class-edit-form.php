@@ -33,6 +33,9 @@ class Codex_Edit_form {
 
         $this->form_config = json_decode(stripslashes($this->form->config), true, JSON_UNESCAPED_UNICODE);
 
+        echo "<pre>";
+        print_r($this->form_config);
+        echo "</pre>";
         $this->template = $this->form_config['setting']['template'];
     }
 
