@@ -16,6 +16,10 @@ jQuery(function ($) {
         app.formEntry(form_data);
       });
 
+      $("button[type='reset']").on("click", function (e) {
+        $(".codex_forms_form")[0].reset();
+      });
+
       // Field  star rating
       $(".codex-rating").rating("setting", "onRate", function (value) {
         var id = $(this).data("id");

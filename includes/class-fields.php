@@ -138,6 +138,13 @@ class Codex_Fields {
                 "description"   => "Used to create buttons",
                 "icon"          => "icon square outline"
             ),
+            'reset' => array(
+                "name"          => "Reset",
+                "group"         => "Basic",
+                "type"          => "reset",
+                "description"   => "Used to create button reset all value in any fields",
+                "icon"          => "icon square outline"
+            ),
             'file' => array(
                 "name"          => "File",
                 "group"         => "File",
@@ -278,6 +285,13 @@ class Codex_Fields {
                 "description"   => "input string or integer one line",
                 "icon"          => "icon image outline"
             ),
+            'Reset' => array(
+                "name"          => "Reset",
+                "group"         => "Basic",
+                "type"          => "reset",
+                "description"   => "Used to create button reset all value in any fields",
+                "icon"          => "icon square outline"
+            ),
         );
 
         return $field;
@@ -312,6 +326,13 @@ class Codex_Fields {
                 "type"          => "submit_login",
                 "description"   => "input string or integer one line",
                 "icon"          => "icon image outline"
+            ),
+            'Reset' => array(
+                "name"          => "Reset",
+                "group"         => "Basic",
+                "type"          => "reset",
+                "description"   => "Used to create button reset all value in any fields",
+                "icon"          => "icon square outline"
             ),
         );
 
