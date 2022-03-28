@@ -142,8 +142,8 @@ class Codex_Edit_form {
                     <div class="ui grid">
                         <div class="column">
                             <div class="ui menu two item top blue inverted">
-                                <a class="active yellow item" data-tab="fields"><i class="icon sign"></i>Fields</a>
-                                <a class="yellow item" data-tab="config"><i class="icon sign"></i>Config</a>
+                                <a class="active item" data-tab="fields" data-tooltip="Field List" data-position="bottom center"><i class="icon sign"></i>Fields</a>
+                                <a class="item" data-tab="config" data-tooltip="Config Field Selected" data-position="bottom center"><i class="icon sign"></i>Config</a>
                             </div>
                             <div class="ui tab active" data-tab="fields">
                                 <div class="tool-bar" id="tool-bar">
@@ -167,7 +167,7 @@ class Codex_Edit_form {
 
                                             foreach ($field_types as $field) {
                                                 if ($field['group'] == $group) {
-                                                    echo "<div class='field-item' data-field-type='{$field['type']}'>";
+                                                    echo "<div class='field-item' data-field-type='{$field['type']}' data-tooltip='{$field['description']}'>";
                                                     echo "<i class='{$field['icon']}'></i>" . $field['name'];
                                                     echo "</div>";
                                                 }
