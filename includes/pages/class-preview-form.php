@@ -106,48 +106,58 @@ class Codex_Show_Preview {
 
         // Fetch form details for the entry.
         $form_data = Codex_form_DB::get_form_by_id($id, 'wp_codex_forms');
-        $form_content = json_decode(stripslashes($form_data->config), true);
-        echo "<form method='POST' enctype='multipart/form-data' id='{$form_data->id}' class='codex_forms_form'>";
-        echo "<div class='layout-panel' data-template='{$form_content['setting']['template']}'>";
-        echo "<div class='msg_errors'></div>";
-        echo "<input type='hidden' name='form_id' value='{$form_data->id}'>";
-        if (!empty($form_content['panels'])) {
-            $row = 0;
-            if (!empty($form_content['panels'])) {
-                $rows = explode("|", $form_content['panels']);
-            } else {
-                $rows = array('12');
-            }
 
-            if (!empty($rows)) {
-                foreach ($rows as $row_in => $columns) {
-                    echo "<div class='layout-row'>";
-                    $row += 1;
-                    $columns = explode(':', $columns);
-                    foreach ($columns as $column => $span) {
-                        $column += 1;
-                        echo "<div class='col-{$span}'>";
-                        echo "<div class='layout-column'>";
-                        if (!empty($form_content['panel'])) {
-                            foreach ($form_content['panel'] as $field => $panel) {
-                                foreach ($form_content['fields'] as $fields) {
-                                    if ($field == $fields['id'] && $panel == $row . ":" . $column) {
-                                        echo "<div class='field-row'>";
-                                        echo apply_filters("codex_form_preview_{$form_content['fields'][$fields['id']]['type']}", $form_content['fields'][$fields['id']]);
-                                        echo "</div>";
+        // Check Form Activate
+        if (
+            $form_data->status == 'Activate'
+        ) {
+            $form_content = json_decode(stripslashes($form_data->config), true);
+
+            echo "<form method='POST' enctype='multipart/form-data' id='{$form_data->id}' class='codex_forms_form'>";
+            echo "<div class='layout-panel' data-template='{$form_content['setting']['template']}'>";
+            echo "<div class='msg_errors'></div>";
+            echo "<input type='hidden' name='form_id' value='{$form_data->id}'>";
+            if (!empty($form_content['panels'])) {
+                $row = 0;
+                if (!empty($form_content['panels'])) {
+                    $rows = explode("|", $form_content['panels']);
+                } else {
+                    $rows = array('12');
+                }
+
+                if (!empty($rows)) {
+                    foreach ($rows as $row_in => $columns) {
+                        echo "<div class='layout-row'>";
+                        $row += 1;
+                        $columns = explode(':', $columns);
+                        foreach ($columns as $column => $span) {
+                            $column += 1;
+                            echo "<div class='col-{$span}'>";
+                            echo "<div class='layout-column'>";
+                            if (!empty($form_content['panel'])) {
+                                foreach ($form_content['panel'] as $field => $panel) {
+                                    foreach ($form_content['fields'] as $fields) {
+                                        if ($field == $fields['id'] && $panel == $row . ":" . $column) {
+                                            echo "<div class='field-row'>";
+                                            echo apply_filters("codex_form_preview_{$form_content['fields'][$fields['id']]['type']}", $form_content['fields'][$fields['id']]);
+                                            echo "</div>";
+                                        }
                                     }
                                 }
                             }
+                            echo "</div>";
+                            echo "</div>";
                         }
                         echo "</div>";
-                        echo "</div>";
                     }
-                    echo "</div>";
                 }
             }
+            echo "</div>";
+            echo "</form>";
+        } else {
+            echo "<p>The form is no longer accepting entire values.</p>";
+            echo "<p>Contact the site administrator.</p>";
         }
-        echo "</div>";
-        echo "</form>";
     }
 }
 
