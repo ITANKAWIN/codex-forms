@@ -28,6 +28,7 @@ class Field_Email {
             'id'            => $_POST['field_id'],
             'type'          => $this->field_type,
             'label'         => 'Email',
+            'name'          => 'Email',
             'placeholder'   => 'name@example.com',
             'value'         => '',
             'require'       => 'on',

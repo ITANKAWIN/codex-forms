@@ -453,6 +453,11 @@
       $.post(codex_admin.ajax_url, data, function (res) {
         if (res.success) {
           $(".save_form").html("<strong>Saved</strong>");
+
+          // ตั้งเวลา 5วินาที กลับมาแสดงเป็น Save
+          setTimeout(function () {
+            $(".save_form").html("<strong>Save</strong>");
+          }, 5000);
         } else {
           $(".save_form").html("<strong>Save is not successful</strong>");
         }
@@ -494,6 +499,9 @@
         });
         capt.val(struct.join("|"));
       });
+
+      // บันทึกข้อมูล form อัตโนมัติ
+      app.save_form();
     },
 
     //
