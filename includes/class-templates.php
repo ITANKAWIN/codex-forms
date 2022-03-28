@@ -23,15 +23,21 @@ class Codex_Templates {
                 'description'   => 'The blank form allows you to create any type of form using our drag & drop builder.'
             ),
 
+            'contact'  => array(
+                'name'          => 'Contact',
+                'description'   => 'Simple Contact Form.'
+            ),
+
             'register'  => array(
                 'name'          => 'Register',
-                'description'   => 'Register a WordPress User'
+                'description'   => 'Register a WordPress User.'
             ),
 
             'login'  => array(
                 'name'          => 'Login',
-                'description'   => 'Signup a WordPress User'
-            )
+                'description'   => 'Signup a WordPress User.'
+            ),
+
         );
 
         return $templates;
@@ -190,6 +196,111 @@ class Codex_Templates {
                 'err_msg' => 'Something Went wrong!!',
                 'err_redirect' => '',
                 'template' => 'login',
+            ),
+        );
+
+        return $data;
+    }
+
+    function Template_Contact() {
+        $data = array(
+            'fields' =>
+            array(
+                951959 =>
+                array(
+                    'id' => '951959',
+                    'type' => 'text',
+                    'label' => 'First Name',
+                    'name' => 'First Name',
+                    'placeholder' => 'First Name',
+                    'value' => '',
+                    'require' => 'on',
+                ),
+                872142 =>
+                array(
+                    'id' => '872142',
+                    'type' => 'text',
+                    'label' => 'Last Name',
+                    'name' => 'Last Name',
+                    'placeholder' => 'Last Name',
+                    'value' => '',
+                    'require' => 'on',
+                ),
+                183495 =>
+                array(
+                    'id' => '183495',
+                    'type' => 'email',
+                    'label' => 'Email',
+                    'name' => 'Email',
+                    'placeholder' => 'name@example.com',
+                    'value' => '',
+                    'require' => 'on',
+                ),
+                220026 =>
+                array(
+                    'id' => '220026',
+                    'type' => 'text',
+                    'label' => 'Phone',
+                    'name' => 'Phone',
+                    'placeholder' => 'Phone',
+                    'value' => '',
+                    'require' => 'on',
+                ),
+                106848 =>
+                array(
+                    'id' => '106848',
+                    'type' => 'textarea',
+                    'label' => 'Message',
+                    'name' => 'Message',
+                    'placeholder' => 'Type your message here',
+                    'value' => '',
+                    'require' => 'on',
+                ),
+                417526 =>
+                array(
+                    'id' => '417526',
+                    'type' => 'text',
+                    'label' => 'Address',
+                    'name' => 'Address',
+                    'placeholder' => 'Address',
+                    'value' => '',
+                    'require' => 'on',
+                ),
+                461096 =>
+                array(
+                    'id' => '461096',
+                    'type' => 'button',
+                    'text' => 'Submit',
+                    'align' => 'left',
+                ),
+                830515 =>
+                array(
+                    'id' => '830515',
+                    'type' => 'reset',
+                    'text' => 'Reset',
+                    'align' => 'left',
+                ),
+            ),
+            'id' => '2',
+            'panels' => '6:6|6:6|12|12|2:1:2:1:6',
+            'panel' =>
+            array(
+                951959 => '1:1',
+                872142 => '1:2',
+                183495 => '2:1',
+                220026 => '2:2',
+                417526 => '3:1',
+                106848 => '4:1',
+                461096 => '5:1',
+                830515 => '5:3',
+            ),
+            'setting' =>
+            array(
+                'succ_msg' => 'Thankyou for submit Contact.',
+                'redirect' => '',
+                'err_msg' => 'Something Went wrong!!',
+                'err_redirect' => '',
+                'template' => 'blank',
             ),
         );
 
