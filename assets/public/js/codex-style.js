@@ -61,10 +61,6 @@ jQuery(function ($) {
         form_data.append("action", "submit_form");
       }
 
-      for (var value of form_data.values()) {
-        console.log(value);
-      }
-
       $.ajax({
         url: codex_admin.ajax_url,
         type: "POST",
@@ -75,7 +71,7 @@ jQuery(function ($) {
           if (res.success) {
             alert(res.data.succ_msg);
             if (res.data.redirect === "") {
-              location.reload();
+              $(".layout-panel").html(res.data.succ_msg);
             } else {
               window.location = res.data.redirect;
             }

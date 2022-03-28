@@ -30,6 +30,8 @@ class Codex_Show_Forms {
                 <button class="ui orange button new-form" data-tooltip="Click here to new form" data-position="bottom center"><i class="plus icon"></i> New Form</button>
             </div>
             <div class="right item">
+                <?php $nonce_create = wp_create_nonce('create_form'); ?>
+                <input type="hidden" name="nonce_create" id="nonce_create" value="<?= $nonce_create ?>">
                 <button class="ui blue button btn_import_form" data-tooltip="Click here to import form" data-position="bottom right"><i class="upload icon"></i> Import</button>
                 <input type="file" id="import_form" accept="application/JSON" style="display: none">
             </div>
@@ -47,6 +49,8 @@ class Codex_Show_Forms {
                 <tbody>
                     <?php
                     foreach ($this->forms as $form) {
+                        $nonce_duplicate = wp_create_nonce('duplicate_' . $form->id);
+                        $nonce_delete = wp_create_nonce('delete_' . $form->id);
                     ?>
                         <tr class="option-show-form">
                             <td width="50%">
@@ -54,8 +58,8 @@ class Codex_Show_Forms {
                                     <?= $form->name ?>
                                     <a class="menu-button" href="<?= home_url() ?>/?codex_form_preview=<?= $form->id ?>" target="_blank">View</a>
                                     <a class="menu-button" href="<?= admin_url('admin.php?page=codex-forms&view=edit&form_id=' . $form->id) ?>">Edit</a>
-                                    <a class="menu-button duplicate-form" data-id="<?= $form->id ?>">Duplicate</a>
-                                    <a class="menu-button delete-form" data-id="<?= $form->id ?>">Delete</a>
+                                    <a class="menu-button duplicate-form" data-id="<?= $form->id ?>" data-nonce="<?= $nonce_duplicate ?>">Duplicate</a>
+                                    <a class="menu-button delete-form" data-id="<?= $form->id ?>" data-nonce="<?= $nonce_delete ?>">Delete</a>
                                 </h5>
                             </td>
                             <td><?= $form->status ?></td>

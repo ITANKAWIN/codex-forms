@@ -435,6 +435,7 @@
     save_form: function () {
       var formName = $("#form_name");
       var formID = $("#form_id");
+      var formNonce = $("#nonce");
       var formStatus = $("#form_status");
 
       $(".save_form").html(
@@ -444,6 +445,7 @@
       var data = {
         title: formName.val(),
         id: formID.val(),
+        nonce: formNonce.val(),
         status: formStatus.val(),
         setting: JSON.stringify($("#setting_form").serializeArray()),
         data: JSON.stringify($("#panel").serializeArray()),

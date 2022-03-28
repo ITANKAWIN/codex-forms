@@ -51,8 +51,9 @@
         e.preventDefault();
         var title = $("#form_name").val();
         var template = $(this).data("template");
+        var nonce = $("#nonce_create").val();
 
-        app.Create_Form(title, template);
+        app.Create_Form(title, template, nonce);
       });
 
       // Delete Form
@@ -60,7 +61,8 @@
         let text = "Do you want to delete form ?";
         if (confirm(text) == true) {
           var id = $(this).data("id");
-          app.Delete_Form(id);
+          var nonce = $(this).data("nonce");
+          app.Delete_Form(id, nonce);
         }
       });
 
@@ -69,7 +71,8 @@
         let text = "Do you want to Duplicate form ?";
         if (confirm(text) == true) {
           var id = $(this).data("id");
-          app.Duplicate_Form(id);
+          var nonce = $(this).data("nonce");
+          app.Duplicate_Form(id, nonce);
         }
       });
 
@@ -80,6 +83,7 @@
 
       // import json file form template to new form
       $("#import_form").on("change", function () {
+        var nonce = $("#nonce_create").val();
         var GetFile = new FileReader();
         file = this.files[0];
         let name = file.name;
@@ -87,15 +91,16 @@
         GetFile.readAsText(file);
         GetFile.onload = function () {
           let data = JSON.parse(GetFile.result);
-          app.Import_Form(name, data);
+          app.Import_Form(name, data, nonce);
         };
       });
     },
 
-    Create_Form: function (title, template) {
+    Create_Form: function (title, template, nonce) {
       var data = {
         title: title,
         template: template,
+        nonce: nonce,
         action: "new_form",
       };
 
@@ -110,9 +115,10 @@
       });
     },
 
-    Delete_Form: function (id) {
+    Delete_Form: function (id, nonce) {
       var data = {
         id: id,
+        nonce: nonce,
         action: "delete_form",
       };
 
@@ -127,9 +133,10 @@
       });
     },
 
-    Duplicate_Form: function (id) {
+    Duplicate_Form: function (id, nonce) {
       var data = {
         id: id,
+        nonce: nonce,
         action: "duplicate_form",
       };
 
@@ -144,10 +151,11 @@
       });
     },
 
-    Import_Form: function (name, data) {
+    Import_Form: function (name, data, nonce) {
       var data = {
         title: name,
         data: data,
+        nonce: nonce,
         action: "new_form",
       };
 

@@ -50,7 +50,11 @@ class Codex_AJAX {
 
         $form_title = sanitize_text_field($_POST['title']);
         if (empty($form_title)) {
-            return false;
+            wp_send_json_error();
+        }
+
+        if (!wp_verify_nonce($_POST['nonce'], 'create_form')) {
+            wp_send_json_error();
         }
 
         if (isset($_POST['data'])) {
@@ -99,7 +103,11 @@ class Codex_AJAX {
 
         $id = sanitize_text_field($_POST['id']);
         if (empty($id)) {
-            return false;
+            wp_send_json_error();
+        }
+
+        if (!wp_verify_nonce($_POST['nonce'], 'duplicate_' . $_POST['id'])) {
+            wp_send_json_error();
         }
 
         $data = Codex_form_DB::get_form_by_id($id);
@@ -152,6 +160,10 @@ class Codex_AJAX {
         $form_id = sanitize_text_field($_POST['id']);
 
         if (empty($form_id)) {
+            wp_send_json_error();
+        }
+
+        if (!wp_verify_nonce($_POST['nonce'], 'form_' . $_POST['id'])) {
             wp_send_json_error();
         }
 
@@ -221,6 +233,9 @@ class Codex_AJAX {
 
         $data      = $this->form_to_array($form_data);
 
+        if (!wp_verify_nonce($data['nonce'], 'entire_' . $data['form_id'])) {
+            wp_send_json_error();
+        }
 
         if (!empty($_FILES['file'])) {
             $arr_img_ext = array('image/png', 'image/jpeg', 'image/jpg', 'image/gif');

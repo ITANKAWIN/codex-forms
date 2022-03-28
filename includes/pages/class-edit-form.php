@@ -38,8 +38,10 @@ class Codex_Edit_form {
 
     function load_field() {
 
+        $nonce = wp_create_nonce('form_' . $this->form->id);
         echo '<div class="layout-panel">';
         echo '<input type="hidden" id="form_id" name="id" value="' . $this->form->id . '">';
+        echo '<input type="hidden" id="nonce" name="nonce" value="' . $nonce . '">';
         if (!empty($this->form_config['panels'])) {
             $row = 0;
             echo '<input type="hidden" name="panels" value="' . $this->form_config['panels'] . '">';

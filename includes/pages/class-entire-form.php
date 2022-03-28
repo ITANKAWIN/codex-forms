@@ -82,7 +82,7 @@ class Codex_Entire_forms {
 
         <table class="ui celled table" id="entire_form">
             <thead>
-                <th><input type='checkbox' class="check-all"></th>
+                <th><input type='checkbox' class="check-all" data-tooltip="Select all entry" data-position="right center"></th>
                 <th>ID</th>
                 <th>Submitted</th>
                 <th></th>
@@ -110,8 +110,8 @@ class Codex_Entire_forms {
             $date_submitted = strtotime($entry->date);
             echo "<td>" . date("d F Y, H:i:s", $date_submitted) . "</td>";
             echo "<td >";
-            echo "<button class='ui green button view-entry' data-entry-id='{$entry->id}'><i class='eye icon'></i>view</button>";
-            echo "<button class='ui red button delete-entry' data-entry-id='{$entry->id}'><i class='trash icon'></i>trash</button>";
+            echo "<button class='ui green button view-entry' data-entry-id='{$entry->id}' data-tooltip='view entry values' data-position='bottom center'><i class='eye icon'></i>view</button>";
+            echo "<button class='ui red button delete-entry' data-entry-id='{$entry->id}' data-tooltip='delete this entry' data-position='bottom center'><i class='trash icon'></i>trash</button>";
             echo "</td>";
             echo "</tr>";
         }

@@ -111,12 +111,17 @@ class Codex_Show_Preview {
         if (
             $form_data->status == 'Activate'
         ) {
+            $nonce = wp_create_nonce('entire_' . $id);
             $form_content = json_decode(stripslashes($form_data->config), true);
 
             echo "<form method='POST' enctype='multipart/form-data' id='{$form_data->id}' class='codex_forms_form'>";
             echo "<div class='layout-panel' data-template='{$form_content['setting']['template']}'>";
             echo "<div class='msg_errors'></div>";
+            
             echo "<input type='hidden' name='form_id' value='{$form_data->id}'>";
+
+            // nonce
+            echo "<input type='hidden' name='nonce' value='{$nonce}'>";
             if (!empty($form_content['panels'])) {
                 $row = 0;
                 if (!empty($form_content['panels'])) {
