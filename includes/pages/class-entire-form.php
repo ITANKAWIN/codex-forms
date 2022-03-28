@@ -56,13 +56,13 @@ class Codex_Entire_forms {
                         <option value="delete">Delete Selected</option>
                         <option value="export">Export Selected</option>
                     </select>
-                    <button class="Medium ui primary basic button action_entire">Apply</button>
+                    <button class="Medium ui primary basic button action_entire" data-tooltip='Action entry selected' data-position='bottom center'>Apply</button>
                     <a href="?export=<?= $this->form_id ?>" class="ui teal button" data-tooltip="Click here to export all form" data-position="bottom center"><i class="download icon"></i>Export All</a>
                 </div>
                 <div class="column">
                     <div class="ui form">
                         <div class="inline fields">
-                            <label for="min">Date:</label>
+                            <label for="min" data-tooltip='Search by Date' data-position='bottom center'>Date:</label>
                             <input type="text" id="min" name="min" placeholder='From date'>
                             <input type="text" id="max" name="max" placeholder='To date'>
                         </div>
