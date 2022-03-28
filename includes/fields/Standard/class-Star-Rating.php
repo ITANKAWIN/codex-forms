@@ -20,11 +20,11 @@ class Field_Star_Rating {
         }
         //default config for field
         $default_config = array(
-            'id' => $_POST['field_id'],
-            'type' => $this->field_type,
-            'label' => 'Star-Rating',
-            'placeholder' => 'star-rating',
-            'value' => '',
+            'id'            => $_POST['field_id'],
+            'type'          => $this->field_type,
+            'label'         => 'Star Rating',
+            'name'          => 'Rating',
+            'value'         => '',
         );
         $position = "<input type='hidden' name='panel[{$_POST['field_id']}]' class='panel' value=''>";
         // Prepare to return compiled results.

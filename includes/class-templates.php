@@ -28,6 +28,11 @@ class Codex_Templates {
                 'description'   => 'Simple Contact Form.'
             ),
 
+            'review'  => array(
+                'name'          => 'Review',
+                'description'   => 'Create Form Review Star Rating Website.'
+            ),
+
             'register'  => array(
                 'name'          => 'Register',
                 'description'   => 'Register a WordPress User.'
@@ -297,6 +302,90 @@ class Codex_Templates {
             'setting' =>
             array(
                 'succ_msg' => 'Thankyou for submit Contact.',
+                'redirect' => '',
+                'err_msg' => 'Something Went wrong!!',
+                'err_redirect' => '',
+                'template' => 'blank',
+            ),
+        );
+
+        return $data;
+    }
+
+    function Template_ReviewPage() {
+        $data = array(
+            'fields' =>
+            array(
+                187447 =>
+                array(
+                    'id' => '187447',
+                    'type' => 'Star-Rating',
+                    'label' => 'Star-Rating',
+                    'name' => 'Rating',
+                    'number_of_star' => '5',
+                    'default_of_star' => '5',
+                ),
+                512131 =>
+                array(
+                    'id' => '512131',
+                    'type' => 'text',
+                    'label' => 'Your Name',
+                    'name' => 'Name',
+                    'placeholder' => 'Name',
+                    'value' => '',
+                ),
+                569006 =>
+                array(
+                    'id' => '569006',
+                    'type' => 'email',
+                    'label' => 'Email',
+                    'name' => 'Email',
+                    'placeholder' => 'name@example.com',
+                    'value' => '',
+                ),
+                590764 =>
+                array(
+                    'id' => '590764',
+                    'type' => 'textarea',
+                    'label' => 'Comment',
+                    'name' => 'Comment',
+                    'placeholder' => 'Enter your comment',
+                    'value' => '',
+                    'require' => 'on',
+                ),
+                583859 =>
+                array(
+                    'id' => '583859',
+                    'type' => 'button',
+                    'text' => 'Submit',
+                    'align' => 'left',
+                ),
+                498116 =>
+                array(
+                    'id' => '498116',
+                    'type' => 'reset',
+                    'text' => 'Reset',
+                    'align' => 'left',
+                ),
+            ),
+            'id' => '4',
+            'panels' => '6:6|6:6|6:6|6:6|3:3:6',
+            'field_id' =>
+            array(
+                187447 => '5',
+            ),
+            'panel' =>
+            array(
+                187447 => '1:1',
+                512131 => '2:1',
+                569006 => '3:1',
+                590764 => '4:1',
+                583859 => '5:1',
+                498116 => '5:2',
+            ),
+            'setting' =>
+            array(
+                'succ_msg' => 'Thankyou for Review This Page.',
                 'redirect' => '',
                 'err_msg' => 'Something Went wrong!!',
                 'err_redirect' => '',
