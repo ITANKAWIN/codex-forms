@@ -212,78 +212,78 @@ class Codex_Fields {
                 "name"          => "Email",
                 "group"         => "Basic",
                 "type"          => "email_user",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Use to create an email field.",
+                "icon"          => "icon envelope outline"
             ),
             'Password_User' => array(
                 "name"          => "Password",
                 "group"         => "Basic",
                 "type"          => "password_user",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create a password box, the typed item will be hidden in a black circle.",
+                "icon"          => "icon font"
             ),
             'Con_Password_User' => array(
                 "name"          => "Confirm Password",
                 "group"         => "Basic",
                 "type"          => "con_password_user",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create a password confirm.",
+                "icon"          => "icon font"
             ),
             'Username' => array(
                 "name"          => "Username",
                 "group"         => "Basic",
                 "type"          => "username",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create a single line of text input boxes.",
+                "icon"          => "icon user"
             ),
             'Nickname' => array(
                 "name"          => "Nickname",
                 "group"         => "Basic",
                 "type"          => "nickname",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create a short name.",
+                "icon"          => "icon user"
             ),
             'First_Name' => array(
                 "name"          => "First Name",
                 "group"         => "Basic",
                 "type"          => "first_name",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create a input string or integer one line",
+                "icon"          => "icon font"
             ),
             'Last_Name' => array(
                 "name"          => "Last Name",
                 "group"         => "Basic",
                 "type"          => "last_name",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create a input string or integer one line",
+                "icon"          => "icon font"
             ),
             'Website' => array(
                 "name"          => "Website",
                 "group"         => "Basic",
                 "type"          => "website",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to to build your website.",
+                "icon"          => "icon globe"
             ),
             'Display_Name' => array(
                 "name"          => "Display Name",
                 "group"         => "Basic",
                 "type"          => "display_name",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create a display Name",
+                "icon"          => "icon id badge outline"
             ),
             'User_Bio' => array(
                 "name"          => "User Bio",
                 "group"         => "Basic",
                 "type"          => "user_bio",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create a input string or integer one line",
+                "icon"          => "icon user circle"
             ),
             'Submit' => array(
                 "name"          => "Submit",
                 "group"         => "Basic",
                 "type"          => "submit",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create buttons",
+                "icon"          => "icon square outline"
             ),
             'Reset' => array(
                 "name"          => "Reset",
@@ -303,29 +303,29 @@ class Codex_Fields {
                 "name"          => "Username",
                 "group"         => "Basic",
                 "type"          => "username_login",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create a single line of text input boxes.",
+                "icon"          => "icon user"
             ),
             'Email_login' => array(
                 "name"          => "Email",
                 "group"         => "Basic",
                 "type"          => "email_login",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Use to create an email field.",
+                "icon"          => "icon envelope outline"
             ),
             'Password_login' => array(
                 "name"          => "Password",
                 "group"         => "Basic",
                 "type"          => "password_login",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create a password box, the typed item will be hidden in a black circle.",
+                "icon"          => "icon font"
             ),
             'Submit_login' => array(
                 "name"          => "Submit",
                 "group"         => "Basic",
                 "type"          => "submit_login",
-                "description"   => "input string or integer one line",
-                "icon"          => "icon image outline"
+                "description"   => "Used to create buttons",
+                "icon"          => "icon square outline"
             ),
             'Reset' => array(
                 "name"          => "Reset",
