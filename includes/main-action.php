@@ -38,7 +38,7 @@ class Main_action {
             'manage_options',
             'codex-forms',
             array($this, 'codex_admin_page'),
-            '',
+            'dashicons-feedback',
             6
         );
 
