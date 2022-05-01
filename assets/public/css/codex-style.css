@@ -1,5 +1,6 @@
 .layout-row {
   display: flex;
+  gap: 10px;
 }
 
 /* Column */
