@@ -264,7 +264,7 @@
         if (res.success) {
           alert("Save value success");
           // show modal detail value
-          $(".modal-view").modal("show");
+          app.entry_view(entry_id);
         } else {
           alert("Save value not success");
         }
