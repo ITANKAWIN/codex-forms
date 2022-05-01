@@ -46,14 +46,14 @@ class Admin_Script {
     }
 
     function codex_admin_scripts() {
-        wp_enqueue_style('codex-admin', CODEX_URL . 'assets/admin/css/codex.css', __FILE__, '1.0.0');
-        wp_enqueue_style('codex-sidebar', CODEX_URL . 'assets/admin/css/sidebar.css', __FILE__, '1.0.0');
-        wp_enqueue_style('codex-edit', CODEX_URL . 'assets/admin/css/codex-edit.css', __FILE__, '1.0.0');
+        wp_enqueue_style('codex-admin', CODEX_URL . 'assets/admin/css/codex.min.css', __FILE__, '1.0.1');
+        wp_enqueue_style('codex-sidebar', CODEX_URL . 'assets/admin/css/sidebar.min.css', __FILE__, '1.0.1');
+        wp_enqueue_style('codex-edit', CODEX_URL . 'assets/admin/css/codex-edit.min.css', __FILE__, '1.0.1');
 
-        wp_enqueue_script('codex-admin', CODEX_URL . 'assets/admin/js/codex.js', __FILE__, array('jquery'), '1.0.0', true);
-        wp_enqueue_script('codex-sidebar', CODEX_URL . 'assets/admin/js/sidebar.js', __FILE__, array('jquery'), '1.0.0', true);
-        wp_enqueue_script('codex-edit', CODEX_URL . 'assets/admin/js/codex-edit.js', __FILE__, array('jquery'), '1.0.0', true);
-        wp_enqueue_script('codex-entire', CODEX_URL . 'assets/admin/js/codex-entire.js', __FILE__, array('jquery'), '1.0.0', true);
+        wp_enqueue_script('codex-admin', CODEX_URL . 'assets/admin/js/codex.min.js', __FILE__, array('jquery'), '1.0.1', true);
+        wp_enqueue_script('codex-sidebar', CODEX_URL . 'assets/admin/js/sidebar.min.js', __FILE__, array('jquery'), '1.0.1', true);
+        wp_enqueue_script('codex-edit', CODEX_URL . 'assets/admin/js/codex-edit.min.js', __FILE__, array('jquery'), '1.0.1', true);
+        wp_enqueue_script('codex-entire', CODEX_URL . 'assets/admin/js/codex-entire.min.js', __FILE__, array('jquery'), '1.0.1', true);
     }
 
     function codex_semantic_ui_scripts() {

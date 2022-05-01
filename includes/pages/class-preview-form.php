@@ -83,9 +83,9 @@ class Codex_Show_Preview {
 
         wp_enqueue_script('jquery-ui-core');
 
-        wp_enqueue_style('codex-preview', CODEX_URL . 'assets/public/css/codex-style.css', __FILE__, codex_css_ver);
+        wp_enqueue_style('codex-preview', CODEX_URL . 'assets/public/css/codex-style.min.css', __FILE__, codex_css_ver);
 
-        wp_enqueue_script('codex-preview', CODEX_URL . 'assets/public/js/codex-style.js', __FILE__, codex_js_ver);
+        wp_enqueue_script('codex-preview', CODEX_URL . 'assets/public/js/codex-style.min.js', __FILE__, codex_js_ver);
 
         wp_enqueue_style('codex-semantic', CODEX_URL . 'assets/admin/semantic-ui/semantic.min.css', __FILE__);
 
