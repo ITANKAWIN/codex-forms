@@ -47,9 +47,9 @@ class Codex_Show_Preview {
 
             // add_filter('template_include', array($this, 'template_include'));
 
-            // add_filter('home_template_hierarchy', array($this, 'template_include'));
+            add_filter('home_template_hierarchy', array($this, 'template_include'));
 
-            // add_filter('frontpage_template_hierarchy', array($this, 'template_include'));
+            add_filter('frontpage_template_hierarchy', array($this, 'template_include'));
 
             add_filter('post_thumbnail_html', '__return_empty_string');
         }
