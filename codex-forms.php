@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Codex-Forms
-Description: This is my Codex-Forms ! It makes a new form!
+Description: This is Codex-Forms, It makes a easy new form By Drag&Drop!
 Author: Kawin & Wattana
 Text Domain: codex-forms
-Version: 1.0
+Version: 1.0.1
 */
 
 if (!defined('ABSPATH')) {
