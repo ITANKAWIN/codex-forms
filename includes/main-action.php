@@ -39,7 +39,7 @@ class Main_action {
             'codex-forms',
             array($this, 'codex_admin_page'),
             'dashicons-feedback',
-            6
+            25
         );
 
         add_submenu_page(
