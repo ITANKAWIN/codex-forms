@@ -143,15 +143,8 @@ class Codex_AJAX {
             wp_send_json_error();
         }
 
-        $arg = array(
-            'redirect' => add_query_arg(
-                array(),
-                admin_url('admin.php?page=codex-forms')
-            ),
-        );
-
         if (Codex_form_DB::delete_form($form_id)) {
-            wp_send_json_success($arg);
+            wp_send_json_success();
         }
     }
 
@@ -282,7 +275,7 @@ class Codex_AJAX {
         if (isset($data["email"])) {
             // empty email
             if ($data["email"] != '') {
-                $user = get_user_by('login', $data["email"]);
+                $user = get_user_by('email', $data["email"]);
 
                 if (!$user) {
                     array_push($error_msg, "Invalid email.");
@@ -296,7 +289,7 @@ class Codex_AJAX {
         if (isset($data["username"])) {
             // empty username
             if ($data["username"] != '') {
-                $user = get_user_by('email', $data["username"]);
+                $user = get_user_by('login', $data["username"]);
 
                 if (!$user) {
                     array_push($error_msg, "Invalid email.");

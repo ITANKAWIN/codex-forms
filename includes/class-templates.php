@@ -312,7 +312,7 @@ class Codex_Templates {
         return $data;
     }
 
-    function Template_ReviewPage() {
+    function Template_Review() {
         $data = array(
             'fields' =>
             array(

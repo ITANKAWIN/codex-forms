@@ -122,9 +122,11 @@
         action: "delete_form",
       };
 
+      console.log(data);
+
       $.post(codex_admin.ajax_url, data, function (res) {
         if (res.success) {
-          window.location.href = res.data.redirect;
+          location.reload();
         } else {
           alert("Something went wrong");
         }

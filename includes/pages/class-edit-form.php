@@ -152,15 +152,15 @@ class Codex_Edit_form {
                                     <div class="ui vertical menu size">
                                         <?php
 
-                                        if ($this->template == "blank") {
-                                            $groups = Codex_Fields::groups();
-                                            $field_types = Codex_Fields::field_types();
-                                        } else if ($this->template == "register") {
+        if ($this->template == "register") {
                                             $groups = Codex_Fields::groups_register();
                                             $field_types = Codex_Fields::field_types_register();
                                         } else if ($this->template == "login") {
                                             $groups = Codex_Fields::groups_login();
                                             $field_types = Codex_Fields::field_types_login();
+                                        } else {
+                                            $groups = Codex_Fields::groups();
+                                            $field_types = Codex_Fields::field_types();
                                         }
 
                                         foreach ($groups as $group) {
