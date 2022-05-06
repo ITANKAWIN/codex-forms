@@ -49,7 +49,7 @@ class Field_Username {
         if (isset($config['label'])) {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<input type='text' name='username' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
+        $preview .= "<input type='text' name='username' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . " value='" . (isset($config['value']) ? $config['value'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;

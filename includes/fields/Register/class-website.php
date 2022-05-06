@@ -49,7 +49,7 @@ class Field_Website {
         if (isset($config['label'])) {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<input type='url' name='website' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
+        $preview .= "<input type='url' name='website' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . " value='" . (isset($config['value']) ? $config['value'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -110,7 +110,7 @@ class Field_Website {
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
-                            <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                            <input type='url' name='fields[{$config['id']}][value]' value='{$config['value']}'>
                         </div>
                     </div>
                 </div>

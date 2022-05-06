@@ -49,7 +49,7 @@ class Field_Email_User {
         if (isset($config['label'])) {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<input type='email' name='email' id='{$config['id']}' class='email_user' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
+        $preview .= "<input type='email' name='email' id='{$config['id']}' class='email_user' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . " value='" . (isset($config['value']) ? $config['value'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         return $preview;
@@ -110,7 +110,7 @@ class Field_Email_User {
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
-                            <input type='text' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                            <input type='email' name='fields[{$config['id']}][value]' value='{$config['value']}'>
                         </div>
                     </div>
                 </div>

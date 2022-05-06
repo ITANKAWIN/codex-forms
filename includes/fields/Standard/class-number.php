@@ -53,7 +53,7 @@ class Field_Number {
         if (isset($config['label'])) {
             $preview .= "<label id='{$config['id']}'>{$config['label']}</label>";
         }
-        $preview .= "<input type='number' name='field_id[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . ">";
+        $preview .= "<input type='number' name='field_id[{$config['id']}]' id='{$config['id']}' disabled placeholder='" . (isset($config['placeholder']) ? $config['placeholder'] : '') . "' " . ($config['require'] == 'on' ? 'required' : '') . " value='" . (isset($config['value']) ? $config['value'] : '') . "'>";
         $preview .= "</div>";
         $preview .= "</div>";
         
@@ -125,7 +125,7 @@ class Field_Number {
                     </div>
                     <div class='column'>
                         <div class='ui fluid input'>
-                            <input type='text' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
+                            <input type='number' class='form-control' name='fields[{$config['id']}][value]' value='{$config['value']}'>
                         </div>
                     </div>
                 </div>
