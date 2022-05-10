@@ -58,7 +58,9 @@ class Codex_Fields {
 
     public static function groups_register() {
         $groups = array(
+            'Must Have',
             'Basic',
+            'Special',
         );
 
         return $groups;
@@ -66,7 +68,9 @@ class Codex_Fields {
 
     public static function groups_login() {
         $groups = array(
+            'Must Have',
             'Basic',
+            'Special',
         );
 
         return $groups;
@@ -210,28 +214,28 @@ class Codex_Fields {
         $field = array(
             'Email_User' => array(
                 "name"          => "Email",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "email_user",
                 "description"   => "Use to create an email field.",
                 "icon"          => "icon envelope outline"
             ),
             'Password_User' => array(
                 "name"          => "Password",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "password_user",
                 "description"   => "Used to create a password box, the typed item will be hidden in a black circle.",
                 "icon"          => "icon font"
             ),
             'Con_Password_User' => array(
                 "name"          => "Confirm Password",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "con_password_user",
                 "description"   => "Used to create a password confirm.",
                 "icon"          => "icon font"
             ),
             'Username' => array(
                 "name"          => "Username",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "username",
                 "description"   => "Used to create a single line of text input boxes.",
                 "icon"          => "icon user"
@@ -245,14 +249,14 @@ class Codex_Fields {
             ),
             'First_Name' => array(
                 "name"          => "First Name",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "first_name",
                 "description"   => "Used to create a input string or integer one line",
                 "icon"          => "icon font"
             ),
             'Last_Name' => array(
                 "name"          => "Last Name",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "last_name",
                 "description"   => "Used to create a input string or integer one line",
                 "icon"          => "icon font"
@@ -280,7 +284,7 @@ class Codex_Fields {
             ),
             'Submit' => array(
                 "name"          => "Submit",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "submit",
                 "description"   => "Used to create buttons",
                 "icon"          => "icon square outline"
@@ -292,6 +296,13 @@ class Codex_Fields {
                 "description"   => "Used to create button reset all value in any fields",
                 "icon"          => "icon square outline"
             ),
+            'Image_User' => array(
+                "name"          => "Image",
+                "group"         => "Special",
+                "type"          => "image_user",
+                "description"   => "Used to create button reset all value in any fields",
+                "icon"          => "icon image outline"
+            ),
         );
 
         return $field;
@@ -301,28 +312,28 @@ class Codex_Fields {
         $field = array(
             'Username_login' => array(
                 "name"          => "Username",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "username_login",
                 "description"   => "Used to create a single line of text input boxes.",
                 "icon"          => "icon user"
             ),
             'Email_login' => array(
                 "name"          => "Email",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "email_login",
                 "description"   => "Use to create an email field.",
                 "icon"          => "icon envelope outline"
             ),
             'Password_login' => array(
                 "name"          => "Password",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "password_login",
                 "description"   => "Used to create a password box, the typed item will be hidden in a black circle.",
                 "icon"          => "icon font"
             ),
             'Submit_login' => array(
                 "name"          => "Submit",
-                "group"         => "Basic",
+                "group"         => "Must Have",
                 "type"          => "submit_login",
                 "description"   => "Used to create buttons",
                 "icon"          => "icon square outline"
@@ -334,12 +345,12 @@ class Codex_Fields {
                 "description"   => "Used to create button reset all value in any fields",
                 "icon"          => "icon square outline"
             ),
-            'Image_Login' => array(
-                "name"          => "Image_Login",
-                "group"         => "Basic",
-                "type"          => "Image_Login",
+            'Image_login' => array(
+                "name"          => "Image",
+                "group"         => "Special",
+                "type"          => "image_login",
                 "description"   => "Used to create button reset all value in any fields",
-                "icon"          => "icon square outline"
+                "icon"          => "icon image outline"
             ),
         );
 

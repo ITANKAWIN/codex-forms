@@ -3,9 +3,9 @@ if (!defined('ABSPATH')) {
     die();
 }
 
-class Field_Image {
+class Field_Image_Login {
 
-    private $field_type = 'Image';
+    private $field_type = 'image_login';
 
     public function __construct() {
         $this->init();
@@ -80,7 +80,7 @@ class Field_Image {
                     <div class='column'>
                         <select class='ui fluid dropdown field-type' name='fields[{$config['id']}][type]'>
                         ";
-        $field_types = Codex_Fields::field_types();
+        $field_types = Codex_Fields::field_types_login();
         foreach ($field_types as $field) {
             $config_field .= "<option value='{$field['type']}' " . ($field['type'] == $config['type'] ? 'selected' : '') . ">{$field['name']}</option>";
         }
@@ -184,4 +184,4 @@ class Field_Image {
     }
 }
 
-new Field_Image();
+new Field_Image_Login();
