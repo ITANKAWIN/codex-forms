@@ -334,6 +334,13 @@ class Codex_Fields {
                 "description"   => "Used to create button reset all value in any fields",
                 "icon"          => "icon square outline"
             ),
+            'Image_Login' => array(
+                "name"          => "Image_Login",
+                "group"         => "Basic",
+                "type"          => "Image_Login",
+                "description"   => "Used to create button reset all value in any fields",
+                "icon"          => "icon square outline"
+            ),
         );
 
         return $field;

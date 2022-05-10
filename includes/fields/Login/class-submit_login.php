@@ -77,7 +77,7 @@ class Field_Submit_Login {
                         <label>Type</label>
                     </div>
                     <div class='column'>
-                        <select class='ui dropdown' name='fields[{$config['id']}][type]'>
+                        <select class='ui dropdown field-type' name='fields[{$config['id']}][type]'>
                         ";
         $field_types = Codex_Fields::field_types_login();
         foreach ($field_types as $field) {

@@ -154,6 +154,46 @@
         // Open the uploader dialog
         mediaUploader.open();
       });
+
+      $(".field-type").on("change", function () {
+        var formID = $("#form_id");
+        var field_id = $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .data("field-id");
+        var field_type = $(this).children("select").val();
+        var ui_field = $(".config-open");
+        var ui_config = $(this).parent().parent().parent().parent();
+
+        var data = {
+          id: formID.val(),
+          field_id: field_id,
+          action: "codex_new_field_" + field_type,
+        };
+
+        console.log(data);
+
+        $.post(codex_admin.ajax_url, data, function (res) {
+          if (res.success) {
+            ui_field.attr("data-field-type", field_type);
+            ui_field.html(res.data.preview);
+            ui_field.append(res.data.position);
+            ui_config.replaceWith(res.data.config);
+
+            // field in panel success
+            app.buildLayout();
+            app.field_ots();
+            app.load_on_action();
+            app.config_field(ui_field.children());
+          } else {
+            console.log(res);
+          }
+        }).fail(function (xhr, textStatus, e) {
+          console.log(xhr.responseText);
+        });
+      });
     },
 
     // Function for Drag & Drop & Sort item field

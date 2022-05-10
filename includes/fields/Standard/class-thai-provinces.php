@@ -163,7 +163,7 @@ class Field_Provinces {
                         <label>Type</label>
                     </div>
                     <div class='column'>
-                        <select class='ui fluid dropdown' name='fields[{$config['id']}][type]'>
+                        <select class='ui fluid dropdown field-type' name='fields[{$config['id']}][type]'>
                         ";
         $field_types = Codex_Fields::field_types();
         foreach ($field_types as $field) {
